@@ -1,7 +1,7 @@
 --- 
 title: "데이터 시각화"
 author: "한국 R 사용자회"
-date: "`r Sys.Date()`"
+date: "2022-05-01"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -15,12 +15,7 @@ description: "데이터 시각화"
 # 데이터 시각화
 
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+
 
 # 헬로우 월드
 
