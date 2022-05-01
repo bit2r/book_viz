@@ -12,6 +12,10 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
 
+  "hello-world.Rmd",
+
+  "basics.Rmd",
+
   "references.Rmd"
 
 ]

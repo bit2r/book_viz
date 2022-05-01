@@ -1,5 +1,7 @@
 데이터-시각화
-헬로우-월드
+hello-world
+napoleon-invasion
+napoleon-viz
 시각화-개요
 데이터-조작
 시각화
