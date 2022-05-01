@@ -100,4 +100,11 @@ ggsave( glue::glue("assets/images/나폴레옹_러시아.png") ,
 
 ![](assets/images/나폴레옹_러시아.png){width=100%}
 
+## 참고서적 {#references}
+
+영어로 참고할 오픈 데이터 시각화 교재
+
+- [@healy2018data]
+- [@dougherty2021hands]
+- [@wilke2019fundamentals]
 
