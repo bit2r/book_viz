@@ -1,8 +1,5 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
+
+
 
 # 헬로우 월드 {#hello-world}
 
@@ -34,69 +31,6 @@ editor_options:
 ## 시각화 {#napoleon-viz}
 
 
-```r
-library(HistData)
-library(tidyverse)
-library(gridExtra)
-library(ggrepel)
-
-data(Minard.troops)
-data(Minard.cities)
-data(Minard.temp)
-
-source("../../../swc/sungnam-report/R/theme_election.R", encoding = "UTF-8")
-
-levels(Minard.cities$city) <- c("Bobr", "Chjat", "Dorogobouge", "Gloubokoe", "Kowno", "Malo-Jarosewii", 
-                                "Minsk", "Mohilow", "Moiodexno", "Mojaisk", "모스코바", "Orscha", 
-                                "Polotzk", "Smolensk", "Smorgoni", "Studienska", "Tarantino", 
-                                "Wilna", "Witebsk", "Wixma")
-
-# 진군 퇴각 군대와 도시명
-breaks <- c(1, 2, 3) * 10^5 
-
-plot_minard <- Minard.troops %>% 
-  ggplot(aes(x = long, y = lat)) +
-  	geom_path(aes(size = survivors, colour = direction, group = group),
-  	          lineend = "round", linejoin = "round") +
-    geom_text(aes(label = city), size = 4, data = Minard.cities) +
-   	scale_size("생존병사수", range = c(1, 10), 
-   	            breaks = breaks, labels = scales::comma(breaks)) +
-    scale_color_manual("진격방향", 
-                       values = c("grey50", "red"), 
-                       labels=c("진격", "후퇴")) +
-    coord_cartesian(xlim = c(24, 38)) +
-    labs(x = NULL,
-         y = "경도",
-         title = "나폴레옹 러시아 침공",
-         subtitle = "1812년 6월 24일 ~ 1813년 1월 5일") +
-    theme_election() +
-    theme(legend.position=c(.8, .2), legend.box="horizontal")
-  
-# 러시아 침공 월별 기온
-plot_temp <- Minard.temp %>% 
-  mutate(date = case_when(str_detect(date, "Oct") ~ str_replace(date, "Oct", "10월"),
-                          str_detect(date, "Nov") ~ str_replace(date, "Nov", "11월"),
-                          str_detect(date, "Dec") ~ str_replace(date, "Dec", "12월"),
-                           TRUE ~ "미상")) %>% 
-  mutate(date = glue::glue("{date}일")) %>% 
-  mutate(date = ifelse(date == "미상일", "미상", date)) %>% 
-  ggplot(aes(long, temp)) +
-  	geom_path(color="grey", size=1.5) +
-  	geom_point(size=2) +
-  	geom_text_repel(aes(label=glue::glue("{date}")) ) +
-  	xlab("위도") + ylab("기온") +
-  	coord_cartesian(xlim = c(24, 38)) + 
-  	theme_bw()
-	
-# 러시아 침공 그래프와 기온 그래프 결합
-minard_g <- grid.arrange(plot_minard, plot_temp, nrow=2, heights=c(3,1))
-
-# 미나드 그래프 PNG 파일 저장
-ggsave( glue::glue("assets/images/나폴레옹_러시아.png") , 
-        minard_g,
-        device = ragg::agg_png, 
-        width = 297, height = 210, units = "mm", res = 600)
-```
 
 ![](assets/images/나폴레옹_러시아.png){width=100%}
 

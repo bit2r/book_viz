@@ -1,3 +1,4 @@
+fig:linear-log-scales
 데이터-시각화
 hello-world
 napoleon-invasion
@@ -20,6 +21,10 @@ dataviz-color-brewer-viridis
 dataviz-color-brewer
 dataviz-viridis
 dataviz-viridis-blind
+ggplot-component
+ggplot-aesthetics
+scale-mapping
+coordinate
 데이터-연장---dplyr
 ggplot
 why-ggplot2

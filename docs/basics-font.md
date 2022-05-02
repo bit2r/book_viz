@@ -1,4 +1,6 @@
 
+
+
 # 글꼴 {#viz-font}
 
 R을 단순히 통계 언어로 생각하지 말고 적용범위를 확대해서 활용하면 
@@ -52,24 +54,6 @@ IDE에서 "Tools" &rarr; "Global Options..."를 클릭하면 "Options"창에서
 설치된 글꼴을 사용하는 작업흐름을 따르게 된다.
 
 
-```r
-library(extrafont)
-font_import(pattern = "D2")
-
-Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system.
-Continue? [y/n] y
-Scanning ttf files in C:\Windows\Fonts ...
-Extracting .afm files from .ttf files...
-C:\Windows\Fonts\D2Coding-Ver1.3.2-20180524.ttf => C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/D2Coding-Ver1.3.2-20180524
-C:\Windows\Fonts\D2CodingBold-Ver1.3.2-20180524.ttf => C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/D2CodingBold-Ver1.3.2-20180524
-C:\Windows\Fonts\MOD20.TTF => C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics/MOD20
-Found FontName for 3 fonts.
-Scanning afm files in C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/metrics
-Writing font table in C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/fontmap/fonttable.csv
-Writing Fontmap to C:/Users/tidyverse_user/Documents/R/win-library/3.5/extrafontdb/fontmap/Fontmap...
-
-font_import(pattern = "Nanum")
-```
 
 
 ### `ggplot` 한글 글꼴 사례 {#font-viz-font-example}
@@ -77,48 +61,7 @@ font_import(pattern = "Nanum")
 `extrafont` 패키지 `loadfonts()` 함수를 사용해서 `ggplot`에서 적용시킬 수 있는
 글꼴을 불러냈다. R 내장 데이터셋 `iris`를 사용하여 나눔글꼴 "Nanum Pen Script"을 기본 글꼴로 적용시켰다.
 
-
-```r
-library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
-library(extrafont)
-```
-
-```
-## Registering fonts with R
-```
-
-```r
-loadfonts() # 로컬 PC 에서 설치된 글꼴을 불러냄!!!
-
-iris %>% 
-  ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
-    geom_point()+
-    labs(title="붓꽃 데이터 한글 글꼴 적용", color="붓꽃 종류") +
-    theme_minimal(base_family = "Nanum Pen Script") +
-    theme(legend.position = "top")
-```
-
-<img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="672" />
+<img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="576" style="display: block; margin: auto;" />
 
 ## `showtext` 패키지 [^showtext] {#font-showtext}
 
@@ -163,13 +106,6 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 지원되는 글꼴은 적은 것으로 보인다.
 
 
-```r
-# 0. 환경설정 --------------------------------------------------------------------------
-library(tidyverse)
-library(showtext) # 글꼴, install.packages("showtext")
-library(extrafont)
-loadfonts()
-```
 
 ### `ggplot` 글꼴 적용 {#font-showtext-korean-example-ggplot}
 
@@ -182,63 +118,7 @@ loadfonts()
 4.  그래프를 그린다.
 5.  장치를 닫는다.
 
-
-```r
-library(tidyverse)
-library(showtext)
-```
-
-```
-## Loading required package: sysfonts
-```
-
-```
-## Loading required package: showtextdb
-```
-
-```
-## 
-## Attaching package: 'showtextdb'
-```
-
-```
-## The following object is masked from 'package:extrafont':
-## 
-##     font_install
-```
-
-```r
-# ggplot 그래픽 ----------------------------
-
-dat <- data.frame(cond = factor(rep(c("A","B"), each=200)), 
-                  rating = c(rnorm(200),rnorm(200, mean=.8)))
-
-font_add_google("Schoolbell", "bell") # 글꼴 적재
-
-showtext.begin() # 그래픽 장치 열기
-```
-
-```
-## 'showtext.begin()' is now renamed to 'showtext_begin()'
-## The old version still works, but consider using the new function in future code
-```
-
-```r
-ggplot(dat, aes(x=rating)) + 
-  geom_histogram(binwidth=.5)+ 
-　annotate("text", 1, 2.1, family = "bell", size = 15, color="red", label = "histogram")
-```
-
-<img src="basics-font_files/figure-html/font-showtext-showtext-ggplot-1.png" width="672" />
-
-```r
-showtext.end() # 그래픽 장치 닫기
-```
-
-```
-## 'showtext.end()' is now renamed to 'showtext_end()'
-## The old version still works, but consider using the new function in future code
-```
+<img src="basics-font_files/figure-html/font-showtext-showtext-ggplot-1.png" width="576" style="display: block; margin: auto;" />
 
 ## 로컬 글꼴 적용 {#font-showtext-korean-example-ttf}
 
@@ -249,33 +129,7 @@ showtext.end() # 그래픽 장치 닫기
 `showtext`는 이를 발판으로 나중에 개발되어 구글 폰트와 같은
 인터넷 글꼴과 최근 웹출판에 대한 개념도 넣어 개발된 것이 차이점이다.
 
-
-```r
-# ３. 한글 그래픽 --------------------------------------------------------------------------
-## 나눔펜　스크립트
-font_add("NanumBarunGothic", "NanumBarunGothic.ttf")
-
-showtext.auto()
-```
-
-```
-## 'showtext.auto()' is now renamed to 'showtext_auto()'
-## The old version still works, but consider using the new function in future code
-```
-
-```r
-p <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.8, 1.2) +
-  theme(axis.title = element_blank(), axis.ticks = element_blank(),
-        axis.text = element_blank()) +
-  annotate("text", 1, 1.1, family = "NanumBarunGothic", size = 15, color="red",
-           label = "한글 사랑") +
-  annotate("text", 1, 0.9, label = 'korean for "Hello, world!"',
-           family = "NanumBarunGothic", size = 12)
-
-print(p)
-```
-
-<img src="basics-font_files/figure-html/showtext-showtext-korean-1.png" width="672" />
+<img src="basics-font_files/figure-html/showtext-showtext-korean-1.png" width="576" style="display: block; margin: auto;" />
 
 
 

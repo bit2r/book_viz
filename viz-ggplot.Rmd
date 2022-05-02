@@ -1,6 +1,13 @@
 
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+```
 
-# 시각화 {#ggplot}
+
+# 그래프 문법 {#ggplot}
 
 ## 그래프 문법의 존재이유 {#why-ggplot2}
 
@@ -63,25 +70,6 @@ X축, Y축의 척도를 그래프에서 자동으로 인식하는데는 한계�
 깔끔한 데이터를 그래프에 매칭하여 시각화한 후에 경우에 따라서 좌표계를 변경할 경우가 있다. `coord_fixed()`, `coord_polar()`, `coord_flip()` 등을 사용해서 특정 영역 확대, 데카르트 좌표계에서 극좌표계, X-Y 축 변경 등의 작업을 수행할 수 있다.
 
 ![좌표계 변환](assets/images/ggplot-coordinate.png){width="100%"}
-
-```{r ggplot-coordinate}
-library(tidyverse)
-
-cartesian_g <- mtcars %>% 
-  mutate(cyl = as.factor(cyl)) %>% 
-  count(cyl) %>%
-  ggplot(aes(x="", y=n, fill=cyl)) +
-    geom_bar(position = "stack", stat = "identity")
-
-polar_g <- mtcars %>% 
-  mutate(cyl = as.factor(cyl)) %>% 
-  count(cyl) %>% 
-  ggplot(aes(x="", y=n, fill=cyl)) +
-    geom_col() +
-    coord_polar("y", start = 0)
-
-gridExtra::grid.arrange(cartesian_g, polar_g, nrow=1)
-```
 
 
 ### 분위기 풍(theme) {#ggplot2-steps-theme}

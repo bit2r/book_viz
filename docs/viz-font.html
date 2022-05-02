@@ -70,9 +70,11 @@
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
 <li><a class="active" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">5</span> 데이터 연장 - dplyr</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">6</span> 시각화</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">7</span> 사례</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">7</span> 그래프 문법</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">8</span> 사례</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -99,8 +101,8 @@ PDF, HTML, 워드 등 문서 뿐만 아니라, 파워포인트 같은 발표자�
 R 스크립트(<code>.R</code>) 및 R마크다운(<code>.Rmd</code>)에서도 적절한 한글글꼴 사용을 위해서
 코딩관련 글꼴도 설치한다.</p>
 <p>기본적인 작업흐름은 운영체제에 먼저 외부에서 가져온 폰트를 설치한다.
-그리고 나서 <code>extrafont</code> 팩키지 <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> 함수를 사용해서 폰트를
-R에서 불러 사용할 수 있도록 설치한다. 그리고 나서 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를
+그리고 나서 <code>extrafont</code> 팩키지 <code>font_import()</code> 함수를 사용해서 폰트를
+R에서 불러 사용할 수 있도록 설치한다. 그리고 나서 <code>loadfonts()</code> 함수를
 사용해서 글꼴을 <code>ggplot</code>등에서 불러 사용한다.
 <a href="https://fonts.google.com/">구글 글꼴</a>을 사용하고자 할 경우 <code>showtext</code> 패키지를
 사용해서 로컬 컴퓨터에 설치하여 적용한다.</p>
@@ -134,54 +136,16 @@ IDE에서 “Tools” → “Global Options…”를 클릭하면 “Options”�
 <h2>
 <span class="header-section-number">3.2</span> <code>ggplot</code> 시각화 글꼴<a class="anchor" aria-label="anchor" href="#r-viz-font"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>extrafont</code> 팩키지에서 <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> 함수로 운영체제(윈도우/리눅스)에
-설치된 글꼴을 R로 가져온다. 그리고 나서 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를 사용해서
+<p><code>extrafont</code> 팩키지에서 <code>font_import()</code> 함수로 운영체제(윈도우/리눅스)에
+설치된 글꼴을 R로 가져온다. 그리고 나서 <code>loadfonts()</code> 함수를 사용해서
 설치된 글꼴을 사용하는 작업흐름을 따르게 된다.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="viz-font.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
-<span id="cb2-2"><a href="viz-font.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">pattern =</span> <span class="st">"D2"</span>)</span>
-<span id="cb2-3"><a href="viz-font.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="viz-font.html#cb2-4" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system.</span>
-<span id="cb2-5"><a href="viz-font.html#cb2-5" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] y</span>
-<span id="cb2-6"><a href="viz-font.html#cb2-6" aria-hidden="true" tabindex="-1"></a>Scanning ttf files <span class="cf">in</span> C<span class="sc">:</span>\Windows\Fonts ...</span>
-<span id="cb2-7"><a href="viz-font.html#cb2-7" aria-hidden="true" tabindex="-1"></a>Extracting .afm files from .ttf files...</span>
-<span id="cb2-8"><a href="viz-font.html#cb2-8" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\D2Coding<span class="sc">-</span>Ver1.<span class="fl">3.2-20180524.</span>ttf <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>D2Coding<span class="sc">-</span>Ver1.<span class="fl">3.2</span><span class="dv">-20180524</span></span>
-<span id="cb2-9"><a href="viz-font.html#cb2-9" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\D2CodingBold<span class="sc">-</span>Ver1.<span class="fl">3.2-20180524.</span>ttf <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>D2CodingBold<span class="sc">-</span>Ver1.<span class="fl">3.2</span><span class="dv">-20180524</span></span>
-<span id="cb2-10"><a href="viz-font.html#cb2-10" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\MOD20.TTF <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>MOD20</span>
-<span id="cb2-11"><a href="viz-font.html#cb2-11" aria-hidden="true" tabindex="-1"></a>Found FontName <span class="cf">for</span> <span class="dv">3</span> fonts.</span>
-<span id="cb2-12"><a href="viz-font.html#cb2-12" aria-hidden="true" tabindex="-1"></a>Scanning afm files <span class="cf">in</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics</span>
-<span id="cb2-13"><a href="viz-font.html#cb2-13" aria-hidden="true" tabindex="-1"></a>Writing font table <span class="cf">in</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>fontmap<span class="sc">/</span>fonttable.csv</span>
-<span id="cb2-14"><a href="viz-font.html#cb2-14" aria-hidden="true" tabindex="-1"></a>Writing Fontmap to C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>fontmap<span class="sc">/</span>Fontmap...</span>
-<span id="cb2-15"><a href="viz-font.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="viz-font.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">pattern =</span> <span class="st">"Nanum"</span>)</span></code></pre></div>
 <div id="font-viz-font-example" class="section level3" number="3.2.1">
 <h3>
 <span class="header-section-number">3.2.1</span> <code>ggplot</code> 한글 글꼴 사례<a class="anchor" aria-label="anchor" href="#font-viz-font-example"><i class="fas fa-link"></i></a>
 </h3>
-<p><code>extrafont</code> 패키지 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를 사용해서 <code>ggplot</code>에서 적용시킬 수 있는
+<p><code>extrafont</code> 패키지 <code>loadfonts()</code> 함수를 사용해서 <code>ggplot</code>에서 적용시킬 수 있는
 글꼴을 불러냈다. R 내장 데이터셋 <code>iris</code>를 사용하여 나눔글꼴 “Nanum Pen Script”을 기본 글꼴로 적용시켰다.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Registering fonts with R</code></pre>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># 로컬 PC 에서 설치된 글꼴을 불러냄!!!</span>
-
-<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Sepal.Length</span>, y<span class="op">=</span><span class="va">Petal.Length</span>, color<span class="op">=</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"붓꽃 데이터 한글 글꼴 적용"</span>, color<span class="op">=</span><span class="st">"붓꽃 종류"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Nanum Pen Script"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="672"></div>
+<div class="inline-figure"><img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="font-showtext" class="section level2" number="3.3">
@@ -217,16 +181,10 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 <h3>
 <span class="header-section-number">3.3.1</span> R 설치 글꼴 확인<a class="anchor" aria-label="anchor" href="#showtext-korean-example"><i class="fas fa-link"></i></a>
 </h3>
-<p><code>extrafont</code> 팩키지 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를 통해 <code>.ttf</code> 파일 정보를
+<p><code>extrafont</code> 팩키지 <code>loadfonts()</code> 함수를 통해 <code>.ttf</code> 파일 정보를
 확인한다. 현재 <a href="http://www.google.com/fonts">구글 글끌</a> 페이지에서 많은 한글
 글꼴을 지원하지 않고 있다. 구글에서 전세계 글꼴을 지원하다보 동아시아 3국 대상으로
 지원되는 글꼴은 적은 것으로 보인다.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 0. 환경설정 --------------------------------------------------------------------------</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span> <span class="co"># 글꼴, install.packages("showtext")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="font-showtext-korean-example-ggplot" class="section level3" number="3.3.2">
 <h3>
@@ -242,36 +200,7 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 <li>그래프를 그린다.</li>
 <li>장치를 닫는다.</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading required package: sysfonts</code></pre>
-<pre><code>## Loading required package: showtextdb</code></pre>
-<pre><code>## 
-## Attaching package: 'showtextdb'</code></pre>
-<pre><code>## The following object is masked from 'package:extrafont':
-## 
-##     font_install</code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># ggplot 그래픽 ----------------------------</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cond <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span>, 
-                  rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">200</span>, mean<span class="op">=</span><span class="fl">.8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span><span class="st">"Schoolbell"</span>, <span class="st">"bell"</span><span class="op">)</span> <span class="co"># 글꼴 적재</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_begin.html">showtext.begin</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># 그래픽 장치 열기</span></code></pre></div>
-<pre><code>## 'showtext.begin()' is now renamed to 'showtext_begin()'
-## The old version still works, but consider using the new function in future code</code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">rating</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth<span class="op">=</span><span class="fl">.5</span><span class="op">)</span><span class="op">+</span> 
-　<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="fl">1</span>, <span class="fl">2.1</span>, family <span class="op">=</span> <span class="st">"bell"</span>, size <span class="op">=</span> <span class="fl">15</span>, color<span class="op">=</span><span class="st">"red"</span>, label <span class="op">=</span> <span class="st">"histogram"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="basics-font_files/figure-html/font-showtext-showtext-ggplot-1.png" width="672"></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_end.html">showtext.end</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># 그래픽 장치 닫기</span></code></pre></div>
-<pre><code>## 'showtext.end()' is now renamed to 'showtext_end()'
-## The old version still works, but consider using the new function in future code</code></pre>
+<div class="inline-figure"><img src="basics-font_files/figure-html/font-showtext-showtext-ggplot-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="font-showtext-korean-example-ttf" class="section level2" number="3.4">
@@ -284,25 +213,7 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 로컬 컴퓨터에 설치된 글꼴을 <code>ggplot</code>에 구현되는데 전력을 다했다면
 <code>showtext</code>는 이를 발판으로 나중에 개발되어 구글 폰트와 같은
 인터넷 글꼴과 최근 웹출판에 대한 개념도 넣어 개발된 것이 차이점이다.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># ３. 한글 그래픽 --------------------------------------------------------------------------</span>
-<span class="co">## 나눔펜　스크립트</span>
-<span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add.html">font_add</a></span><span class="op">(</span><span class="st">"NanumBarunGothic"</span>, <span class="st">"NanumBarunGothic.ttf"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/showtext/man/showtext_auto.html">showtext.auto</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 'showtext.auto()' is now renamed to 'showtext_auto()'
-## The old version still works, but consider using the new function in future code</code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="cn">NULL</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
-        axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="fl">1</span>, <span class="fl">1.1</span>, family <span class="op">=</span> <span class="st">"NanumBarunGothic"</span>, size <span class="op">=</span> <span class="fl">15</span>, color<span class="op">=</span><span class="st">"red"</span>,
-           label <span class="op">=</span> <span class="st">"한글 사랑"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="fl">1</span>, <span class="fl">0.9</span>, label <span class="op">=</span> <span class="st">'korean for "Hello, world!"'</span>,
-           family <span class="op">=</span> <span class="st">"NanumBarunGothic"</span>, size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="basics-font_files/figure-html/showtext-showtext-korean-1.png" width="672"></div>
+<div class="inline-figure"><img src="basics-font_files/figure-html/showtext-showtext-korean-1.png" width="576" style="display: block; margin: auto;"></div>
 
 </div>
 </div>

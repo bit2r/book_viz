@@ -1,4 +1,11 @@
 
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+```
+
 # 글꼴 {#viz-font}
 
 R을 단순히 통계 언어로 생각하지 말고 적용범위를 확대해서 활용하면 

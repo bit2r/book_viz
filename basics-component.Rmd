@@ -1,0 +1,224 @@
+
+
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+```
+
+# 시각화 구성요소 {#ggplot-component}
+
+깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다.
+주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.
+
+## 시각적 매핑(Aesthetics) {#ggplot-aesthetics}
+
+`ggplot`에서 시각적 매핑(Aesthetics)는 `aes()` 내에 시각적으로 표현되는 모든 것을 담고 있다. 
+시각화 대상은 크게 두가지로 나눠지는데 연속형과 범주형이다. 온도나 몸무게 같은 경우는 특정 두 데이터 값 사이 연속된 값이 있지만, 
+수학에서 정수와 같이 표현되는 쪼갤 수 없는 경우는 국가를 생각하면 한국과 미국 사이 존재하는 값이 없다.
+시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.[@wilke2019fundamentals]
+
+```{r ggplot-six-aesthetics, echo = FALSE}
+library(tidyverse)
+library(cowplot)
+extrafont::loadfonts()
+
+dviz_font_family <- "MaruBuri"
+
+aes_pos <- ggdraw() + 
+  geom_segment(data = data.frame(x = c(0, 0.5),
+                                 xend = c(1, 0.5),
+                                 y = c(0.5, 0),
+                                 yend = c(0.5, 1)),
+                aes(x = x, y = y, xend = xend, yend = yend),
+                arrow = arrow(length = grid::unit(12, "pt")), size = .75) +
+  draw_text("y", .5, 1, size = 12, vjust = 1, hjust = 2.5, family = dviz_font_family) +
+  draw_text("x", 1, .5, size = 12, vjust = 2, hjust = 1, family = dviz_font_family) + 
+  coord_cartesian(xlim = c(-.2, 1.2), ylim = c(-.2, 1.2))
+
+aes_color <- ggdraw() +
+  geom_tile(data = data.frame(x = 0.15 + .2333*(0:3)),
+            aes(x, y = .5, fill = factor(x)), width = .1, height = .5) +
+  colorblindr::scale_fill_OkabeIto(guide = "none")
+
+aes_shape <- ggdraw() +
+  geom_point(data = data.frame(x = (.5 + 0:3)/4),
+             aes(x, y = .5, shape = factor(x)), size = 8, fill = "grey80") +
+  scale_shape_manual(values = 21:24)
+
+aes_size <- ggdraw() +
+  geom_point(data = data.frame(x = (.5 + 0:3)/4),
+             aes(x, y = .5, size = factor(x)), shape = 21, fill = "grey80") +
+  scale_size_manual(values = c(2, 5, 8, 11))
+
+aes_lwd <- ggdraw() +
+  geom_segment(data = data.frame(x = rep(0.05, 4),
+                                 xend = rep(0.95, 4),
+                                 y = (1.5 + 0:3)/6,
+                                 yend = (1.5 + 0:3)/6,
+                                 size = 4:1),
+               aes(x = x, y = y, xend = xend, yend = yend, size = size)) +
+  scale_size_identity()
+
+aes_ltp <- ggdraw() +
+  geom_segment(data = data.frame(x = rep(0.05, 4),
+                                 xend = rep(0.95, 4),
+                                 y = (1.5 + 0:3)/6,
+                                 yend = (1.5 + 0:3)/6,
+                                 linetype = 4:1),
+               aes(x = x, y = y, xend = xend, yend = yend, linetype = linetype), size = 1) +
+  scale_linetype_identity()
+
+plot_grid(aes_pos, aes_shape, aes_size,
+          aes_color, aes_lwd, aes_ltp,
+          ncol = 3,
+          labels = c("위치", "모양", "크기", "색상", "선굵기", "선유형"),
+          label_x = 0.05, label_y = 0.95, hjust = 0, vjust = 1)
+```
+
+## 척도 매핑 {#scale-mapping}
+
+데이터가 주어지면 시각적 객체(모양, 색상, 크기 등)와 매핑을 해야 되는데 그 둘 사이를 연결하는 것이 척도(Scale)이다.
+`x`축과, `y`축 척도에 시각적 객체를 매핑해야 비로서 데이터 값을 그래프로 표현된다.
+척도에 위치가 지정되면 시각적 매핑 객체를 다양하게 표현할 수 있다. 만약 위치가 척도에 모호하게 표현되게 되면 
+시각적 객체가 제대로 그래프에 표현되는데 문제가 된다.
+
+
+```{r ggplot-scale, echo = FALSE}
+# devtools::install_github("clauswilke/dviz.supp")
+library(dviz.supp)
+
+df <- data.frame(x = c(1:4))
+
+scale_num <- ggplot(df, aes(x)) + 
+  geom_point(size = 3, color = "#0072B2", y = 1) + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1, label = "위치  ") +
+  scale_x_continuous(limits = c(.7, 4.4), breaks = 1:5, labels = c("1", "2", "3", "4", "5"), name = NULL, position = "top") +
+  theme_dviz_grid() +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text = element_text(size = 14),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+scale_color <- ggplot(df, aes(x, color = factor(x), fill = factor(x))) + 
+  geom_point(size = 5, shape = 22, y = 1) + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1, label = "색상  ") +
+  scale_x_continuous(limits = c(.7, 4.4), breaks = NULL) +
+  scale_color_manual(values = darken(c("#0082A6", "#4EBBB9", "#9CDFC2", "#D8F0CD"), .1), guide = "none") +
+  scale_fill_manual(values = c("#0082A6", "#4EBBB9", "#9CDFC2", "#D8F0CD"), guide = "none") +
+  theme_dviz_grid() +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 14),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major = element_blank()) 
+
+scale_shape <- ggplot(df, aes(x, shape = factor(x))) + 
+  geom_point(size = 4, color = "grey30", y = 1, fill = "grey80") + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1, label = "모양  ") +
+  scale_x_continuous(limits = c(.7, 4.4), breaks = NULL) +
+  scale_shape_manual(values = 21:24, guide = "none") +
+  theme_dviz_grid() +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(size = 14),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid.major = element_blank()) 
+
+cowplot::plot_grid(scale_num, scale_shape, scale_color, ncol = 1)
+```
+
+## 좌표계 {#coordinate}
+
+데이터 시각화에서 앞서 데이터를 척도와 시각적 객체로 준비를 했다면 이를 최종 그래프로 제작하기 위해서는 좌표계가 필요하다.
+네이버 사전에서 좌표계는 공간상의 한 점의 위치를 표시하는 숫자들의 순서쌍인 좌표를 정하기 위한 체계로서, 원점과 기준 길이, 기준 축이나 기준선들의 집합을 통틀어 이르는 말이다. 가장 널리 사용되는 좌표계는 데카르트 직각좌표계와 극좌표계가 널리 사용된다.
+다음은 `mtcars` 데이터 차량 기통수를 막대그래프와 원그래프를 사용하여 동일한 내용을 좌표계만 달리하여 시각적으로 표현해따.
+
+
+```{r ggplot-coordinate, echo = FALSE}
+cartesian_g <- mtcars %>% 
+  mutate(cyl = as.factor(cyl)) %>% 
+  count(cyl) %>%
+  ggplot(aes(x="", y=n, fill=cyl)) +
+    geom_bar(position = "stack", stat = "identity") +
+    theme_bw(base_family = "MaruBuri") +
+    labs(title = "직교좌표계",
+         fill = "기통수")
+
+polar_g <- mtcars %>% 
+  mutate(cyl = as.factor(cyl)) %>% 
+  count(cyl) %>% 
+  ggplot(aes(x="", y=n, fill=cyl)) +
+    geom_col() +
+    coord_polar("y", start = 0) +
+    theme_bw(base_family = "MaruBuri") +
+    labs(title = "극좌표계",
+         fill = "기통수")
+
+gridExtra::grid.arrange(cartesian_g, polar_g, nrow=1)
+```
+
+
+## 축(axis) {#coordinate}
+
+데이터 값을 선형 척도에 매핑하여 시각화하는 것이 일반적이지만 `x, y` 축이
+대표적으로 날짜와 같은 시계열 데이터인 경우 혹은 시분초를 나타내는 경우도 있어 이에 맞춰 
+적절히 축을 맞춰야 한다. 덧셈이 아니라 곱셈에 대해 선형인 경우 로그변환을 취하여 
+데이터 본연의 척도를 반영하도록 축을 조정한다. 많이 사용되는 로그 변환의 경우
+밑을 10으로 하는 상용로그와 자연로그가 있어 명확히 축라벨에 적시하여 혼동을 피하는 것이 좋다.
+로그 변환시 **0**이 있는 경우 문제가 되기 때문에 `sqrt()` 변환도 로그변환이 갖는 표현법의 장점을
+갖추면서도 로그변환 시 생기는 번거러움을 해소하기 자주 사용된다.
+
+```{r linear-log-scales, fig.width = 6, fig.asp = 3/4, fig.cap = '(ref:linear-log-scales)'}
+df <- data.frame(x = c(1, 3.16, 10, 31.6, 100))
+
+xaxis_lin <- ggplot(df, aes(x, y = 1)) + 
+  geom_point(size = 3, color = "#0072B2") + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1) +
+  theme_dviz_grid(14, rel_large = 1) +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(face = "plain"),
+        plot.margin = margin(3, 14, 3, 1.5))
+
+xaxis_log <- ggplot(df, aes(log10(x), y = 1)) + 
+  geom_point(size = 3, color = "#0072B2") + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1) +
+  theme_dviz_grid(14, rel_large = 1) +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(face = "plain"),
+        plot.margin = margin(3, 14, 3, 1.5))
+
+xaxis_sqrt <- ggplot(df, aes(sqrt(x), y = 1)) + 
+  geom_point(size = 3, color = "#0072B2") + 
+  scale_y_continuous(limits = c(0.8, 1.2), expand = c(0, 0), breaks = 1) +
+  theme_dviz_grid(14, rel_large = 1) +
+  theme(axis.ticks.length = grid::unit(0, "pt"),
+        axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_text(face = "plain"),
+        plot.margin = margin(3, 14, 3, 1.5)) +
+  ggtitle("원데이터, 제곱근(sqrt)")
+
+plotlist <- 
+  align_plots(xaxis_lin + scale_x_continuous(limits = c(0, 100)) + 
+                ggtitle("원데이터, 선형척도"),
+              xaxis_log + scale_x_continuous(limits = c(0, 2)) +
+                xlab(expression(paste("log"["10"], "(x)"))) + 
+                ggtitle("로그 변환데이터, 선형척도"),
+              xaxis_lin + scale_x_log10(limits = c(1, 100), breaks = c(1, 3.16, 10, 31.6, 100),
+                                        labels = c("1", "3.16", "10", "31.6", "100")) + 
+                ggtitle("원데이터, 로그척도"),
+              align = 'vh')
+
+plot_grid(plotlist[[1]], plotlist[[2]], plotlist[[3]], xaxis_sqrt,  ncol = 1)
+```

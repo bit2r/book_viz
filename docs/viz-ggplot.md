@@ -1,6 +1,8 @@
 
 
-# 시각화 {#ggplot}
+
+
+# 그래프 문법 {#ggplot}
 
 ## 그래프 문법의 존재이유 {#why-ggplot2}
 
@@ -65,70 +67,13 @@ X축, Y축의 척도를 그래프에서 자동으로 인식하는데는 한계�
 ![좌표계 변환](assets/images/ggplot-coordinate.png){width="100%"}
 
 
-```r
-library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
-cartesian_g <- mtcars %>% 
-  mutate(cyl = as.factor(cyl)) %>% 
-  count(cyl) %>%
-  ggplot(aes(x="", y=n, fill=cyl)) +
-    geom_bar(position = "stack", stat = "identity")
-
-polar_g <- mtcars %>% 
-  mutate(cyl = as.factor(cyl)) %>% 
-  count(cyl) %>% 
-  ggplot(aes(x="", y=n, fill=cyl)) +
-    geom_col() +
-    coord_polar("y", start = 0)
-
-gridExtra::grid.arrange(cartesian_g, polar_g, nrow=1)
-```
-
-<img src="viz-ggplot_files/figure-html/ggplot-coordinate-1.png" width="672" />
-
-
 ### 분위기 풍(theme) {#ggplot2-steps-theme}
 
 분위기 풍(theme)은 앞선 깔끔한 데이터를 시각화 객체로 변환시키는 과정과 아무런 연관이 없다. 대신 외양을 보기좋게 하는 역할을 수행한다. 즉, 시각화에 알맞는 색상 팔레트를 적용시키고, 글꼴을 바꾸는 작업이 여기에 해당된다.
 
 ![`tufte` 분위기 풍(theme)](assets/images/ggplot-theme.png){width="100%"}
 
-
-```r
-library(ggthemes)
-
-default_g <- mtcars %>% 
-  ggplot(aes(x=disp, y=mpg)) +
-    geom_point()
-
-tufte_g <- mtcars %>% 
-  ggplot(aes(x=disp, y=mpg)) +
-    geom_point() +
-    theme_tufte()
-
-gridExtra::grid.arrange(default_g, tufte_g, nrow=1)
-```
-
-<img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="672" />
+<img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ## `ggplot` 확장 {#ggplot2-steps-extension}

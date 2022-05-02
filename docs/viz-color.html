@@ -70,9 +70,11 @@
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
 <li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="active" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">5</span> 데이터 연장 - dplyr</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">6</span> 시각화</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">7</span> 사례</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">7</span> 그래프 문법</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">8</span> 사례</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -106,7 +108,7 @@ Cynthia Brewer 는 펜실베니아 대학에서 교수로 색상이론과 시각
 ColorBrewer 으로 알려진 색생체계는 웹, 출판, 색맹을 고려하여 널리 쓰이고 있다.
 ColorBrewer 색상체계를 R에서 시각화를 할 때 사용될 수 있게 만든 것이 <a href="https://cran.r-project.org/web/packages/RColorBrewer/index.html">RColorBrewer</a> 패키지다.
 RColorBrewer Dark2 팔레트를 통해 실제로 구현된 색상체계를 살펴보자.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, name <span class="op">=</span> <span class="st">"Dark2"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "#1B9E77" "#D95F02" "#7570B3" "#E7298A" "#66A61E" "#E6AB02" "#A6761D"
@@ -482,7 +484,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class="row">
 <div class="col-md-6">
 <p><strong>RGB 색상 출력</strong></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/grDevices/pdf.html">pdf</a></span><span class="op">(</span><span class="st">"data/color_rgb.pdf"</span><span class="op">)</span>
 <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"qual"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -490,7 +492,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-6">
 <p><strong>CMYK 색상 출력</strong></p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/grDevices/pdf.html">pdf</a></span><span class="op">(</span><span class="st">"data/color_cmyk.pdf"</span>, colormodel <span class="op">=</span> <span class="st">"cmyk"</span><span class="op">)</span>
 <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span>type<span class="op">=</span><span class="st">"qual"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -509,7 +511,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>색상선택이 가장 논란이 많고, 이리저리 만지작 거리면서 정말 많은 시간을 보내는 분야다.
 지리학자이며 생상 전문가 <a href="http://en.wikipedia.org/wiki/Cynthia_Brewer">Cynthia Brewer</a> 교수가 출판과 웹에서 사용되는 색상표를 제작했고, 이는 <a href="http://cran.r-project.org/web/packages/RColorBrewer/index.html">RColorBrewer</a>
 팩키지에 반영되어 있다. 팩키지를 설치하고 사용하면 된다. 연관된 전체 팔레트를 살펴보는 명령어는 <code><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all()</a></code> 이다.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span> <span class="co"># install.packages("RColorBrewer")</span>
 <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.all</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="basics-color_files/figure-html/dataviz-brewer-1.png" width="672"></div>
@@ -526,7 +528,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 이런 데이터는 극단의 값이 중간에 위치한 덜 흥미로운 지점을 지난다. 예를 들어, t-통계량, z-점수, 상관계수가 이에 속한다.</li>
 </ul>
 <p>명칭을 명세해서 RColorBrewer 팔렛트 하나만 볼 수 있다.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">display.brewer.pal</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, name <span class="op">=</span> <span class="st">'Dark2'</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="basics-color_files/figure-html/dataviz-brewer-palette-1.png" width="672"></div>
 </div>
@@ -553,7 +555,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </h3>
 <p><code>dichromat</code> 팩키지(<a href="http://cran.r-project.org/web/packages/dichromat/">CRAN</a>)는
 2색시자에 대한 효과적인 색상조합을 선택하는데 도움이 된다.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">dichromat</span><span class="op">)</span> <span class="co"># install.packages("dichromat")</span></code></pre></div>
 <p><code>colorschems</code> 목록에는 17 가지 색상조합이 담겨있는데, 적색과 녹색을 구별하는 능력이 없거나 예외적인 시력을 갖는 2색시자에게 적합하다.</p>
 <div class="inline-figure"><img src="basics-color_files/figure-html/dichromat-colorschemes-1.png" width="672"></div>
@@ -568,7 +570,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 
   <div class="chapter-nav">
 <div class="prev"><a href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></div>
-<div class="next"><a href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">5</span> 데이터 연장 - dplyr</a></div>
+<div class="next"><a href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

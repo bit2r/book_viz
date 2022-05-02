@@ -1,8 +1,10 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
+
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+```
 
 # 헬로우 월드 {#hello-world}
 

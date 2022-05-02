@@ -18,10 +18,13 @@ rmd_files: [
   "basics.Rmd",
   "basics-font.Rmd",
   "basics-color.Rmd",
+  "basics-component.Rmd",
+
   # 시각화를 위한 데이터
   "data-dplyr.Rmd",
 
   # 시각화
+  "viz.Rmd",
   "viz-ggplot.Rmd",
 
   # 사례

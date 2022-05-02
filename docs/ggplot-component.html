@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>5 . 시각화 구성요소 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="5 . 시각화 구성요소 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5 . 시각화 구성요소 | 데이터 시각화">
+<meta name="twitter:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> 데이터 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
+<li><a class="active" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">7</span> 그래프 문법</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">8</span> 사례</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-component" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5 . </span> 시각화 구성요소<a class="anchor" aria-label="anchor" href="#ggplot-component"><i class="fas fa-link"></i></a>
+</h1>
+<p>깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다.
+주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.</p>
+<div id="ggplot-aesthetics" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> 시각적 매핑(Aesthetics)<a class="anchor" aria-label="anchor" href="#ggplot-aesthetics"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>ggplot</code>에서 시각적 매핑(Aesthetics)는 <code>aes()</code> 내에 시각적으로 표현되는 모든 것을 담고 있다.
+시각화 대상은 크게 두가지로 나눠지는데 연속형과 범주형이다. 온도나 몸무게 같은 경우는 특정 두 데이터 값 사이 연속된 값이 있지만,
+수학에서 정수와 같이 표현되는 쪼갤 수 없는 경우는 국가를 생각하면 한국과 미국 사이 존재하는 값이 없다.
+시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.<span class="citation">(<a href="references-1.html#ref-wilke2019fundamentals" role="doc-biblioref">Wilke 2019</a>)</span></p>
+<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-six-aesthetics-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="scale-mapping" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> 척도 매핑<a class="anchor" aria-label="anchor" href="#scale-mapping"><i class="fas fa-link"></i></a>
+</h2>
+<p>데이터가 주어지면 시각적 객체(모양, 색상, 크기 등)와 매핑을 해야 되는데 그 둘 사이를 연결하는 것이 척도(Scale)이다.
+<code>x</code>축과, <code>y</code>축 척도에 시각적 객체를 매핑해야 비로서 데이터 값을 그래프로 표현된다.
+척도에 위치가 지정되면 시각적 매핑 객체를 다양하게 표현할 수 있다. 만약 위치가 척도에 모호하게 표현되게 되면
+시각적 객체가 제대로 그래프에 표현되는데 문제가 된다.</p>
+<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-scale-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="coordinate" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> 좌표계<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
+</h2>
+<p>데이터 시각화에서 앞서 데이터를 척도와 시각적 객체로 준비를 했다면 이를 최종 그래프로 제작하기 위해서는 좌표계가 필요하다.
+네이버 사전에서 좌표계는 공간상의 한 점의 위치를 표시하는 숫자들의 순서쌍인 좌표를 정하기 위한 체계로서, 원점과 기준 길이, 기준 축이나 기준선들의 집합을 통틀어 이르는 말이다. 가장 널리 사용되는 좌표계는 데카르트 직각좌표계와 극좌표계가 널리 사용된다.
+다음은 <code>mtcars</code> 데이터 차량 기통수를 막대그래프와 원그래프를 사용하여 동일한 내용을 좌표계만 달리하여 시각적으로 표현해따.</p>
+<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-coordinate-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="coordinate" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> 축(axis)<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
+</h2>
+<p>데이터 값을 선형 척도에 매핑하여 시각화하는 것이 일반적이지만 <code>x, y</code> 축이
+대표적으로 날짜와 같은 시계열 데이터인 경우 혹은 시분초를 나타내는 경우도 있어 이에 맞춰
+적절히 축을 맞춰야 한다. 덧셈이 아니라 곱셈에 대해 선형인 경우 로그변환을 취하여
+데이터 본연의 척도를 반영하도록 축을 조정한다. 많이 사용되는 로그 변환의 경우
+밑을 10으로 하는 상용로그와 자연로그가 있어 명확히 축라벨에 적시하여 혼동을 피하는 것이 좋다.
+로그 변환시 <strong>0</strong>이 있는 경우 문제가 되기 때문에 <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> 변환도 로그변환이 갖는 표현법의 장점을
+갖추면서도 로그변환 시 생기는 번거러움을 해소하기 자주 사용된다.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:linear-log-scales"></span>
+<img src="basics-component_files/figure-html/linear-log-scales-1.png" alt="(ref:linear-log-scales)" width="576"><p class="caption">
+그림 5.1: (ref:linear-log-scales)
+</p>
+</div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="viz-color.html"><span class="header-section-number">4</span> 색상</a></div>
+<div class="next"><a href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggplot-component"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="nav-link" href="#ggplot-aesthetics"><span class="header-section-number">5.1</span> 시각적 매핑(Aesthetics)</a></li>
+<li><a class="nav-link" href="#scale-mapping"><span class="header-section-number">5.2</span> 척도 매핑</a></li>
+<li><a class="nav-link" href="#coordinate"><span class="header-section-number">5.3</span> 좌표계</a></li>
+<li><a class="nav-link" href="#coordinate"><span class="header-section-number">5.4</span> 축(axis)</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

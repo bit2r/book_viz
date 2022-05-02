@@ -16,6 +16,17 @@ description: "데이터 시각화"
 
 
 
+---
 
+<h4> 후원계좌 </h4>
+
+디지털 불평등 해소를 위해 제작중인 오픈 통계패키지 개발과 고품질 콘텐츠 제작에 큰 힘이 됩니다.
+
+<div class="container">
+  <div class="bd-callout bd-callout-primary">
+      - 하나은행 448-910057-06204
+      - 사단법인 한국알사용자회
+  </div>
+</div>
 
 
