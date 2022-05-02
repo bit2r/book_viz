@@ -6,6 +6,7 @@ library(patchwork)
 library(lubridate)
 ```
 
+# 시각화 {-}
 
 # 그래프 문법 {#ggplot}
 

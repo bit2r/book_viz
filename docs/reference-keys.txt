@@ -64,4 +64,10 @@ ggplot2-steps-facet
 ggplot2-steps-coordinate
 ggplot2-steps-theme
 ggplot2-steps-extension
+ggplot-pattern
+gghighlight-timeseries
+gghighlight-barplot-color
+gghighlight-trend-line-label
+gghighlight-dumbbel-plot
+gghighlight-slope-plot
 사례
