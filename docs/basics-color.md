@@ -1,4 +1,8 @@
 
+
+
+
+
 # 색상 {#viz-color}
 
 ## 시각화 메커니즘 [^viz-mechanism] {#color-mechanism}
@@ -24,11 +28,6 @@ ColorBrewer 색상체계를 R에서 시각화를 할 때 사용될 수 있게 �
 RColorBrewer Dark2 팔레트를 통해 실제로 구현된 색상체계를 살펴보자.
 
 
-```r
-library(RColorBrewer)
-brewer.pal(n = 8, name = "Dark2")
-```
-
 ```
 ## [1] "#1B9E77" "#D95F02" "#7570B3" "#E7298A" "#66A61E" "#E6AB02" "#A6761D"
 ## [8] "#666666"
@@ -38,25 +37,6 @@ brewer.pal(n = 8, name = "Dark2")
 `#rrggbb`에서 `rr`, `gg`, `bb` 각각은 적색, 녹색, 청색 채널에 대한 생상농도를 나타낸다.
 각 색상은 2를 밑으로 하는 16개 숫자를 나타내고, "16진수(hexadecimal)" 혹은 줄여서 헥스(hex)로 부른다.
 다음에 밑을 10으로 하는 십진수와 16진수 비교표가 다음에 나와 있다.
-
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter()     masks stats::filter()
-## x dplyr::group_rows() masks kableExtra::group_rows()
-## x dplyr::lag()        masks stats::lag()
-```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
@@ -293,11 +273,6 @@ RGB 생상과 CMYK 생상을 PDF 파일로 찍어 상호 비교해보자. [^rgb-
 **RGB 색상 출력**
 
 
-```r
-pdf("data/color_rgb.pdf")
-RColorBrewer::display.brewer.all(type="qual")
-dev.off()
-```
 
 ![](data/color_rgb.pdf){#id .class height="300px" width="300px"}
 
@@ -306,11 +281,6 @@ dev.off()
 **CMYK 색상 출력**
 
 
-```r
-pdf("data/color_cmyk.pdf", colormodel = "cmyk")
-RColorBrewer::display.brewer.all(type="qual")
-dev.off()
-```
 
 ![](data/color_cmyk.pdf){#id .class height="300px" width="300px"}
 
@@ -326,13 +296,7 @@ dev.off()
 지리학자이며 생상 전문가 [Cynthia Brewer](http://en.wikipedia.org/wiki/Cynthia_Brewer) 교수가 출판과 웹에서 사용되는 색상표를 제작했고, 이는 [RColorBrewer](http://cran.r-project.org/web/packages/RColorBrewer/index.html)
 팩키지에 반영되어 있다. 팩키지를 설치하고 사용하면 된다. 연관된 전체 팔레트를 살펴보는 명령어는 `display.brewer.all()` 이다.
 
-
-```r
-library(RColorBrewer) # install.packages("RColorBrewer")
-display.brewer.all()
-```
-
-<img src="basics-color_files/figure-html/dataviz-brewer-1.png" width="672" />
+<img src="basics-color_files/figure-html/dataviz-brewer-1.png" width="576" style="display: block; margin: auto;" />
 
 팔레트는 종류가 많지만 다음 세가지 범주에 속한다. 위에서 아래부터 다음과 같다.
 
@@ -345,12 +309,7 @@ display.brewer.all()
 
 명칭을 명세해서 RColorBrewer 팔렛트 하나만 볼 수 있다.
 
-
-```r
-display.brewer.pal(n = 8, name = 'Dark2')
-```
-
-<img src="basics-color_files/figure-html/dataviz-brewer-palette-1.png" width="672" />
+<img src="basics-color_files/figure-html/dataviz-brewer-palette-1.png" width="576" style="display: block; margin: auto;" />
 
 
 ### viridis {#dataviz-viridis}
@@ -379,13 +338,10 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 2색시자에 대한 효과적인 색상조합을 선택하는데 도움이 된다.
 
 
-```r
-library(dichromat) # install.packages("dichromat")
-```
 
 `colorschems` 목록에는 17 가지 색상조합이 담겨있는데, 적색과 녹색을 구별하는 능력이 없거나 예외적인 시력을 갖는 2색시자에게 적합하다.
 
-<img src="basics-color_files/figure-html/dichromat-colorschemes-1.png" width="672" />
+<img src="basics-color_files/figure-html/dichromat-colorschemes-1.png" width="576" style="display: block; margin: auto;" />
 
 `dichmat()` 함수는 색상을 변환해서 다른 형태의 색맹에 근사적인 효과를 구현할 수 있어서,
 후보 색상조합에 대한 효과를 평가할 수 있게 한다. 

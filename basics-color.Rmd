@@ -1,4 +1,13 @@
 
+
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+library(tidyverse)
+library(patchwork)
+library(lubridate)
+```
+
+
 # 색상 {#viz-color}
 
 ## 시각화 메커니즘 [^viz-mechanism] {#color-mechanism}
