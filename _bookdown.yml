@@ -15,6 +15,9 @@ rmd_files: [
   "hello-world.Rmd",
 
   "basics.Rmd",
+  "data-dplyr.Rmd",
+  "viz-ggplot.Rmd",
+  "case-study.Rmd",
 
   "references.Rmd"
 

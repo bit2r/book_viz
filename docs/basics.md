@@ -279,9 +279,7 @@ print(p)
 
 <img src="basics_files/figure-html/showtext-showtext-korean-1.png" width="672" />
 
-# 데이터 조작
 
-# 시각화
 
-# 사례
+
 
