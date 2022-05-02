@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 . R 코딩 글꼴 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content="문서를 위해 작성하는데 사용되는 글꼴과 R 코딩을 위해 사용되는 글꼴은 차이가 난다. 왜냐하면 R 코딩에 사용되는 글꼴은 가독성이 좋아야하고 디버깅에 용이해야 된다. 영어는 consolas 글꼴을 많이 사용하는데 무료가 아니다. 그래서 consolas에서 영감을 받은 SIL 오픈 폰트 라이선스를 따르는 Inconsolata가 R 코딩에 많이 사용되고...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="4 . R 코딩 글꼴 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content="문서를 위해 작성하는데 사용되는 글꼴과 R 코딩을 위해 사용되는 글꼴은 차이가 난다. 왜냐하면 R 코딩에 사용되는 글꼴은 가독성이 좋아야하고 디버깅에 용이해야 된다. 영어는 consolas 글꼴을 많이 사용하는데 무료가 아니다. 그래서 consolas에서 영감을 받은 SIL 오픈 폰트 라이선스를 따르는 Inconsolata가 R 코딩에 많이 사용되고...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 . R 코딩 글꼴 | 데이터 시각화">
+<meta name="twitter:description" content="문서를 위해 작성하는데 사용되는 글꼴과 R 코딩을 위해 사용되는 글꼴은 차이가 난다. 왜냐하면 R 코딩에 사용되는 글꼴은 가독성이 좋아야하고 디버깅에 용이해야 된다. 영어는 consolas 글꼴을 많이 사용하는데 무료가 아니다. 그래서 consolas에서 영감을 받은 SIL 오픈 폰트 라이선스를 따르는 Inconsolata가 R 코딩에 많이 사용되고...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> 데이터 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
+<li><a class="active" href="font-coding.html"><span class="header-section-number">4</span> R 코딩 글꼴</a></li>
+<li><a class="" href="r-viz-font.html"><span class="header-section-number">5</span> ggplot 시각화 글꼴</a></li>
+<li><a class="" href="font-showtext.html"><span class="header-section-number">6</span> showtext 패키지 2</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">7</span> 색상</a></li>
+<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">8</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 시각화</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="font-coding" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4 . </span> R 코딩 글꼴<a class="anchor" aria-label="anchor" href="#font-coding"><i class="fas fa-link"></i></a>
+</h1>
+<p>문서를 위해 작성하는데 사용되는 글꼴과 R 코딩을 위해 사용되는 글꼴은
+차이가 난다. 왜냐하면 R 코딩에 사용되는 글꼴은 가독성이 좋아야하고
+디버깅에 용이해야 된다. 영어는 <code>consolas</code> 글꼴을 많이 사용하는데 무료가
+아니다. 그래서 <code>consolas</code>에서 영감을 받은 SIL 오픈 폰트 라이선스를
+따르는 <a href="https://en.wikipedia.org/wiki/Inconsolata">Inconsolata</a>가 R
+코딩에 많이 사용되고 있다. 하지만, R코드를 작성할 때 주석을 한글로
+달거나 R마크다운 작업을 할 경우 유사한 기능을 하는 한글 글꼴이 필요하다.</p>
+<ul>
+<li><a href="https://github.com/naver/nanumfont/blob/master/README.md">네이버 나눔고딕 코딩글꼴</a></li>
+<li><a href="https://github.com/naver/d2codingfont">D2 Coding 글꼴</a></li>
+</ul>
+<p>“네이버 나눔고딕 코딩글꼴”과 “D2 Coding 글꼴”을 설치하고 나서 RStudio
+IDE에서 “Tools” → “Global Options…”를 클릭하면 “Options”창에서
+<code>Appearance</code>에서 <strong>Editor font:</strong>에서 설치한 코딩전용 글꼴을 선택하고
+<strong>Editor theme:</strong>도 지정한다.</p>
+<div class="figure">
+<img src="assets/images/font_d2coding.png" style="width:100.0%" alt=""><p class="caption">D2 코딩폰트 설치</p>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></div>
+<div class="next"><a href="r-viz-font.html"><span class="header-section-number">5</span> ggplot 시각화 글꼴</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#font-coding"><span class="header-section-number">4</span> R 코딩 글꼴</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

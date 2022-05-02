@@ -14,9 +14,17 @@ rmd_files: [
 
   "hello-world.Rmd",
 
+  # 시각화 구성요소
   "basics.Rmd",
+  "basics-font.Rmd",
+  "basics-color.Rmd",
+  # 시각화를 위한 데이터
   "data-dplyr.Rmd",
+
+  # 시각화
   "viz-ggplot.Rmd",
+
+  # 사례
   "case-study.Rmd",
 
   "references.Rmd"

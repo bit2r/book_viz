@@ -3,7 +3,6 @@ hello-world
 napoleon-invasion
 napoleon-viz
 references
-시각화-개요
 viz-font
 font-coding
 r-viz-font
@@ -12,6 +11,15 @@ font-showtext
 showtext-korean-example
 font-showtext-korean-example-ggplot
 font-showtext-korean-example-ttf
+viz-color
+color-mechanism
+color-dataviz-mechanism-rgb
+dataviz-mechanism-hcl
+viz-printer-cmyk
+dataviz-color-brewer-viridis
+dataviz-color-brewer
+dataviz-viridis
+dataviz-viridis-blind
 데이터-연장---dplyr
 ggplot
 why-ggplot2

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>5 . ggplot 시각화 글꼴 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content='extrafont 팩키지에서 font_import() 함수로 운영체제(윈도우/리눅스)에 설치된 글꼴을 R로 가져온다. 그리고 나서 loadfonts() 함수를 사용해서 설치된 글꼴을 사용하는 작업흐름을 따르게 된다. library(extrafont) font_import(pattern = "D2") Importing fonts may take a...'>
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="5 . ggplot 시각화 글꼴 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content='extrafont 팩키지에서 font_import() 함수로 운영체제(윈도우/리눅스)에 설치된 글꼴을 R로 가져온다. 그리고 나서 loadfonts() 함수를 사용해서 설치된 글꼴을 사용하는 작업흐름을 따르게 된다. library(extrafont) font_import(pattern = "D2") Importing fonts may take a...'>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5 . ggplot 시각화 글꼴 | 데이터 시각화">
+<meta name="twitter:description" content='extrafont 팩키지에서 font_import() 함수로 운영체제(윈도우/리눅스)에 설치된 글꼴을 R로 가져온다. 그리고 나서 loadfonts() 함수를 사용해서 설치된 글꼴을 사용하는 작업흐름을 따르게 된다. library(extrafont) font_import(pattern = "D2") Importing fonts may take a...'>
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> 데이터 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
+<li><a class="" href="font-coding.html"><span class="header-section-number">4</span> R 코딩 글꼴</a></li>
+<li><a class="active" href="r-viz-font.html"><span class="header-section-number">5</span> ggplot 시각화 글꼴</a></li>
+<li><a class="" href="font-showtext.html"><span class="header-section-number">6</span> showtext 패키지 2</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">7</span> 색상</a></li>
+<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">8</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 시각화</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-viz-font" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5 . </span> <code>ggplot</code> 시각화 글꼴<a class="anchor" aria-label="anchor" href="#r-viz-font"><i class="fas fa-link"></i></a>
+</h1>
+<p><code>extrafont</code> 팩키지에서 <code><a href="https://rdrr.io/pkg/extrafont/man/font_import.html">font_import()</a></code> 함수로 운영체제(윈도우/리눅스)에
+설치된 글꼴을 R로 가져온다. 그리고 나서 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를 사용해서
+설치된 글꼴을 사용하는 작업흐름을 따르게 된다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="r-viz-font.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
+<span id="cb2-2"><a href="r-viz-font.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">pattern =</span> <span class="st">"D2"</span>)</span>
+<span id="cb2-3"><a href="r-viz-font.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="r-viz-font.html#cb2-4" aria-hidden="true" tabindex="-1"></a>Importing fonts may take a few minutes, depending on the number of fonts and the speed of the system.</span>
+<span id="cb2-5"><a href="r-viz-font.html#cb2-5" aria-hidden="true" tabindex="-1"></a>Continue? [y<span class="sc">/</span>n] y</span>
+<span id="cb2-6"><a href="r-viz-font.html#cb2-6" aria-hidden="true" tabindex="-1"></a>Scanning ttf files <span class="cf">in</span> C<span class="sc">:</span>\Windows\Fonts ...</span>
+<span id="cb2-7"><a href="r-viz-font.html#cb2-7" aria-hidden="true" tabindex="-1"></a>Extracting .afm files from .ttf files...</span>
+<span id="cb2-8"><a href="r-viz-font.html#cb2-8" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\D2Coding<span class="sc">-</span>Ver1.<span class="fl">3.2-20180524.</span>ttf <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>D2Coding<span class="sc">-</span>Ver1.<span class="fl">3.2</span><span class="dv">-20180524</span></span>
+<span id="cb2-9"><a href="r-viz-font.html#cb2-9" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\D2CodingBold<span class="sc">-</span>Ver1.<span class="fl">3.2-20180524.</span>ttf <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>D2CodingBold<span class="sc">-</span>Ver1.<span class="fl">3.2</span><span class="dv">-20180524</span></span>
+<span id="cb2-10"><a href="r-viz-font.html#cb2-10" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Windows\Fonts\MOD20.TTF <span class="ot">=&gt;</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics<span class="sc">/</span>MOD20</span>
+<span id="cb2-11"><a href="r-viz-font.html#cb2-11" aria-hidden="true" tabindex="-1"></a>Found FontName <span class="cf">for</span> <span class="dv">3</span> fonts.</span>
+<span id="cb2-12"><a href="r-viz-font.html#cb2-12" aria-hidden="true" tabindex="-1"></a>Scanning afm files <span class="cf">in</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>metrics</span>
+<span id="cb2-13"><a href="r-viz-font.html#cb2-13" aria-hidden="true" tabindex="-1"></a>Writing font table <span class="cf">in</span> C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>fontmap<span class="sc">/</span>fonttable.csv</span>
+<span id="cb2-14"><a href="r-viz-font.html#cb2-14" aria-hidden="true" tabindex="-1"></a>Writing Fontmap to C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tidyverse_user<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">3.5</span><span class="sc">/</span>extrafontdb<span class="sc">/</span>fontmap<span class="sc">/</span>Fontmap...</span>
+<span id="cb2-15"><a href="r-viz-font.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="r-viz-font.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">font_import</span>(<span class="at">pattern =</span> <span class="st">"Nanum"</span>)</span></code></pre></div>
+<div id="font-viz-font-example" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> <code>ggplot</code> 한글 글꼴 사례<a class="anchor" aria-label="anchor" href="#font-viz-font-example"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>extrafont</code> 패키지 <code><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts()</a></code> 함수를 사용해서 <code>ggplot</code>에서 적용시킬 수 있는
+글꼴을 불러냈다. R 내장 데이터셋 <code>iris</code>를 사용하여 나눔글꼴 “Nanum Pen Script”을 기본 글꼴로 적용시켰다.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
+## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
+## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Registering fonts with R</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># 로컬 PC 에서 설치된 글꼴을 불러냄!!!</span>
+
+<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Sepal.Length</span>, y<span class="op">=</span><span class="va">Petal.Length</span>, color<span class="op">=</span><span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"붓꽃 데이터 한글 글꼴 적용"</span>, color<span class="op">=</span><span class="st">"붓꽃 종류"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"Nanum Pen Script"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="672"></div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="font-coding.html"><span class="header-section-number">4</span> R 코딩 글꼴</a></div>
+<div class="next"><a href="font-showtext.html"><span class="header-section-number">6</span> showtext 패키지 2</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-viz-font"><span class="header-section-number">5</span> ggplot 시각화 글꼴</a></li>
+<li><a class="nav-link" href="#font-viz-font-example"><span class="header-section-number">5.1</span> ggplot 한글 글꼴 사례</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
