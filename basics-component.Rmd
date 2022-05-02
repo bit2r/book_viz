@@ -17,9 +17,9 @@ library(lubridate)
 `ggplot`에서 시각적 매핑(Aesthetics)는 `aes()` 내에 시각적으로 표현되는 모든 것을 담고 있다. 
 시각화 대상은 크게 두가지로 나눠지는데 연속형과 범주형이다. 온도나 몸무게 같은 경우는 특정 두 데이터 값 사이 연속된 값이 있지만, 
 수학에서 정수와 같이 표현되는 쪼갤 수 없는 경우는 국가를 생각하면 한국과 미국 사이 존재하는 값이 없다.
-시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.[@wilke2019fundamentals]
+시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.[@wilke2019fundamentals] 당연히 위치, 모양, 크기, 색상, 선굵기, 선유형 중 어떤 것을 사용하느냐에 따라 시각화로 전달되는 정보의 양은 달라진다. 예를 들어, 위치는 시각적 변별력이 선 유형보다 크다. 
 
-```{r ggplot-six-aesthetics, echo = FALSE}
+```{r ggplot-six-aesthetics, echo = FALSE, fig.cap = '위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑'}
 library(tidyverse)
 library(cowplot)
 extrafont::loadfonts()
@@ -85,7 +85,7 @@ plot_grid(aes_pos, aes_shape, aes_size,
 시각적 객체가 제대로 그래프에 표현되는데 문제가 된다.
 
 
-```{r ggplot-scale, echo = FALSE}
+```{r ggplot-scale, echo = FALSE, fig.cap = '시각적 객체 척도 매핑'}
 # devtools::install_github("clauswilke/dviz.supp")
 library(dviz.supp)
 
@@ -138,7 +138,7 @@ cowplot::plot_grid(scale_num, scale_shape, scale_color, ncol = 1)
 다음은 `mtcars` 데이터 차량 기통수를 막대그래프와 원그래프를 사용하여 동일한 내용을 좌표계만 달리하여 시각적으로 표현해따.
 
 
-```{r ggplot-coordinate, echo = FALSE}
+```{r ggplot-coordinate, echo = FALSE, fig.cap = '직교좌표계와 극좌표계'}
 cartesian_g <- mtcars %>% 
   mutate(cyl = as.factor(cyl)) %>% 
   count(cyl) %>%
@@ -172,7 +172,7 @@ gridExtra::grid.arrange(cartesian_g, polar_g, nrow=1)
 로그 변환시 **0**이 있는 경우 문제가 되기 때문에 `sqrt()` 변환도 로그변환이 갖는 표현법의 장점을
 갖추면서도 로그변환 시 생기는 번거러움을 해소하기 자주 사용된다.
 
-```{r linear-log-scales, fig.width = 6, fig.asp = 3/4, fig.cap = '(ref:linear-log-scales)'}
+```{r linear-log-scales, fig.width = 6, fig.asp = 3/4, fig.cap = '선형, 로그, 제곱근 축'}
 df <- data.frame(x = c(1, 3.16, 10, 31.6, 100))
 
 xaxis_lin <- ggplot(df, aes(x, y = 1)) + 

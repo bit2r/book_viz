@@ -71,7 +71,7 @@
 <li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
 <li><a class="active" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
-<li><a class="" href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
 <li><a class="" href="ggplot.html"><span class="header-section-number">7</span> 그래프 문법</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">8</span> 사례</a></li>
@@ -96,8 +96,13 @@
 <p><code>ggplot</code>에서 시각적 매핑(Aesthetics)는 <code>aes()</code> 내에 시각적으로 표현되는 모든 것을 담고 있다.
 시각화 대상은 크게 두가지로 나눠지는데 연속형과 범주형이다. 온도나 몸무게 같은 경우는 특정 두 데이터 값 사이 연속된 값이 있지만,
 수학에서 정수와 같이 표현되는 쪼갤 수 없는 경우는 국가를 생각하면 한국과 미국 사이 존재하는 값이 없다.
-시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.<span class="citation">(<a href="references-1.html#ref-wilke2019fundamentals" role="doc-biblioref">Wilke 2019</a>)</span></p>
-<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-six-aesthetics-1.png" width="576" style="display: block; margin: auto;"></div>
+시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.<span class="citation">(<a href="references-1.html#ref-wilke2019fundamentals" role="doc-biblioref">Wilke 2019</a>)</span> 당연히 위치, 모양, 크기, 색상, 선굵기, 선유형 중 어떤 것을 사용하느냐에 따라 시각화로 전달되는 정보의 양은 달라진다. 예를 들어, 위치는 시각적 변별력이 선 유형보다 크다.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ggplot-six-aesthetics"></span>
+<img src="basics-component_files/figure-html/ggplot-six-aesthetics-1.png" alt="위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑" width="576"><p class="caption">
+그림 5.1: 위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑
+</p>
+</div>
 </div>
 <div id="scale-mapping" class="section level2" number="5.2">
 <h2>
@@ -107,7 +112,12 @@
 <code>x</code>축과, <code>y</code>축 척도에 시각적 객체를 매핑해야 비로서 데이터 값을 그래프로 표현된다.
 척도에 위치가 지정되면 시각적 매핑 객체를 다양하게 표현할 수 있다. 만약 위치가 척도에 모호하게 표현되게 되면
 시각적 객체가 제대로 그래프에 표현되는데 문제가 된다.</p>
-<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-scale-1.png" width="576" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ggplot-scale"></span>
+<img src="basics-component_files/figure-html/ggplot-scale-1.png" alt="시각적 객체 척도 매핑" width="576"><p class="caption">
+그림 5.2: 시각적 객체 척도 매핑
+</p>
+</div>
 </div>
 <div id="coordinate" class="section level2" number="5.3">
 <h2>
@@ -116,7 +126,12 @@
 <p>데이터 시각화에서 앞서 데이터를 척도와 시각적 객체로 준비를 했다면 이를 최종 그래프로 제작하기 위해서는 좌표계가 필요하다.
 네이버 사전에서 좌표계는 공간상의 한 점의 위치를 표시하는 숫자들의 순서쌍인 좌표를 정하기 위한 체계로서, 원점과 기준 길이, 기준 축이나 기준선들의 집합을 통틀어 이르는 말이다. 가장 널리 사용되는 좌표계는 데카르트 직각좌표계와 극좌표계가 널리 사용된다.
 다음은 <code>mtcars</code> 데이터 차량 기통수를 막대그래프와 원그래프를 사용하여 동일한 내용을 좌표계만 달리하여 시각적으로 표현해따.</p>
-<div class="inline-figure"><img src="basics-component_files/figure-html/ggplot-coordinate-1.png" width="576" style="display: block; margin: auto;"></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ggplot-coordinate"></span>
+<img src="basics-component_files/figure-html/ggplot-coordinate-1.png" alt="직교좌표계와 극좌표계" width="576"><p class="caption">
+그림 5.3: 직교좌표계와 극좌표계
+</p>
+</div>
 </div>
 <div id="coordinate" class="section level2" number="5.4">
 <h2>
@@ -131,8 +146,8 @@
 갖추면서도 로그변환 시 생기는 번거러움을 해소하기 자주 사용된다.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:linear-log-scales"></span>
-<img src="basics-component_files/figure-html/linear-log-scales-1.png" alt="(ref:linear-log-scales)" width="576"><p class="caption">
-그림 5.1: (ref:linear-log-scales)
+<img src="basics-component_files/figure-html/linear-log-scales-1.png" alt="선형, 로그, 제곱근 축" width="576"><p class="caption">
+그림 5.4: 선형, 로그, 제곱근 축
 </p>
 </div>
 
@@ -140,7 +155,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="viz-color.html"><span class="header-section-number">4</span> 색상</a></div>
-<div class="next"><a href="%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%B0%EC%9E%A5---dplyr.html"><span class="header-section-number">6</span> 데이터 연장 - dplyr</a></div>
+<div class="next"><a href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

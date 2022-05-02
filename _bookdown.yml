@@ -21,7 +21,8 @@ rmd_files: [
   "basics-component.Rmd",
 
   # 시각화를 위한 데이터
-  "data-dplyr.Rmd",
+  "data-viz.Rmd",
+  "data-tidyr.Rmd",
 
   # 시각화
   "viz.Rmd",
