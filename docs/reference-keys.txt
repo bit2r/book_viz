@@ -30,6 +30,11 @@ ggplot-component
 ggplot-aesthetics
 scale-mapping
 coordinate
+tidy-data
+tidy-data-setup
+messy-data-definition
+tidy-data-case-study
+make-tidy-data-code
 ggplot-datasets
 palmer-penguins
 penguins-study
@@ -40,12 +45,8 @@ gapminder
 gapminder-install-dataset
 gapminder-EDA-skimr
 gapminder-EDA
-tidy-data
-tidy-data-setup
-messy-data-definition
-tidyr-verbs
-tidy-data-case-study
-make-tidy-data-code
+tidy-data-how
+tidyr-verbs-how
 pivot-revolution
 pivot-longer-example
 pivot-longer-example-prefix
@@ -62,7 +63,6 @@ separete-rows-quickly
 fix-missing-data
 expand-grid-comes-in
 expand-grid-comes-in-replace_na
-expand-grid-comes-in-fill
 expand-grid-comes-in-drop
 ggplot
 why-ggplot2

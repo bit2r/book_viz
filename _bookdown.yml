@@ -22,6 +22,7 @@ rmd_files: [
   "basics-component.Rmd",
 
   # 깔끔한 데이터
+  "data-concept.Rmd",
   "data-penguin.Rmd",
   "data-tidyr.Rmd",
 
@@ -33,6 +34,7 @@ rmd_files: [
   "case-study.Rmd",
 
   "references.Rmd"
+
 
 ]
 

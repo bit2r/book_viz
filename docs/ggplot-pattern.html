@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>9 . 시각화 패턴 | 데이터 시각화</title>
+<title>10 . 시각화 패턴 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="9.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를 geom_text()...">
+<meta name="description" content="10.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="9 . 시각화 패턴 | 데이터 시각화">
+<meta property="og:title" content="10 . 시각화 패턴 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="9.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를 geom_text()...">
+<meta property="og:description" content="10.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="9 . 시각화 패턴 | 데이터 시각화">
-<meta name="twitter:description" content="9.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를 geom_text()...">
+<meta name="twitter:title" content="10 . 시각화 패턴 | 데이터 시각화">
+<meta name="twitter:description" content="10.1 라벨 붙은 시계열 시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다. 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다. 기본적인 작업흐름은 데이터셋에서 가장 최근 관측점을 뽑아서 별도 데이터프레임으로 저장하고 이를...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -71,13 +71,14 @@
 <li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
 <li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
-<li><a class="active" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
+<li><a class="active" href="ggplot-pattern.html"><span class="header-section-number">10</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">11</span> 사례</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -86,13 +87,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-pattern" class="section level1" number="9">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-pattern" class="section level1" number="10">
 <h1>
-<span class="header-section-number">9 . </span> 시각화 패턴<a class="anchor" aria-label="anchor" href="#ggplot-pattern"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10 . </span> 시각화 패턴<a class="anchor" aria-label="anchor" href="#ggplot-pattern"><i class="fas fa-link"></i></a>
 </h1>
-<div id="gghighlight-timeseries" class="section level2" number="9.1">
+<div id="gghighlight-timeseries" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">9.1</span> 라벨 붙은 시계열<a class="anchor" aria-label="anchor" href="#gghighlight-timeseries"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> 라벨 붙은 시계열<a class="anchor" aria-label="anchor" href="#gghighlight-timeseries"><i class="fas fa-link"></i></a>
 </h2>
 <p>시계열 데이터를 제작하게 되면 추세를 파악할 수 있지만 결국 그래서 가장 최근 값이 어떻게 되는지 관심이 많다.
 이런 사용자 요구를 맞추는데 시계열 데이터 마지막 시점에 라벨값을 붙이게 되면 가독성도 좋아진다.
@@ -101,16 +102,16 @@
 <p>BLOGR 님이 작성한 <a href="https://drsimonj.svbtle.com/label-line-ends-in-time-series-with-ggplot2">Label line ends in time series with ggplot2</a> 코드를 참조하여 <code>ggplot</code>으로 코드를 작성한다.</p>
 <div class="inline-figure"><img src="viz-pattern_files/figure-html/best-viz-label-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="gghighlight-barplot-color" class="section level2" number="9.2">
+<div id="gghighlight-barplot-color" class="section level2" number="10.2">
 <h2>
-<span class="header-section-number">9.2</span> 막대그래프 그룹별 색상<a class="anchor" aria-label="anchor" href="#gghighlight-barplot-color"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2</span> 막대그래프 그룹별 색상<a class="anchor" aria-label="anchor" href="#gghighlight-barplot-color"><i class="fas fa-link"></i></a>
 </h2>
 <p>RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill 의 GitHub 저장소에 공개된 TV 시리즈 데이터를 사용해서 막대그래프를 작성할 때 그룹별 색상을 적용하여 가시성을 높인다. TV 시리즈별 색상을 달리할 경우 <code>RColorBrewer</code> 패키지 생상 팔레트를 범주형에 맞춰 각 시리즈별로 가장 잘 구분될 수 있도록 색상을 칠해 시각화를 한다.</p>
 <div class="inline-figure"><img src="viz-pattern_files/figure-html/best-viz-barbplot-color-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="gghighlight-trend-line-label" class="section level2" number="9.3">
+<div id="gghighlight-trend-line-label" class="section level2" number="10.3">
 <h2>
-<span class="header-section-number">9.3</span> 추세선 강조 + 라벨<a class="anchor" aria-label="anchor" href="#gghighlight-trend-line-label"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> 추세선 강조 + 라벨<a class="anchor" aria-label="anchor" href="#gghighlight-trend-line-label"><i class="fas fa-link"></i></a>
 </h2>
 <p>시각화의 백미는 아무래도 대조와 비교를 통해 강한 인상을 주는 것이다.
 앞선 <code>ratings</code> TV 시리즈 시청자 평가 데이터를 대상으로 추세선에 강조를 넣고 라벨 텍스트도 넣어
@@ -119,9 +120,9 @@
 라벨도 동일한 방법으로 <code>geom_text()</code>를 두개 포함시켜 강조하고자하는 색상과 글꼴크기도 달리 지정한다.</p>
 <div class="inline-figure"><img src="viz-pattern_files/figure-html/best-viz-trend-line-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="gghighlight-barplot-color" class="section level2" number="9.4">
+<div id="gghighlight-barplot-color" class="section level2" number="10.4">
 <h2>
-<span class="header-section-number">9.4</span> 롤리팝(lolli-pop) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-barplot-color"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4</span> 롤리팝(lolli-pop) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-barplot-color"><i class="fas fa-link"></i></a>
 </h2>
 <p>롤리팝(Lollipop) 사탕 그래프는 막대그래프와 클리블랜드 점그래프를 합성한 것으로 한축에는 연속형, 다른 한축에는 범주형을 두고 사용자의 관심을 점그래프로 집중시키는데 효과적이다. 단순히 막대그래프를 제작하는 것과 비교하여 임팩트있는 시각화를 가능하게 한다.</p>
 <p>제작순서는 막대그래프 → 점그래프 → 롤리팝 그래프로 뼈대 골격을 만들어 나간다.
@@ -138,17 +139,17 @@
 반영한다.</p>
 <div class="inline-figure"><img src="viz-pattern_files/figure-html/best-viz-lolli-pop-polish-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="gghighlight-dumbbel-plot" class="section level2" number="9.5">
+<div id="gghighlight-dumbbel-plot" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">9.5</span> 아령(dumbbell) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-dumbbel-plot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> 아령(dumbbell) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-dumbbel-plot"><i class="fas fa-link"></i></a>
 </h2>
 <p>두시점을 비교하여 전후를 비교한다던가 두 지역을 비교할 때 아령 그래프는 매우 효과적이다.
 TV 시리즈별로 회차를 달리하여 첫번째와 가장 마지막 시청자수를 비교하여 시각화하는데 아령(dumbbell) 그래프가 적절한 예시가 될 것으로 보인다. 이를 위해서 <code>ggplot()</code>에 들어가는 자료형을 미리 준비하고 이에 맞춰 <code>geom_line()</code>과 <code>geom_point()</code>를 결합시켜 시각화한다.</p>
 <div class="inline-figure"><img src="viz-pattern_files/figure-html/best-viz-dumbbell-plot-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="gghighlight-slope-plot" class="section level2" number="9.6">
+<div id="gghighlight-slope-plot" class="section level2" number="10.6">
 <h2>
-<span class="header-section-number">9.6</span> 경사(Slope) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-slope-plot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6</span> 경사(Slope) 그래프<a class="anchor" aria-label="anchor" href="#gghighlight-slope-plot"><i class="fas fa-link"></i></a>
 </h2>
 <p>아령 그래프를 제작한 동일한 데이터를 <a href="https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003nk"><code>터프티(tufte)</code> 스타일 경사그래프</a>로 구현하면
 시즌별 첫회와 최종회 시청자수 비교를 좀더 직관적으로 만들 수 있다.</p>
@@ -171,18 +172,18 @@ TV 시리즈별로 회차를 달리하여 첫번째와 가장 마지막 시청�
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></div>
-<div class="next"><a href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></div>
+<div class="prev"><a href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></div>
+<div class="next"><a href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">11</span> 사례</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot-pattern"><span class="header-section-number">9</span> 시각화 패턴</a></li>
-<li><a class="nav-link" href="#gghighlight-timeseries"><span class="header-section-number">9.1</span> 라벨 붙은 시계열</a></li>
-<li><a class="nav-link" href="#gghighlight-barplot-color"><span class="header-section-number">9.2</span> 막대그래프 그룹별 색상</a></li>
-<li><a class="nav-link" href="#gghighlight-trend-line-label"><span class="header-section-number">9.3</span> 추세선 강조 + 라벨</a></li>
-<li><a class="nav-link" href="#gghighlight-barplot-color"><span class="header-section-number">9.4</span> 롤리팝(lolli-pop) 그래프</a></li>
-<li><a class="nav-link" href="#gghighlight-dumbbel-plot"><span class="header-section-number">9.5</span> 아령(dumbbell) 그래프</a></li>
-<li><a class="nav-link" href="#gghighlight-slope-plot"><span class="header-section-number">9.6</span> 경사(Slope) 그래프</a></li>
+<li><a class="nav-link" href="#ggplot-pattern"><span class="header-section-number">10</span> 시각화 패턴</a></li>
+<li><a class="nav-link" href="#gghighlight-timeseries"><span class="header-section-number">10.1</span> 라벨 붙은 시계열</a></li>
+<li><a class="nav-link" href="#gghighlight-barplot-color"><span class="header-section-number">10.2</span> 막대그래프 그룹별 색상</a></li>
+<li><a class="nav-link" href="#gghighlight-trend-line-label"><span class="header-section-number">10.3</span> 추세선 강조 + 라벨</a></li>
+<li><a class="nav-link" href="#gghighlight-barplot-color"><span class="header-section-number">10.4</span> 롤리팝(lolli-pop) 그래프</a></li>
+<li><a class="nav-link" href="#gghighlight-dumbbel-plot"><span class="header-section-number">10.5</span> 아령(dumbbell) 그래프</a></li>
+<li><a class="nav-link" href="#gghighlight-slope-plot"><span class="header-section-number">10.6</span> 경사(Slope) 그래프</a></li>
 </ul>
 
       <div class="book-extra">

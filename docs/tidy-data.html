@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>7 . 깔끔한 데이터 | 데이터 시각화</title>
+<title>6 . 깔끔한 데이터 개념 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
 <meta name="description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="7 . 깔끔한 데이터 | 데이터 시각화">
+<meta property="og:title" content="6 . 깔끔한 데이터 개념 | 데이터 시각화">
 <meta property="og:type" content="book">
 <meta property="og:description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7 . 깔끔한 데이터 | 데이터 시각화">
+<meta name="twitter:title" content="6 . 깔끔한 데이터 개념 | 데이터 시각화">
 <meta name="twitter:description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -71,13 +71,14 @@
 <li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
 <li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="active" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터</a></li>
+<li><a class="active" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">10</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">11</span> 사례</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -86,9 +87,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data" class="section level1" number="6">
 <h1>
-<span class="header-section-number">7 . </span> 깔끔한 데이터<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6 . </span> 깔끔한 데이터 개념<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
 </h1>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
@@ -102,9 +103,9 @@ Happy families are all alike, but every unhappy family is unhappy in its own way
 </blockquote>
 <p><strong>유발 하라리</strong>도 이를 차용하여 “세상에 실패한 국가의 유형도 각기 저마다의 이유로 다르지만, 성공한 국가는 비슷한 이유를 갖는다”라고 주장했고, <strong>해들리 위컴(Hadley Wickham)</strong>도 “Like families, tidy datasets are all alike but every messy dataset is messy in its own way.” <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">Tidy Data</a>에 대한 정의를 내리면서 동일한 주장을 했다.</p>
 </div>
-<div id="tidy-data" class="section level2" number="7.1">
+<div id="tidy-data" class="section level2" number="6.1">
 <h2>
-<span class="header-section-number">7.1</span> 데이터 깔끔화<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.1</span> 데이터 깔끔화<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>시각화를 하기 전에 데이터를 깔끔하게 해야하는 이유는 근본적으로 사람이 보는 데이터와 기계가 처리하는
 데이터의 형태가 다르기 때문이다. 즉, 사람이 보기 좋은 데이터는 기계가 처리하기 어렵고,
@@ -122,9 +123,9 @@ Happy families are all alike, but every unhappy family is unhappy in its own way
 칼럼 그룹집단 비교보다 관측점 그룹집단 사이 비교를 하는 것이 더 쉽다.
 최근에 <code>rowwise()</code> 연산자가 도입되어 필요한 경우 행으로 데이터 작업하는 것도 수월해졌다.</p>
 </div>
-<div id="tidy-data-setup" class="section level2" number="7.2">
+<div id="tidy-data-setup" class="section level2" number="6.2">
 <h2>
-<span class="header-section-number">7.2</span> 깔끔한 데이터<a class="anchor" aria-label="anchor" href="#tidy-data-setup"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2</span> 깔끔한 데이터<a class="anchor" aria-label="anchor" href="#tidy-data-setup"><i class="fas fa-link"></i></a>
 </h2>
 <p>깔끔한 데이터는 데이터셋의 의미를 구조에 매칭하는 표준적인 방식이다.
 행, 열, 테이블이 관측점, 변수, 형식에 매칭되는 방식에 따라
@@ -176,9 +177,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <li>Tidy-input → 함수 f(x) → Tidy-output</li>
 </ul>
 </div>
-<div id="messy-data-definition" class="section level2" number="7.3">
+<div id="messy-data-definition" class="section level2" number="6.3">
 <h2>
-<span class="header-section-number">7.3</span> 엉망진창 데이터 (Messy Data)<a class="anchor" aria-label="anchor" href="#messy-data-definition"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3</span> 엉망진창 데이터<a class="anchor" aria-label="anchor" href="#messy-data-definition"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>깔끔하지 않는 데이터(messy data)</strong> 는 앞서 언급한 깔끔한 데이터와 다른 형태 데이터를 지칭한다.
 컴퓨터 과학에서 말하는 코드 제3 정규형이지만, 해들리 위컴이 통계적 언어로 다시 표현한 것이다.
@@ -300,45 +301,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="tidyr-verbs" class="section level2" number="7.4">
+<div id="tidy-data-case-study" class="section level2" number="6.4">
 <h2>
-<span class="header-section-number">7.4</span> 깔끔한 데이터 동사<a class="anchor" aria-label="anchor" href="#tidyr-verbs"><i class="fas fa-link"></i></a>
-</h2>
-<p><code>dplyr</code> 패키지 데이터 문법에 <code>select</code>, <code>filter</code>, <code>mutate</code>, <code>group_by + summarize</code>, <code>arrange</code> 5개 주요 동사(Verb)를
-사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 <code>tidyr</code> 팩키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에
-특효약이다.</p>
-<p>깔끔한 데이터(Tidy Data)를 만드는데 동원되는 동사에 해당되는 함수는 다음과 같다.
-다음 데이터 깔끔이 함수들을 이용하여 엉망진창인 데이터(Messy Data)를 깔끔한 데이터로 만들어서
-후속 작업에 속도를 높일 수 있다.
-<code>tidyr</code> 팩키지에 포함된 Tidy Data 관련 핵심을 이루는 함수로 다음을 꼽을 수 있다.</p>
-<ul>
-<li><code>pivot_longer()</code></li>
-<li><code>pivot_wider()</code></li>
-<li>
-<code>separate()</code>, <code>separate_rows()</code>
-</li>
-<li><code>unite()</code></li>
-<li><code>expand_grid()</code></li>
-</ul>
-<p><strong>깔끔한 데이터 관련 R 패키지</strong>는 해드릴 위컴이 주축이 되어 10년 이상 발전시켜
-완성한 개념으로 그 단계 단계마다 개발된 팩키지가 있고 개념을
-구체화하며 실제로 구현한 함수들도 점점 진화해 나갔다.</p>
-<ul>
-<li>
-<code>reshape</code>, <code>reshape2</code> (<a href="http://www.jstatsoft.org/v21/i12/">Wickham 2007</a>)</li>
-<li>
-<code>plyr</code> (<a href="http://www.jstatsoft.org/v40/i01/">Wickham 2011</a>)</li>
-<li>
-<code>tidyr</code> (<a href="https://www.jstatsoft.org/article/view/v059i10">Wickham 2013</a>)</li>
-</ul>
-</div>
-<div id="tidy-data-case-study" class="section level2" number="7.5">
-<h2>
-<span class="header-section-number">7.5</span> 깔끔한 데이터 사례<a class="anchor" aria-label="anchor" href="#tidy-data-case-study"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4</span> 깔끔한 데이터 사례<a class="anchor" aria-label="anchor" href="#tidy-data-case-study"><i class="fas fa-link"></i></a>
 </h2>
 <p>깔끔하지 못한 데이터로 지목(?)된 퓨리서치 원데이터는 <a href="http://pewforum.org/Datasets/Dataset-Download.aspx">Pew Research Center Religion &amp; Public Life</a> 웹사이트에서
 2015년 다운로드 받았고, <a href="https://github.com/hadley/tidy-data/blob/master/data/pew.sav">GitHub</a>에
-데이터가 올라가 있다.</p>
+데이터가 공유되어 있다.</p>
 <p>깔끔하지 않은 <code>messy</code> 상태 데이터를 깔끔한 <code>tidy</code> 상태 데이터로 변환시킨 사례를
 통해 실전 감각을 익혀보자.</p>
 <div class="row">
@@ -514,9 +483,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>사실 깔끔하게 정리된 데이터는 사람이 보기에 적합하지는 않다. 오히려 엉망진창인
 퓨리서치 원데이터가 사람이 이해하고 보기에는 더 편하다.</p>
 </div>
-<div id="make-tidy-data-code" class="section level2" number="7.6">
+<div id="make-tidy-data-code" class="section level2" number="6.5">
 <h2>
-<span class="header-section-number">7.6</span> 깔끔한 데이터 제작 코드<a class="anchor" aria-label="anchor" href="#make-tidy-data-code"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5</span> 깔끔한 데이터 제작 코드<a class="anchor" aria-label="anchor" href="#make-tidy-data-code"><i class="fas fa-link"></i></a>
 </h2>
 <p>다운로드 받은 <code>pew.sav</code> 파일을 데이터프레임으로 만든 후 범주형 자료분석을 위해서 요인형(factor) 변수로 수준을 정리한 후 <code>count</code> 함수를 빈도수를 산출한다.</p>
 <div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
@@ -810,511 +779,19 @@ $100-150k
 </tbody>
 </table></div>
 </div>
-<div id="pivot-revolution" class="section level2" number="7.7">
-<h2>
-<span class="header-section-number">7.7</span> <code>pivot_*()</code> 동사<a class="anchor" aria-label="anchor" href="#pivot-revolution"><i class="fas fa-link"></i></a>
-</h2>
-<p>해들리 위컴이 언급했듯이, <code>gather</code>/<code>spread</code>는 사라지지 않고 훨씬 더 나은 모습으로 재탄생했습니다.
-<code>pivot_longer()</code>, <code>pivot_wider()</code> 함수는 <code>gather()</code>, <code>spread()</code> 함수를 개선하면서 다른 팩키지의 최신 기능을 추가시켰다.</p>
-<ul>
-<li>
-<code>pivot_longer()</code>은 <code>data.table</code> 패키지 <code>melt()</code>, <code>dcast()</code>와 연관됨.</li>
-<li>
-<code>cdata</code> 패키지에 영감을 받아 <code>pivot_longer()</code>, <code>pivot_wider()</code> 명칭으로 통일됨.</li>
-</ul>
-<p>기억하기 좋게 인텍스(index)를 갖는 긴 자료형(long)과 데카르트 평면(Cartesian)과 같은
-넓은(wide) 자료형으로 구분한다.
-<code>tidyr</code> 패키지가 버전 1.0으로 정식 버젼업하면서 생겨난 가장 큰 변화 중 하나가 아닐까 싶다.</p>
-<div id="pivot-longer-example" class="section level3" number="7.7.1">
-<h3>
-<span class="header-section-number">7.7.1</span> 데카르트 평면 → 인덱스: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example"><i class="fas fa-link"></i></a>
-</h3>
-<p><code>pivot_longer()</code> 함수를 사용해서 데카르트 평면과 같이 넓은 데이터(wide)를 인덱스가 붙은 긴 형태(long) 데이터로 변환시킬 수 있다. <code>relig_income</code> 데이터는 <code>gather/spread</code> 시절부터 자주 예제 데이터로 사용되던 예제 데이터셋이다.</p>
-<p><code>religion</code> 변수를 제외하고 나머지 변수가 <code>names_to</code>를 통해 인덱스 명을 바꿀 수 있고 이들이 담고 있던 값은 <code>values_to</code>로 떨어지게 된다.</p>
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
-</style>
-<div class="blue">
-<p><code>cols</code>: <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> 구문과 동일하게 작성함.</p>
-</div>
-<div class="row">
-<div class="col-md-6">
-<p><strong>데카르트 평면 넓은 데이터</strong></p>
-<pre><code>## # A tibble: 6 × 11
-##   religion  `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
-##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1 Agnostic       27        34        60        81        76       137        122
-## 2 Atheist        12        27        37        52        35        70         73
-## 3 Buddhist       27        21        30        34        33        58         62
-## 4 Catholic      418       617       732       670       638      1116        949
-## 5 Don’t k…       15        14        15        11        10        35         21
-## 6 Evangeli…     575       869      1064       982       881      1486        949
-## # … with 3 more variables: `$100-150k` &lt;dbl&gt;, `&gt;150k` &lt;dbl&gt;,
-## #   `Don't know/refused` &lt;dbl&gt;</code></pre>
-</div>
-<div class="col-md-6">
-<p><strong>인덱스 긴 형식 데이터</strong></p>
-<pre><code>## # A tibble: 180 × 3
-##   religion 소득     명수
-##   &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;
-## 1 Agnostic &lt;$10k      27
-## 2 Agnostic $10-20k    34
-## 3 Agnostic $20-30k    60
-## 4 Agnostic $30-40k    81
-## 5 Agnostic $40-50k    76
-## 6 Agnostic $50-75k   137
-## # … with 174 more rows</code></pre>
-</div>
-</div>
-</div>
-<div id="pivot-longer-example-prefix" class="section level3" number="7.7.2">
-<h3>
-<span class="header-section-number">7.7.2</span> 접두사(prefix) 제거: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-prefix"><i class="fas fa-link"></i></a>
-</h3>
-<p><code>names_prefix</code>를 사용해서 <code>$</code>, <code>&lt;$</code>, <code>&gt;</code> 붙은 값을 제거시킬 수 있다.</p>
-<pre><code>## # A tibble: 180 × 3
-##   religion 소득    명수
-##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
-## 1 Agnostic 10k       27
-## 2 Agnostic 10-20k    34
-## 3 Agnostic 20-30k    60
-## 4 Agnostic 30-40k    81
-## 5 Agnostic 40-50k    76
-## 6 Agnostic 50-75k   137
-## # … with 174 more rows</code></pre>
-</div>
-<div id="pivot-longer-example-type" class="section level3" number="7.7.3">
-<h3>
-<span class="header-section-number">7.7.3</span> 자료형 변환: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-type"><i class="fas fa-link"></i></a>
-</h3>
-<div class="row">
-<div class="col-md-6">
-<p><strong>빌보드 원본 데이터: 자료변환 전</strong></p>
-<p>일단 주간 순위는 어찌해서 만들었지만, 주간 칼럼에 <code>wk</code>가 들어 있어 이를 <code>names_prefix</code>를 통해 날려버리고 나도 숫자로 되어 있는 문자를 다시 숫자형으로 칼럼 자료형을 바꿔야 한다.</p>
-<pre><code>## # A tibble: 5,307 × 5
-##   artist track                   date.entered 주간   순위
-##   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
-## 1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk1      87
-## 2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk2      82
-## 3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk3      72
-## 4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk4      77
-## 5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk5      87
-## 6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   wk6      94
-## # … with 5,301 more rows</code></pre>
-</div>
-<div class="col-md-6">
-<p><strong>빌보드 원본 데이터: 자료변환 후</strong></p>
-<pre><code>## # A tibble: 5,307 × 5
-##   artist track                   date.entered 주간   순위
-##   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
-## 1 2 Pac  Baby Don't Cry (Keep... 2000-02-26   1        87
-## 2 2 Pac  Baby Don't Cry (Keep... 2000-02-26   2        82
-## 3 2 Pac  Baby Don't Cry (Keep... 2000-02-26   3        72
-## 4 2 Pac  Baby Don't Cry (Keep... 2000-02-26   4        77
-## 5 2 Pac  Baby Don't Cry (Keep... 2000-02-26   5        87
-## 6 2 Pac  Baby Don't Cry (Keep... 2000-02-26   6        94
-## # … with 5,301 more rows</code></pre>
-</div>
-</div>
-</div>
-<div id="pivot-longer-example-columns" class="section level3" number="7.7.4">
-<h3>
-<span class="header-section-number">7.7.4</span> 다수 칼럼: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-columns"><i class="fas fa-link"></i></a>
-</h3>
-<p><code>who</code> 데이터셋과 같이 다수 칼럼이 포함된 경우가 있을 수 있다. 이런 경우 <code>names_pattern</code> 정규표현식을 적용시켜 변수를 추출할 수 있다. 먼저 <code>who</code> 데이터셋을 살펴보자.</p>
-<ul>
-<li>
-<code>new_</code>/<code>new</code> 접두어</li>
-<li>
-<code>sp</code>/<code>rel</code>/<code>sp</code>/<code>ep</code> 진단 구분</li>
-<li>
-<code>m</code>/<code>f</code> 성별</li>
-<li>
-<code>014</code>/<code>1524</code>/<code>2535</code>/<code>3544</code>/<code>4554</code>/<code>65</code> 연령대</li>
-</ul>
-<p>먼저, <code>country</code>, <code>iso2</code>, <code>iso3</code>, <code>year</code> 4개 변수는 정리되어 있어 그대로 두고, 나머지 변수를 <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select</a></code> 문법에 맞춰 선택하고 이를 변경시킨다.
-<code>names_to</code>로 변수명 3개를 지정하고, <code>new_</code>/<code>new</code> 접두어는 고정되어 <code>names_pattern</code>에서 정규표현식으로 패턴을 적의한다. 이와 더불어 <code>names_ptypes</code>에서 자료형도 함께 지정한다.</p>
-<pre><code>## # A tibble: 405,440 × 8
-##   country     iso2  iso3   year diagnosis gender age   count
-##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;fct&gt;  &lt;ord&gt; &lt;int&gt;
-## 1 Afghanistan AF    AFG    1980 sp        m      014      NA
-## 2 Afghanistan AF    AFG    1980 sp        m      1524     NA
-## 3 Afghanistan AF    AFG    1980 sp        m      2534     NA
-## 4 Afghanistan AF    AFG    1980 sp        m      3544     NA
-## 5 Afghanistan AF    AFG    1980 sp        m      4554     NA
-## 6 Afghanistan AF    AFG    1980 sp        m      5564     NA
-## # … with 405,434 more rows</code></pre>
-</div>
-<div id="pivot-longer-example-rows" class="section level3" number="7.7.5">
-<h3>
-<span class="header-section-number">7.7.5</span> 한행에 다수 관측점: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-rows"><i class="fas fa-link"></i></a>
-</h3>
-<p>한행에 관측점이 다수 있는 재미있는 데이터도 있다.
-즉, 첫번째 가정에 아이가 2명 있는데 첫째 아이 생일과 성별, 둘째 아이 생일과 성별이 한 행에 놓여있는 경우가 이에 해당된다.</p>
-<pre><code>## # A tibble: 5 × 5
-##   family dob_child1 dob_child2 gender_child1 gender_child2
-##    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;              &lt;int&gt;         &lt;int&gt;
-## 1      1 1998-11-26 2000-01-29             1             2
-## 2      2 1996-06-22 &lt;NA&gt;                   2            NA
-## 3      3 2002-07-11 2004-04-05             2             2
-## 4      4 2004-10-10 2009-08-27             1             1
-## 5      5 2000-12-05 2005-02-28             2             1</code></pre>
-<p>이를 원하는 이름으로 변경시키기 위해서 <code>names_to=</code>에 <code>.value</code>라는 특수명칭을 사용하여 한 관측점에 다수 관측점 정보가 포함된 문제를 해결한다.</p>
-<pre><code>## # A tibble: 9 × 4
-##   family child  dob        gender
-##    &lt;int&gt; &lt;chr&gt;  &lt;date&gt;      &lt;int&gt;
-## 1      1 child1 1998-11-26      1
-## 2      1 child2 2000-01-29      2
-## 3      2 child1 1996-06-22      2
-## 4      3 child1 2002-07-11      2
-## 5      3 child2 2004-04-05      2
-## 6      4 child1 2004-10-10      1
-## # … with 3 more rows</code></pre>
-</div>
-<div id="pivot-longer-example-duplicated" class="section level3" number="7.7.6">
-<h3>
-<span class="header-section-number">7.7.6</span> 칼럼명이 중복됨: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-duplicated"><i class="fas fa-link"></i></a>
-</h3>
-<p>종복된 칼럼명이 존재하는 경우 작업하기 까다로운데… <code>pivot_longer()</code>에서 자동으로 칼럼을 추가시켜 문제를 풀어준다.</p>
-<div class="row">
-<div class="col-md-6">
-<p><strong>중복칼럼 데이터셋</strong></p>
-<pre><code>## # A tibble: 3 × 4
-##       x     y     y     y
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1     1     4     5     7
-## 2     2     5     6     8
-## 3     3     6     7     9</code></pre>
-</div>
-<div class="col-md-6">
-<p><strong>중복칼럼 데이터셋 작업결과</strong></p>
-<pre><code>## # A tibble: 9 × 3
-##       x name  value
-##   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
-## 1     1 y         4
-## 2     1 y         5
-## 3     1 y         7
-## 4     2 y         5
-## 5     2 y         6
-## 6     2 y         8
-## # … with 3 more rows</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="pivot-longer-wider" class="section level2" number="7.8">
-<h2>
-<span class="header-section-number">7.8</span> 인덱스 → 데카르트 평면: <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider"><i class="fas fa-link"></i></a>
-</h2>
-<p><code>pivot_wider()</code>는 깔끔한 데이터를 만드는데 그다지 흔한 경우는 아니지만, 요약표를 만드거나 할 때 종종 사용되고, <code>pivot_longer()</code>와 정반대라고 보면 된다.</p>
-<style>
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
-</style>
-<div class="blue">
-<ul>
-<li>
-<code>names_from</code>은 칼럼값을 지정하는 칼럼</li>
-<li>
-<code>values-from</code>은 값(value)을 지정하는 칼럼</li>
-</ul>
-</div>
-<p><a href="https://fishsciences.github.io/post/visualizing-fish-encounter-histories/">“Visualizing Fish Encounter Histories”, February 3 2018</a>에 나온 물고기 포획 방류, 재포획 즉, capture-recapture 데이터셋으로 볼 수 있다.
-<code>pivot_wider()</code> 함수에 <code>names_from</code>, <code>value_from</code>을 지정하여 데카르트 평면에 좌표로 찍듯이 데이터를 펼친다. 결측값이 생기는 것은 <code>values_fill</code>을 사용해서 0으로 채워넣는다.</p>
-<div class="row">
-<div class="col-md-4">
-<p><strong>깔끔한 데이터: 인덱스 긴 형식</strong></p>
-<pre><code>## # A tibble: 114 × 3
-##   fish  station  seen
-##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
-## 1 4842  Release     1
-## 2 4842  I80_1       1
-## 3 4842  Lisbon      1
-## 4 4842  Rstr        1
-## 5 4842  Base_TD     1
-## 6 4842  BCE         1
-## # … with 108 more rows</code></pre>
-</div>
-<div class="col-md-8">
-<p><strong>요약표 형태 데이터</strong></p>
-<pre><code>## # A tibble: 10 × 12
-##   fish  Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE   MAW
-##   &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-## 1 4842        1     1      1     1       1     1     1     1     1     1     1
-## 2 4843        1     1      1     1       1     1     1     1     1     1     1
-## 3 4844        1     1      1     1       1     1     1     1     1     1     1
-## 4 4845        1     1      1     1       1     0     0     0     0     0     0
-## 5 4847        1     1      1     0       0     0     0     0     0     0     0
-## 6 4848        1     1      1     1       0     0     0     0     0     0     0
-## # … with 4 more rows</code></pre>
-</div>
-</div>
-<div id="pivot-longer-wider-aggregation" class="section level3" number="7.8.1">
-<h3>
-<span class="header-section-number">7.8.1</span> 총계(aggregation): <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider-aggregation"><i class="fas fa-link"></i></a>
-</h3>
-<p><code>pivot_wider()</code>를 통해 총계(aggregate)를 내야하는 상황이 발생하곤 한다.
-실험계획법이 적용된 데이터 <code>warpbreaks</code>를 보면 <code>wool</code>, <code>tension</code> 두가지 요인으로 총 9번 실험한 결과가 <code>breaks</code>에 담겨진 것을 확인할 수 있다.</p>
-<pre><code>## # A tibble: 6 × 3
-##   wool  tension     n
-##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
-## 1 A     L           9
-## 2 A     M           9
-## 3 A     H           9
-## 4 B     L           9
-## 5 B     M           9
-## 6 B     H           9</code></pre>
-<p>현재 인덱스로 잘 정제된 긴형태 데이터를 요약표 형태로 데카르트 평면과 같이 정리하고자 하면 다음과 같이 작업하게 되면 <code>wool</code>, <code>tension</code> 요인별로 총 9개 <code>breaks</code>값이 한 곳에 몰려있는 것을 파악할 수 있다. <code>values_fn</code>을 사용해서 총계로 평균, 최대, 최소 등을 사용해서 하나의 값으로 요약할 수 있다.</p>
-<div class="row">
-<div class="col-md-6">
-<p><strong>요인별 원데이터</strong></p>
-<pre><code>## # A tibble: 3 × 3
-##   tension A         B        
-##   &lt;fct&gt;   &lt;list&gt;    &lt;list&gt;   
-## 1 L       &lt;dbl [9]&gt; &lt;dbl [9]&gt;
-## 2 M       &lt;dbl [9]&gt; &lt;dbl [9]&gt;
-## 3 H       &lt;dbl [9]&gt; &lt;dbl [9]&gt;</code></pre>
-</div>
-<div class="col-md-6">
-<p><strong>요인별 총계: 최대값</strong></p>
-<pre><code>## # A tibble: 3 × 3
-##   tension     A     B
-##   &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 L          70    44
-## 2 M          36    42
-## 3 H          43    28</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="separate-unite-verbs" class="section level2" number="7.9">
-<h2>
-<span class="header-section-number">7.9</span> <code>separate()</code>와 <code>unite()</code><a class="anchor" aria-label="anchor" href="#separate-unite-verbs"><i class="fas fa-link"></i></a>
-</h2>
-<div id="separate-columns" class="section level3" number="7.9.1">
-<h3>
-<span class="header-section-number">7.9.1</span> 칼럼에 변수 두개 포함<a class="anchor" aria-label="anchor" href="#separate-columns"><i class="fas fa-link"></i></a>
-</h3>
-<p>칼럼 하나에 다수 변수가 포함된 경우를 흔히 발견할 수 있다. <code>dplyr</code> 팩키지에는 <code>starwars</code> 데이터셋에 등장하는 인물에 대한 인적정보가 담겨있다. 예를 들어, <code>name</code> 칼럼은 두 변수가 숨어 있다. 하나는 성(<code>last name</code>) 다른 하나는 이름(<code>first name</code>)이다. 이를 두개로 쪼개어 두는 것이 Tidy Data를 만든다고 볼 수 있다. 꼭 그런 것은 아니고 경우에 따라 차이가 있지만, 개념적으로 그렇다는 것이다. 상황에 맞춰 유연하게 사용한다.</p>
-<pre><code>## # A tibble: 35 × 4
-##   name               species height  mass
-##   &lt;chr&gt;              &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
-## 1 Luke Skywalker     Human      172    77
-## 2 Darth Vader        Human      202   136
-## 3 Leia Organa        Human      150    49
-## 4 Owen Lars          Human      178   120
-## 5 Beru Whitesun lars Human      165    75
-## 6 Biggs Darklighter  Human      183    84
-## # … with 29 more rows</code></pre>
-<p><code>separate()</code> 함수를 사용해서 칼럼을 두개로 쪼갠다. 이런 경우 <code>sep=</code> 인자를 통해 구분자를 지정한다. 공백, <code>;</code>, <code>,</code> 등 문제에 따라 구분자를 달리 사용한다.</p>
-<pre><code>## # A tibble: 35 × 5
-##   first_name last_name   species height  mass
-##   &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
-## 1 Luke       Skywalker   Human      172    77
-## 2 Darth      Vader       Human      202   136
-## 3 Leia       Organa      Human      150    49
-## 4 Owen       Lars        Human      178   120
-## 5 Beru       Whitesun    Human      165    75
-## 6 Biggs      Darklighter Human      183    84
-## # … with 29 more rows</code></pre>
-</div>
-<div id="separate-columns-many" class="section level3" number="7.9.2">
-<h3>
-<span class="header-section-number">7.9.2</span> 칼럼에 변수 다수 포함<a class="anchor" aria-label="anchor" href="#separate-columns-many"><i class="fas fa-link"></i></a>
-</h3>
-<p>TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일을 제작하는데 필요한 재표가 <code>ingredient</code> 칼럼 안에 콤마(<code>,</code>)로 묶여있다. 이런 데이터는 절대로 Tidy한 데이터가 아니라서 적절한 조치가 필요하다.</p>
-<pre><code>## 
-##  Downloading file 1 of 2: `cocktails.csv`
-##  Downloading file 2 of 2: `boston_cocktails.csv`</code></pre>
-<pre><code>## # A tibble: 546 × 2
-##   drink                                ingredient                               
-##   &lt;chr&gt;                                &lt;chr&gt;                                    
-## 1 '57 Chevy with a White License Plate Creme de Cacao, Vodka                    
-## 2 1-900-FUK-MEUP                       Absolut Kurant, Grand Marnier, Chambord …
-## 3 110 in the shade                     Lager, Tequila                           
-## 4 151 Florida Bushwacker               Malibu rum, Light rum, 151 proof rum, Da…
-## 5 155 Belmont                          Dark rum, Light rum, Vodka, Orange juice 
-## 6 24k nightmare                        Goldschlager, Jägermeister, Rumple Minze…
-## # … with 540 more rows</code></pre>
-<p>먼저 <code>stringr</code> 팩키지 <code>str_split()</code> 함수로 <code>ingredient</code> 칼럼을 <code>,</code>을 구분자로 삼아 쪼갠 후에 list-column 형태 칼럼(<code>ingredient_lc</code>)으로 저장시킨다. 그리고 나서 <code>unnest()</code> 함수로 중첩된 것을 풀게 되면 다음과 같은 티블 데이터프레임이 되어 Tidy Data로 변환된다.</p>
-<pre><code>## # A tibble: 2,104 × 3
-##   drink                                ingredient                  ingredient_lc
-##   &lt;chr&gt;                                &lt;chr&gt;                       &lt;chr&gt;        
-## 1 '57 Chevy with a White License Plate Creme de Cacao, Vodka       Creme de Cac…
-## 2 '57 Chevy with a White License Plate Creme de Cacao, Vodka       Vodka        
-## 3 1-900-FUK-MEUP                       Absolut Kurant, Grand Marn… Absolut Kura…
-## 4 1-900-FUK-MEUP                       Absolut Kurant, Grand Marn… Grand Marnier
-## 5 1-900-FUK-MEUP                       Absolut Kurant, Grand Marn… Chambord ras…
-## 6 1-900-FUK-MEUP                       Absolut Kurant, Grand Marn… Midori melon…
-## # … with 2,098 more rows</code></pre>
-<p>자, 이제 깔끔한 데이터의 힘을 느껴보자. 칵테일 중에 가장 다양한 재료가 포함된 칵테일은 무엇인가? 라는 질문에 단순한 <code>dplyr</code> 동사로 확인이 바로 가능하다.</p>
-<pre><code>## # A tibble: 546 × 2
-##   drink                  num_ingredients
-##   &lt;chr&gt;                            &lt;int&gt;
-## 1 Angelica Liqueur                    12
-## 2 Amaretto Liqueur                    11
-## 3 Egg Nog #4                          11
-## 4 Arizona Twister                      9
-## 5 1-900-FUK-MEUP                       8
-## 6 151 Florida Bushwacker               8
-## # … with 540 more rows</code></pre>
-</div>
-<div id="separete-rows-quickly" class="section level3" number="7.9.3">
-<h3>
-<span class="header-section-number">7.9.3</span> <code>separate_rows()</code> 함수로 빠르게<a class="anchor" aria-label="anchor" href="#separete-rows-quickly"><i class="fas fa-link"></i></a>
-</h3>
-<p>상기 과정이 다소 많은 동사를 조합해서 결과를 도출하고 있다고 생각된다면 <code>separate_rows()</code> 함수를 사용해서 깔끔한 데이터를 만든 후에 <code>count</code> 함수와 <code>sort = TRUE</code>를 활용하여 동일한 작업을 간단히 마무리 할 수 있다.</p>
-<pre><code>## # A tibble: 546 × 2
-##   drink                      n
-##   &lt;chr&gt;                  &lt;int&gt;
-## 1 Angelica Liqueur          12
-## 2 Amaretto Liqueur          11
-## 3 Egg Nog #4                11
-## 4 Arizona Twister            9
-## 5 1-900-FUK-MEUP             8
-## 6 151 Florida Bushwacker     8
-## # … with 540 more rows</code></pre>
-</div>
-</div>
-<div id="fix-missing-data" class="section level2" number="7.10">
-<h2>
-<span class="header-section-number">7.10</span> 결측 데이터<a class="anchor" aria-label="anchor" href="#fix-missing-data"><i class="fas fa-link"></i></a>
-</h2>
-<p><a href="https://data.world/tdreabing/nuclear-weapon-explosions">data.world Nuclear Weapon Explosions BY THOMAS DRÄBING</a> 웹사이트에서 핵폭탄 실험 데이터를 다운로드 받을 수 있다. 데이터는 완벽하지만 논리상 문제가 생긴다. 즉 1945년 이후 데이터를 보자면 결측값이 보인다.
-확인이 안된 것 한건 빼면 7개국이 핵폭탄 실험을 한 것으로 나오는데 1945년에는 아무런 기록이 없다. 데이터프레임에는 정상인 깔끔한 데이터지만 사실 1945년 0 건이 예를 들어 중국이나 러시아가 포함되어 있는 것이 맞다.</p>
-<pre><code>## # A tibble: 13 × 3
-##   country  year n_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;
-## 1 USA      1945       3
-## 2 USA      1946       2
-## 3 USA      1948       3
-## 4 Russia   1949       1
-## 5 Russia   1951       2
-## 6 USA      1951      16
-## # … with 7 more rows</code></pre>
-<div id="expand-grid-comes-in" class="section level3" number="7.10.1">
-<h3>
-<span class="header-section-number">7.10.1</span> <code>expand_grid()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in"><i class="fas fa-link"></i></a>
-</h3>
-<p>상기와 같은 문제를 해결하기 위해 <code>expand_grid()</code> 함수를 사용해서 핵실험을 수행한 모든 국가에 대해 해당 년도를 모두 생성할 필요가 있다.
-3개 국가에 대해 10년을 <code>expand_grid()</code> 함수로 조합하게 되면 30개 관측점이 생기는데 미국이 핵실험을 하지 않은 1947년의 경우 <code>NA</code> 값이 생긴다. 이를 채워주어야 한다.</p>
-<pre><code>## # A tibble: 30 × 3
-##   country  year n_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;
-## 1 USA      1945       3
-## 2 USA      1946       2
-## 3 USA      1947      NA
-## 4 USA      1948       3
-## 5 USA      1949      NA
-## 6 USA      1950      NA
-## # … with 24 more rows</code></pre>
-</div>
-<div id="expand-grid-comes-in-replace_na" class="section level3" number="7.10.2">
-<h3>
-<span class="header-section-number">7.10.2</span> <code>replace_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-replace_na"><i class="fas fa-link"></i></a>
-</h3>
-<p>앞서 <code>expand_grid()</code> 함수로 생성된 Tidy Data를 염두에 두고 이를 <code>left_join()</code> 함수와 조인을 걸어 나중에 치환시킬 데이터프레임을 사전 제작한다.
-결측값을 특정 값으로 채워 넣고자 하는 경우 <code>replace_na()</code> 함수를 사용한다.
-먼저 <code>replace_na()</code> 함수를 사용해서 <code>n_bombs</code> 변수에 <code>NA</code> 결측값을 0으로 채워넣는다.</p>
-<pre><code>## # A tibble: 30 × 3
-##   country  year n_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;
-## 1 USA      1945       3
-## 2 USA      1946       2
-## 3 USA      1947       0
-## 4 USA      1948       3
-## 5 USA      1949       0
-## 6 USA      1950       0
-## # … with 24 more rows</code></pre>
-</div>
-<div id="expand-grid-comes-in-fill" class="section level3" number="7.10.3">
-<h3>
-<span class="header-section-number">7.10.3</span> <code>fill()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-fill"><i class="fas fa-link"></i></a>
-</h3>
-<p>또 다른 사례로 발생되는 결측값의 유형으로 위와 같이 특정 결측값으로 채워넣는 대신 누적합과 같은 경우 이전 값이나 이후 값을 참조하여 채워넣는 것이 더 유의미한 결측값을 채워넣는 사례가 된다.</p>
-<pre><code>## # A tibble: 13 × 4
-## # Groups:   country [3]
-##   country  year n_bombs cumsum_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;        &lt;int&gt;
-## 1 England  1952       1            1
-## 2 England  1953       2            3
-## 3 Russia   1949       1            1
-## 4 Russia   1951       2            3
-## 5 Russia   1953       5            8
-## 6 Russia   1954      10           18
-## # … with 7 more rows</code></pre>
-<p>연도별 누적 핵폭탄 투하 실험 횟수는 <code>fill()</code> 함수에 <code>.direction = "down"</code>을 넣어 방향도 지정하여 의미있는 결측값 치완방식이 되도록 코드를 작업한다.</p>
-<pre><code>## # A tibble: 30 × 4
-##   country  year n_bombs cumsum_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;        &lt;int&gt;
-## 1 USA      1945       3            3
-## 2 USA      1946       2            5
-## 3 USA      1947       0            5
-## 4 USA      1948       3            8
-## 5 USA      1949       0            8
-## 6 USA      1950       0            8
-## # … with 24 more rows</code></pre>
-</div>
-<div id="expand-grid-comes-in-drop" class="section level3" number="7.10.4">
-<h3>
-<span class="header-section-number">7.10.4</span> <code>drop_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-drop"><i class="fas fa-link"></i></a>
-</h3>
-<p>다른 것 다 모르겠고 데이터프레임에 결측값이 있으면 안되기 때문에 그냥 제거한다.
-이럴 때 사용하는 함수가 <code>drop_na()</code>다.</p>
-<pre><code>## # A tibble: 13 × 3
-##   country  year n_bombs
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;
-## 1 USA      1945       3
-## 2 USA      1946       2
-## 3 USA      1948       3
-## 4 USA      1951      16
-## 5 USA      1952      10
-## 6 USA      1953      11
-## # … with 7 more rows</code></pre>
-
-</div>
-</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></div>
-<div class="next"><a href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></div>
+<div class="next"><a href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">7</span> 깔끔한 데이터</a></li>
-<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">7.1</span> 데이터 깔끔화</a></li>
-<li><a class="nav-link" href="#tidy-data-setup"><span class="header-section-number">7.2</span> 깔끔한 데이터</a></li>
-<li><a class="nav-link" href="#messy-data-definition"><span class="header-section-number">7.3</span> 엉망진창 데이터 (Messy Data)</a></li>
-<li><a class="nav-link" href="#tidyr-verbs"><span class="header-section-number">7.4</span> 깔끔한 데이터 동사</a></li>
-<li><a class="nav-link" href="#tidy-data-case-study"><span class="header-section-number">7.5</span> 깔끔한 데이터 사례</a></li>
-<li><a class="nav-link" href="#make-tidy-data-code"><span class="header-section-number">7.6</span> 깔끔한 데이터 제작 코드</a></li>
-<li>
-<a class="nav-link" href="#pivot-revolution"><span class="header-section-number">7.7</span> pivot_*() 동사</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#pivot-longer-example"><span class="header-section-number">7.7.1</span> 데카르트 평면 → 인덱스: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-prefix"><span class="header-section-number">7.7.2</span> 접두사(prefix) 제거: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-type"><span class="header-section-number">7.7.3</span> 자료형 변환: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-columns"><span class="header-section-number">7.7.4</span> 다수 칼럼: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-rows"><span class="header-section-number">7.7.5</span> 한행에 다수 관측점: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-duplicated"><span class="header-section-number">7.7.6</span> 칼럼명이 중복됨: pivot_longer()</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#pivot-longer-wider"><span class="header-section-number">7.8</span> 인덱스 → 데카르트 평면: pivot_wider()</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#pivot-longer-wider-aggregation"><span class="header-section-number">7.8.1</span> 총계(aggregation): pivot_wider()</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#separate-unite-verbs"><span class="header-section-number">7.9</span> separate()와 unite()</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#separate-columns"><span class="header-section-number">7.9.1</span> 칼럼에 변수 두개 포함</a></li>
-<li><a class="nav-link" href="#separate-columns-many"><span class="header-section-number">7.9.2</span> 칼럼에 변수 다수 포함</a></li>
-<li><a class="nav-link" href="#separete-rows-quickly"><span class="header-section-number">7.9.3</span> separate_rows() 함수로 빠르게</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#fix-missing-data"><span class="header-section-number">7.10</span> 결측 데이터</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#expand-grid-comes-in"><span class="header-section-number">7.10.1</span> expand_grid()</a></li>
-<li><a class="nav-link" href="#expand-grid-comes-in-replace_na"><span class="header-section-number">7.10.2</span> replace_na()</a></li>
-<li><a class="nav-link" href="#expand-grid-comes-in-fill"><span class="header-section-number">7.10.3</span> fill()</a></li>
-<li><a class="nav-link" href="#expand-grid-comes-in-drop"><span class="header-section-number">7.10.4</span> drop_na()</a></li>
-</ul>
-</li>
+<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
+<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">6.1</span> 데이터 깔끔화</a></li>
+<li><a class="nav-link" href="#tidy-data-setup"><span class="header-section-number">6.2</span> 깔끔한 데이터</a></li>
+<li><a class="nav-link" href="#messy-data-definition"><span class="header-section-number">6.3</span> 엉망진창 데이터</a></li>
+<li><a class="nav-link" href="#tidy-data-case-study"><span class="header-section-number">6.4</span> 깔끔한 데이터 사례</a></li>
+<li><a class="nav-link" href="#make-tidy-data-code"><span class="header-section-number">6.5</span> 깔끔한 데이터 제작 코드</a></li>
 </ul>
 
       <div class="book-extra">
