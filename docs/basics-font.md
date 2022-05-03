@@ -61,7 +61,8 @@ IDE에서 "Tools" &rarr; "Global Options..."를 클릭하면 "Options"창에서
 `extrafont` 패키지 `loadfonts()` 함수를 사용해서 `ggplot`에서 적용시킬 수 있는
 글꼴을 불러냈다. R 내장 데이터셋 `iris`를 사용하여 나눔글꼴 "Nanum Pen Script"을 기본 글꼴로 적용시켰다.
 
-<img src="basics-font_files/figure-html/ggplot-extrafont-in-r-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{basics-font_files/figure-latex/ggplot-extrafont-in-r-1} \end{center}
 
 ## `showtext` 패키지 [^showtext] {#font-showtext}
 
@@ -118,7 +119,7 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 4.  그래프를 그린다.
 5.  장치를 닫는다.
 
-<img src="basics-font_files/figure-html/font-showtext-showtext-ggplot-1.png" width="576" style="display: block; margin: auto;" />
+
 
 ## 로컬 글꼴 적용 {#font-showtext-korean-example-ttf}
 
@@ -129,7 +130,7 @@ R 그래프를 생성할 때, 다양한 글꼴(TrueType, OpenType, Type 1, web f
 `showtext`는 이를 발판으로 나중에 개발되어 구글 폰트와 같은
 인터넷 글꼴과 최근 웹출판에 대한 개념도 넣어 개발된 것이 차이점이다.
 
-<img src="basics-font_files/figure-html/showtext-showtext-korean-1.png" width="576" style="display: block; margin: auto;" />
+
 
 
 

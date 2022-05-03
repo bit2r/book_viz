@@ -9,32 +9,36 @@ delete_merged_file: true
 
 new_session: yes
 
+before_chapter_script: "_common.R"
+
 rmd_files: [
   "index.Rmd",
 
-  # 들어가며
-  "hello-world.Rmd",
+  # # 들어가며
+  # "hello-world.Rmd",
+  #
+  # # 구성요소
+  # "basics.Rmd",
+  # "basics-font.Rmd",
+  # "basics-color.Rmd",
+  # "basics-component.Rmd",
+  #
+  # # 깔끔한 데이터
+  # "data-concept.Rmd",
+  # "data-penguin.Rmd",
+  # "data-tidyr.Rmd",
+  #
+  # # 시각화
+  # "viz-ggplot.Rmd",
+  # "viz-pattern.Rmd",
+  #
+  # # 사례
+  # "case-study.Rmd",
+  #
+  # # 참고문헌
+  # "references.Rmd"
 
-  # 구성요소
-  "basics.Rmd",
   "basics-font.Rmd",
-  "basics-color.Rmd",
-  "basics-component.Rmd",
-
-  # 깔끔한 데이터
-  "data-concept.Rmd",
-  "data-penguin.Rmd",
-  "data-tidyr.Rmd",
-
-  # 시각화
-  "viz-ggplot.Rmd",
-  "viz-pattern.Rmd",
-
-  # 사례
-  "case-study.Rmd",
-
-  # 참고문헌
-  "references.Rmd"
 
 ]
 

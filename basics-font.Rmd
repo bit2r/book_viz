@@ -4,6 +4,7 @@ source("_common.R")
 library(tidyverse)
 library(patchwork)
 library(lubridate)
+extrafont::loadfonts(quiet = TRUE)
 ```
 
 # 글꼴 {#viz-font}
@@ -92,7 +93,7 @@ iris %>%
   ggplot(aes(x=Sepal.Length, y=Petal.Length, color=Species)) +
     geom_point()+
     labs(title="붓꽃 데이터 한글 글꼴 적용", color="붓꽃 종류") +
-    theme_minimal(base_family = "Nanum Pen Script") +
+    # theme_minimal(base_family = "Nanum Pen Script") +
     theme(legend.position = "top")
 
 ```
@@ -158,7 +159,7 @@ loadfonts()
 4.  그래프를 그린다.
 5.  장치를 닫는다.
 
-```{r font-showtext-showtext-ggplot, warning=FALSE}
+```{r font-showtext-showtext-ggplot, warning=FALSE, eval = FALSE}
 library(tidyverse)
 library(showtext)
 
@@ -187,7 +188,7 @@ showtext.end() # 그래픽 장치 닫기
 `showtext`는 이를 발판으로 나중에 개발되어 구글 폰트와 같은
 인터넷 글꼴과 최근 웹출판에 대한 개념도 넣어 개발된 것이 차이점이다.
 
-```{r showtext-showtext-korean, warning=FALSE}
+```{r showtext-showtext-korean, warning=FALSE, eval = FALSE}
 # ３. 한글 그래픽 --------------------------------------------------------------------------
 ## 나눔펜　스크립트
 font_add("NanumBarunGothic", "NanumBarunGothic.ttf")
