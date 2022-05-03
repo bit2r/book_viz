@@ -4,7 +4,6 @@ fig:ggplot-coordinate
 fig:linear-log-scales
 tab:penguins-EDA-data-structure
 tab:gapminder-EDA-data-structure
-데이터-시각화
 hello-world
 napoleon-invasion
 napoleon-viz
@@ -82,4 +81,6 @@ gghighlight-barplot-color
 gghighlight-trend-line-label
 gghighlight-dumbbel-plot
 gghighlight-slope-plot
-사례
+case-journalism
+case-worldcup
+case-corona

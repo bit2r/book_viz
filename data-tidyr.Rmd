@@ -353,9 +353,11 @@ starwars_name_df %>%
 TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일을 제작하는데 필요한 재표가 `ingredient` 칼럼 안에 콤마(`,`)로 묶여있다. 이런 데이터는 절대로 Tidy한 데이터가 아니라서 적절한 조치가 필요하다.
 
 ```{r many-variables-in-column-messy}
-cocktail_data <- tidytuesdayR::tt_load('2020-05-26')
+# cocktail_data <- tidytuesdayR::tt_load('2020-05-26')
 
-cocktail_df <- cocktail_data$cocktails %>% 
+cocktails <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/cocktails.csv')
+
+cocktail_df <- cocktails %>% 
   select(drink, ingredient)
 
 cocktail_tbl <- cocktail_df %>% 

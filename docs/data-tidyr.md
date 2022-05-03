@@ -417,12 +417,6 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 
 
 ```
-## 
-## 	Downloading file 1 of 2: `cocktails.csv`
-## 	Downloading file 2 of 2: `boston_cocktails.csv`
-```
-
-```
 ## # A tibble: 546 × 2
 ##   drink                                ingredient                               
 ##   <chr>                                <chr>                                    

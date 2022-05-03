@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 . 색상 | 데이터 시각화</title>
+<title>3 . 색상 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="4.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
+<meta name="description" content="3.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="4 . 색상 | 데이터 시각화">
+<meta property="og:title" content="3 . 색상 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="4.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
+<meta property="og:description" content="3.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 . 색상 | 데이터 시각화">
-<meta name="twitter:description" content="4.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
+<meta name="twitter:title" content="3 . 색상 | 데이터 시각화">
+<meta name="twitter:description" content="3.1 시각화 메커니즘 3 크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 RGB 체계와 사람이 색을 인지하고 이해하는 HCL 체계로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고, 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고, 사람은 뇌에서 인지한 후에 이를 처리하여 시각적인...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -65,20 +65,23 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html"><span class="header-section-number">1</span> 데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
-<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="active" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="" href="index.html">데이터 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">2</span> 글꼴</a></li>
+<li><a class="active" href="viz-color.html"><span class="header-section-number">3</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">4</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">5</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">7</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">10</span> 시각화 패턴</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">11</span> 사례</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">10</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">11</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">12</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -87,13 +90,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="viz-color" class="section level1" number="4">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="viz-color" class="section level1" number="3">
 <h1>
-<span class="header-section-number">4 . </span> 색상<a class="anchor" aria-label="anchor" href="#viz-color"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3 . </span> 색상<a class="anchor" aria-label="anchor" href="#viz-color"><i class="fas fa-link"></i></a>
 </h1>
-<div id="color-mechanism" class="section level2" number="4.1">
+<div id="color-mechanism" class="section level2" number="3.1">
 <h2>
-<span class="header-section-number">4.1</span> 시각화 메커니즘 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=xAoljeRJ3lU&amp;amp;feature=youtu.be"&gt;A Better Default Colormap for Matplotlib, SciPy 2015, Nathaniel Smith and Stéfan van der Walt&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a><a class="anchor" aria-label="anchor" href="#color-mechanism"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1</span> 시각화 메커니즘 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=xAoljeRJ3lU&amp;amp;feature=youtu.be"&gt;A Better Default Colormap for Matplotlib, SciPy 2015, Nathaniel Smith and Stéfan van der Walt&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a><a class="anchor" aria-label="anchor" href="#color-mechanism"><i class="fas fa-link"></i></a>
 </h2>
 <p>크게 보면 기계 즉, 컴퓨터가 색을 이해하고 표현하는 <strong>RGB 체계</strong>와 사람이 색을 인지하고 이해하는 <strong>HCL 체계</strong>로 나누어 진다. 2진수로 표현된 시각적 데이터는 RGB 16진수로 변환되어 모니터에 표시되고,
 물리적 광자(photon)로 사람눈에 위치한 망막에 꽂히게 되고,
@@ -103,9 +106,9 @@
 <div class="figure">
 <img src="assets/images/color-viz-mechanism.png" style="width:100.0%" alt=""><p class="caption">시각적 인지 메커니즘</p>
 </div>
-<div id="color-dataviz-mechanism-rgb" class="section level3" number="4.1.1">
+<div id="color-dataviz-mechanism-rgb" class="section level3" number="3.1.1">
 <h3>
-<span class="header-section-number">4.1.1</span> 16진수 RGB 표색법<a class="anchor" aria-label="anchor" href="#color-dataviz-mechanism-rgb"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1.1</span> 16진수 RGB 표색법<a class="anchor" aria-label="anchor" href="#color-dataviz-mechanism-rgb"><i class="fas fa-link"></i></a>
 </h3>
 <p>양수 숫자나 크레파스 명칭 대신에, 일반적이고 컴퓨터가 읽어들일 수 있는 색상 표색법이 16진수 팔레트다.
 Cynthia Brewer 는 펜실베니아 대학에서 교수로 색상이론과 시각화에 관련된 전문분야를 갖고 있으며 특히,
@@ -407,9 +410,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p><code><a href="https://rdrr.io/r/grDevices/rgb.html">rgb()</a></code>, <code><a href="https://rdrr.io/r/grDevices/col2rgb.html">col2rgb()</a></code>, <code><a href="https://rdrr.io/r/grDevices/convertColor.html">convertColor()</a></code> 함수도 유용하니, 자세한 내용은 도움말을 참조한다.</p>
 </div>
 </div>
-<div id="dataviz-mechanism-hcl" class="section level2" number="4.2">
+<div id="dataviz-mechanism-hcl" class="section level2" number="3.2">
 <h2>
-<span class="header-section-number">4.2</span> RGB 색상모형 대안 - <strong>HCL</strong><a class="anchor" aria-label="anchor" href="#dataviz-mechanism-hcl"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2</span> RGB 색상모형 대안 - <strong>HCL</strong><a class="anchor" aria-label="anchor" href="#dataviz-mechanism-hcl"><i class="fas fa-link"></i></a>
 </h2>
 <p>RGB 색공간과 색상모형이 유일무이하고 가장 최고는 아니다.
 컴퓨터 화면에 색상을 표현하는데는 자연스럽지만, 일부 영역에서 색상을 선택하는
@@ -466,9 +469,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <li><a href="http://www.research.ibm.com/people/l/lloydt/color/color.HTM">“Why Should Engineers and Scientists Be Worried About Color?”</a></li>
 </ul>
 </div>
-<div id="viz-printer-cmyk" class="section level2" number="4.3">
+<div id="viz-printer-cmyk" class="section level2" number="3.3">
 <h2>
-<span class="header-section-number">4.3</span> 프린터 색상모형: CMYK <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/CMYK_color_model"&gt;위키백과, “CMYK color model”&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://blogidea.tistory.com/101"&gt;블로그 아이디어, “CMYK 색상표”&lt;/a&gt;&lt;/p&gt;'><sup>6</sup></a><a class="anchor" aria-label="anchor" href="#viz-printer-cmyk"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3</span> 프린터 색상모형: CMYK <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/CMYK_color_model"&gt;위키백과, “CMYK color model”&lt;/a&gt;&lt;/p&gt;'><sup>5</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://blogidea.tistory.com/101"&gt;블로그 아이디어, “CMYK 색상표”&lt;/a&gt;&lt;/p&gt;'><sup>6</sup></a><a class="anchor" aria-label="anchor" href="#viz-printer-cmyk"><i class="fas fa-link"></i></a>
 </h2>
 <p>CMYK 색상표는 시안(<strong>C</strong>yan), 마젠타(<strong>M</strong>agenta), 옐로(<strong>Y</strong>ellow), 블랙(Black = <strong>K</strong>ey)를 원색으로 하여 명도가 낮아지는 감산혼합으로 주로 출력물 인쇄 혹은 사진 필림 현상에 사용되며 쿼크익스프레스, 일러스트레이터, 포토샵 등에서 CMYK 감산혼합을 지원한다. 현실적인 문제 때문에 RGB나 HSB(HSV)보다 표현 가능한 색이 적은 것으로 알려져 있다.</p>
 <p>학창시절 감산혼합의 색의 3원색은 빨강, 노랑, 파랑인데, CMYK는 생뚱맞게도 시안(<strong>C</strong>yan), 마젠타(<strong>M</strong>agenta), 옐로(<strong>Y</strong>ellow), 블랙(Black = <strong>K</strong>ey)을 원색으로 하는데 이유는 빨강은 사실 자홍색(마젠타), 파랑은 청록색(시안)이라 정확한 색상이 후자가 맞다. 우리가 잘못 배운 탓이 크다.</p>
@@ -484,13 +487,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="dataviz-color-brewer-viridis" class="section level2" number="4.4">
+<div id="dataviz-color-brewer-viridis" class="section level2" number="3.4">
 <h2>
-<span class="header-section-number">4.4</span> <code>RColorBrewer</code> 와 <code>viridis</code><a class="anchor" aria-label="anchor" href="#dataviz-color-brewer-viridis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4</span> <code>RColorBrewer</code> 와 <code>viridis</code><a class="anchor" aria-label="anchor" href="#dataviz-color-brewer-viridis"><i class="fas fa-link"></i></a>
 </h2>
-<div id="dataviz-color-brewer" class="section level3" number="4.4.1">
+<div id="dataviz-color-brewer" class="section level3" number="3.4.1">
 <h3>
-<span class="header-section-number">4.4.1</span> RColorBrewer<a class="anchor" aria-label="anchor" href="#dataviz-color-brewer"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.1</span> RColorBrewer<a class="anchor" aria-label="anchor" href="#dataviz-color-brewer"><i class="fas fa-link"></i></a>
 </h3>
 <p>색상선택이 가장 논란이 많고, 이리저리 만지작 거리면서 정말 많은 시간을 보내는 분야다.
 지리학자이며 생상 전문가 <a href="http://en.wikipedia.org/wiki/Cynthia_Brewer">Cynthia Brewer</a> 교수가 출판과 웹에서 사용되는 색상표를 제작했고, 이는 <a href="http://cran.r-project.org/web/packages/RColorBrewer/index.html">RColorBrewer</a>
@@ -511,9 +514,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>명칭을 명세해서 RColorBrewer 팔렛트 하나만 볼 수 있다.</p>
 <div class="inline-figure"><img src="basics-color_files/figure-html/dataviz-brewer-palette-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="dataviz-viridis" class="section level3" number="4.4.2">
+<div id="dataviz-viridis" class="section level3" number="3.4.2">
 <h3>
-<span class="header-section-number">4.4.2</span> viridis<a class="anchor" aria-label="anchor" href="#dataviz-viridis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.2</span> viridis<a class="anchor" aria-label="anchor" href="#dataviz-viridis"><i class="fas fa-link"></i></a>
 </h3>
 <p>2015년 Stéfan van der Walt 와 Nathaniel Smith는 파이썬 <code>matplotlib</code> 팩키지에 사용될
 새로운 색상 지도를 설계했고, <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU&amp;feature=youtu.be">SciPy 2015</a>에서 발표했다.
@@ -528,9 +531,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>아직 나온지 얼마되지 않아서, 자세한 사항은 <code>viridis</code> 팩키지를 설치하고 <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html_document">소품문</a>을
 읽고 직접 경험하기 바란다.</p>
 </div>
-<div id="dataviz-viridis-blind" class="section level3" number="4.4.3">
+<div id="dataviz-viridis-blind" class="section level3" number="3.4.3">
 <h3>
-<span class="header-section-number">4.4.3</span> 색맹을 갖는 사람<a class="anchor" aria-label="anchor" href="#dataviz-viridis-blind"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.3</span> 색맹을 갖는 사람<a class="anchor" aria-label="anchor" href="#dataviz-viridis-blind"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>dichromat</code> 팩키지(<a href="http://cran.r-project.org/web/packages/dichromat/">CRAN</a>)는
 2색시자에 대한 효과적인 색상조합을 선택하는데 도움이 된다.</p>
@@ -546,22 +549,22 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></div>
-<div class="next"><a href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></div>
+<div class="prev"><a href="viz-font.html"><span class="header-section-number">2</span> 글꼴</a></div>
+<div class="next"><a href="ggplot-component.html"><span class="header-section-number">4</span> 구성요소</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#viz-color"><span class="header-section-number">4</span> 색상</a></li>
+<li><a class="nav-link" href="#viz-color"><span class="header-section-number">3</span> 색상</a></li>
 <li>
-<a class="nav-link" href="#color-mechanism"><span class="header-section-number">4.1</span> 시각화 메커니즘 3</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#color-dataviz-mechanism-rgb"><span class="header-section-number">4.1.1</span> 16진수 RGB 표색법</a></li></ul>
+<a class="nav-link" href="#color-mechanism"><span class="header-section-number">3.1</span> 시각화 메커니즘 3</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#color-dataviz-mechanism-rgb"><span class="header-section-number">3.1.1</span> 16진수 RGB 표색법</a></li></ul>
 </li>
-<li><a class="nav-link" href="#dataviz-mechanism-hcl"><span class="header-section-number">4.2</span> RGB 색상모형 대안 - HCL</a></li>
-<li><a class="nav-link" href="#viz-printer-cmyk"><span class="header-section-number">4.3</span> 프린터 색상모형: CMYK 5 6</a></li>
+<li><a class="nav-link" href="#dataviz-mechanism-hcl"><span class="header-section-number">3.2</span> RGB 색상모형 대안 - HCL</a></li>
+<li><a class="nav-link" href="#viz-printer-cmyk"><span class="header-section-number">3.3</span> 프린터 색상모형: CMYK 5 6</a></li>
 <li>
-<a class="nav-link" href="#dataviz-color-brewer-viridis"><span class="header-section-number">4.4</span> RColorBrewer 와 viridis</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#dataviz-color-brewer"><span class="header-section-number">4.4.1</span> RColorBrewer</a></li>
-<li><a class="nav-link" href="#dataviz-viridis"><span class="header-section-number">4.4.2</span> viridis</a></li>
-<li><a class="nav-link" href="#dataviz-viridis-blind"><span class="header-section-number">4.4.3</span> 색맹을 갖는 사람</a></li>
+<a class="nav-link" href="#dataviz-color-brewer-viridis"><span class="header-section-number">3.4</span> RColorBrewer 와 viridis</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dataviz-color-brewer"><span class="header-section-number">3.4.1</span> RColorBrewer</a></li>
+<li><a class="nav-link" href="#dataviz-viridis"><span class="header-section-number">3.4.2</span> viridis</a></li>
+<li><a class="nav-link" href="#dataviz-viridis-blind"><span class="header-section-number">3.4.3</span> 색맹을 갖는 사람</a></li>
 </ul>
 </li>
 </ul>

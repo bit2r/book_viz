@@ -2,7 +2,7 @@
 
 
 
-# 시각화 구성요소 {#ggplot-component}
+# 구성요소 {#ggplot-component}
 
 깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다.
 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.
