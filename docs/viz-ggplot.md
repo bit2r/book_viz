@@ -74,7 +74,8 @@ X축, Y축의 척도를 그래프에서 자동으로 인식하는데는 한계�
 
 ![`tufte` 분위기 풍(theme)](assets/images/ggplot-theme.png){width="100%"}
 
-<img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-ggplot_files/figure-latex/ggplot-theme-1} \end{center}
 
 
 ## `ggplot` 확장 {#ggplot2-steps-extension}

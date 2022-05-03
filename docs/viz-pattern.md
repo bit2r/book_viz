@@ -14,14 +14,16 @@
 
 BLOGR 님이 작성한 [Label line ends in time series with ggplot2](https://drsimonj.svbtle.com/label-line-ends-in-time-series-with-ggplot2) 코드를 참조하여 `ggplot`으로 코드를 작성한다.
 
-<img src="viz-pattern_files/figure-html/best-viz-label-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-label-1} \end{center}
 
 ## 막대그래프 그룹별 색상  {#gghighlight-barplot-color}
 
 RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill 의 GitHub 저장소에 공개된 TV 시리즈 데이터를 사용해서 막대그래프를 작성할 때 그룹별 색상을 적용하여 가시성을 높인다. TV 시리즈별 색상을 달리할 경우 `RColorBrewer` 패키지 생상 팔레트를 범주형에 맞춰 각 시리즈별로 가장 잘 구분될 수 있도록 색상을 칠해 시각화를 한다.
 
 
-<img src="viz-pattern_files/figure-html/best-viz-barbplot-color-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-barbplot-color-1} \end{center}
 
 
 ## 추세선 강조 + 라벨 {#gghighlight-trend-line-label}
@@ -32,7 +34,8 @@ RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill 의 GitHub
 `geom_line()`을 두개 포함시켜 강조하고하는 색상을 별도로 지정하고 선굵기도 달리한다.
 라벨도 동일한 방법으로 `geom_text()`를 두개 포함시켜 강조하고자하는 색상과 글꼴크기도 달리 지정한다.
 
-<img src="viz-pattern_files/figure-html/best-viz-trend-line-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-trend-line-1} \end{center}
 
 
 ## 롤리팝(lolli-pop) 그래프 {#gghighlight-barplot-color}
@@ -49,13 +52,15 @@ RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill 의 GitHub
 2000년 미국 중서부 센서스 데이터로 인구통계 조사가 담겨있다.
 `percollege` 변수는 카운티(우리나라 군에 해당) 별 대학졸업비율을 나타낸다.
 
-<img src="viz-pattern_files/figure-html/best-viz-lolli-pop-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-lolli-pop-1} \end{center}
 
 한발더 나아가, 평균값에서 얼마나 차이가 있느냐를 롤리팝 그래프로 시각화하는 패턴이 많이 사용된다.
 이를 위해서, 앞서와 마찬가지로 15개 카운티를 뽑아내고 평균을 구하고 평균이상, 평균이하에 대한 요인(factor)도 함께 만들어낸다.
 반영한다.
 
-<img src="viz-pattern_files/figure-html/best-viz-lolli-pop-polish-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-lolli-pop-polish-1} \end{center}
 
 
 ## 아령(dumbbell) 그래프 {#gghighlight-dumbbel-plot}
@@ -63,7 +68,8 @@ RStudio를 거쳐 IBM에서 근무하고 있는 Alison Presmanes Hill 의 GitHub
 두시점을 비교하여 전후를 비교한다던가 두 지역을 비교할 때 아령 그래프는 매우 효과적이다.
 TV 시리즈별로 회차를 달리하여 첫번째와 가장 마지막 시청자수를 비교하여 시각화하는데 아령(dumbbell) 그래프가 적절한 예시가 될 것으로 보인다. 이를 위해서 `ggplot()`에 들어가는 자료형을 미리 준비하고 이에 맞춰 `geom_line()`과 `geom_point()`를 결합시켜 시각화한다.
 
-<img src="viz-pattern_files/figure-html/best-viz-dumbbell-plot-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-dumbbell-plot-1} \end{center}
 
 
 ## 경사(Slope) 그래프{#gghighlight-slope-plot}
@@ -77,7 +83,8 @@ TV 시리즈별로 회차를 달리하여 첫번째와 가장 마지막 시청�
 하지만 8번째 시즌은 다른 시즌과 달리 낮게 시작했고 최종회 시청률도 크게 나아지지 않은 것을 
 한눈에 파악할 수 있다.
 
-<img src="viz-pattern_files/figure-html/best-viz-slope-plot-base-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-slope-plot-base-1} \end{center}
 
 경사그래프를 제작하고는 싶으나 전반적으로 시간이 더 필요하신 분을 위해 
 [`slopegraph`](https://github.com/leeper/slopegraph) 패키지가 있다.
@@ -85,13 +92,15 @@ TV 시리즈별로 회차를 달리하여 첫번째와 가장 마지막 시청�
 `slopegraph`는 Base 그래픽을 기본으로 삼고 있어 자료구조도 `rownames`를 갖는 전통적인 데이터프레임이다.
 기본 Base 그래픽을 염두에 두고 상기 TV 연속물 경사그래프를 다음과 같이 작성할 수 있다.
 
-<img src="viz-pattern_files/figure-html/best-viz-slope-plot-slopegraph-series-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-slope-plot-slopegraph-series-1} \end{center}
 
 `slopegraph()` 함수 대신 `ggslopegraph()` 함수를 사용하게 되면 `ggplot()`으로도 시각화를 할 수 있다.
 `slopegraph()` 함수는 자료구조가 직관적이라 처음 시각화를 하는 분에게 적절한 듯 보인다.
 따라서, 앞서 `ggplot` 기반 경사그래프를 제작하고자 하는 경우 `ggslopegraph()`을 통해서도 `ggplot` 나머지 기능을 그대로 적용 가능하다.
 
-<img src="viz-pattern_files/figure-html/best-viz-slope-plot-ggslopegraph-series-1.png" width="576" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{viz-pattern_files/figure-latex/best-viz-slope-plot-ggslopegraph-series-1} \end{center}
 
 
 

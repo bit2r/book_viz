@@ -14,10 +14,14 @@
 수학에서 정수와 같이 표현되는 쪼갤 수 없는 경우는 국가를 생각하면 한국과 미국 사이 존재하는 값이 없다.
 시각화를 할 경우 위치(position), 모양(shape), 크기(size), 색상(color), 선굵기(line width), 선유형(line type)을 사용하여 좌표계(coordinate system), 척도(scale)와 결합하여 최종 시각화 결과물을 제작된다. Claus Wilke 시각화 책에 언급된 다양한 시각적 매핑을 통해 효과적으로 데이터의 정보를 표현할 수 있다.[@wilke2019fundamentals] 당연히 위치, 모양, 크기, 색상, 선굵기, 선유형 중 어떤 것을 사용하느냐에 따라 시각화로 전달되는 정보의 양은 달라진다. 예를 들어, 위치는 시각적 변별력이 선 유형보다 크다. 
 
-<div class="figure" style="text-align: center">
-<img src="basics-component_files/figure-html/ggplot-six-aesthetics-1.png" alt="위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑" width="576" />
-<p class="caption">(\#fig:ggplot-six-aesthetics)위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{basics-component_files/figure-latex/ggplot-six-aesthetics-1} 
+
+}
+
+\caption{위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑}(\#fig:ggplot-six-aesthetics)
+\end{figure}
 
 ## 척도 매핑 {#scale-mapping}
 
@@ -27,10 +31,14 @@
 시각적 객체가 제대로 그래프에 표현되는데 문제가 된다.
 
 
-<div class="figure" style="text-align: center">
-<img src="basics-component_files/figure-html/ggplot-scale-1.png" alt="시각적 객체 척도 매핑" width="576" />
-<p class="caption">(\#fig:ggplot-scale)시각적 객체 척도 매핑</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{basics-component_files/figure-latex/ggplot-scale-1} 
+
+}
+
+\caption{시각적 객체 척도 매핑}(\#fig:ggplot-scale)
+\end{figure}
 
 ## 좌표계 {#coordinate}
 
@@ -39,10 +47,14 @@
 다음은 `mtcars` 데이터 차량 기통수를 막대그래프와 원그래프를 사용하여 동일한 내용을 좌표계만 달리하여 시각적으로 표현해따.
 
 
-<div class="figure" style="text-align: center">
-<img src="basics-component_files/figure-html/ggplot-coordinate-1.png" alt="직교좌표계와 극좌표계" width="576" />
-<p class="caption">(\#fig:ggplot-coordinate)직교좌표계와 극좌표계</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{basics-component_files/figure-latex/ggplot-coordinate-1} 
+
+}
+
+\caption{직교좌표계와 극좌표계}(\#fig:ggplot-coordinate)
+\end{figure}
 
 
 ## 축(axis) {#coordinate}
@@ -55,7 +67,11 @@
 로그 변환시 **0**이 있는 경우 문제가 되기 때문에 `sqrt()` 변환도 로그변환이 갖는 표현법의 장점을
 갖추면서도 로그변환 시 생기는 번거러움을 해소하기 자주 사용된다.
 
-<div class="figure" style="text-align: center">
-<img src="basics-component_files/figure-html/linear-log-scales-1.png" alt="선형, 로그, 제곱근 축" width="576" />
-<p class="caption">(\#fig:linear-log-scales)선형, 로그, 제곱근 축</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics{basics-component_files/figure-latex/linear-log-scales-1} 
+
+}
+
+\caption{선형, 로그, 제곱근 축}(\#fig:linear-log-scales)
+\end{figure}

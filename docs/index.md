@@ -10,6 +10,7 @@ biblio-style: apalike
 link-citations: yes
 github-repo: bit2r/book_viz
 description: "데이터 시각화"
+always_allow_html: yes
 ---
 
 # 데이터 시각화 {-}
