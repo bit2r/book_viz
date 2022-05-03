@@ -2,6 +2,8 @@ fig:ggplot-six-aesthetics
 fig:ggplot-scale
 fig:ggplot-coordinate
 fig:linear-log-scales
+tab:penguins-EDA-data-structure
+tab:gapminder-EDA-data-structure
 데이터-시각화
 hello-world
 napoleon-invasion
@@ -28,6 +30,16 @@ ggplot-component
 ggplot-aesthetics
 scale-mapping
 coordinate
+ggplot-datasets
+palmer-penguins
+penguins-study
+penguin-install-dataset
+penguin-EDA-skimr
+penguin-EDA
+gapminder
+gapminder-install-dataset
+gapminder-EDA-skimr
+gapminder-EDA
 tidy-data
 tidy-data-setup
 messy-data-definition

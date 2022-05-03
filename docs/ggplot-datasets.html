@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>6 . 준비된 데이터 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="6 . 준비된 데이터 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6 . 준비된 데이터 | 데이터 시각화">
+<meta name="twitter:description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> 데이터 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B0%9C%EC%9A%94.html">시각화 개요</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="active" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-datasets" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6 . </span> 준비된 데이터<a class="anchor" aria-label="anchor" href="#ggplot-datasets"><i class="fas fa-link"></i></a>
+</h1>
+<p>시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게
+준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가
+엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다
+문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을
+가능성은 낮아진다.</p>
+<p>데이터 사이언스와 시각화의 예제 데이터로 가장 많이 추천되는 것이
+<a href="https://github.com/jennybc/gapminder">갭마인더(<code>gapminder</code>)</a>와 <a href="https://allisonhorst.github.io/palmerpenguins/">팔머펭귄(<code>palmerpenguins</code>)</a> 데이터셋이다.
+두 데이터셋 모두 CRAN에 등록된 공식 데이터 패키지다.</p>
+<div id="palmer-penguins" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> 팔머 펭귄<a class="anchor" aria-label="anchor" href="#palmer-penguins"><i class="fas fa-link"></i></a>
+</h2>
+<p>미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 <a href="https://ko.wikipedia.org/wiki/Black_Lives_Matter">“Black Lives Matter”</a> 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다.</p>
+<p>데이터 과학에서도 최근 R.A. Fisher의 과거 저술한 “The genetical theory of natural selection” <span class="citation">(<a href="references-1.html#ref-fisher1958genetical" role="doc-biblioref">Fisher 1958</a>)</span> 우생학(Eugenics) 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 <code>iris</code> 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는 움직임이 활발히 전개되고 있다. <a href="https://github.com/allisonhorst/palmerpenguins"><code>palmerpenguins</code></a> 데이터셋이 대안으로 많은 호응을 얻고 있다.</p>
+<div id="penguins-study" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> 펭귄 공부<a class="anchor" aria-label="anchor" href="#penguins-study"><i class="fas fa-link"></i></a>
+</h3>
+<p>팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 링크된 나무위키에서 참조 가능하다.</p>
+<ul>
+<li>
+<a href="https://namu.wiki/w/%EC%A0%A0%ED%88%AC%ED%8E%AD%EA%B7%84">젠투 펭귄(Gentoo Penguin)</a>: 머리에 모자처럼 둘러져 있는 하얀 털 때문에 알아보기가 쉽다. 암컷이 회색이 뒤에, 흰색이 앞에 있다. 펭귄들 중에 가장 빠른 시속 36km의 수영 실력을 자랑하며, 짝짓기 할 준비가 된 펭귄은 75-90cm까지도 자란다.</li>
+<li>
+<a href="https://namu.wiki/w/%EC%95%84%EB%8D%B8%EB%A6%AC%ED%8E%AD%EA%B7%84">아델리 펭귄(Adelie Penguin)</a>: 프랑스 탐험가인 뒤몽 뒤르빌(Dumont D’Urville) 부인의 이름을 따서 ’아델리’라 불리게 되었다. 각진 머리와 작은 부리 때문에 알아보기 쉽고, 다른 펭귄들과 마찬가지로 암수가 비슷하게 생겼지만 암컷이 조금 더 작다.</li>
+<li>
+<a href="https://namu.wiki/w/%ED%84%B1%EB%81%88%ED%8E%AD%EA%B7%84">턱끈 펭귄(Chinstrap Penguin)</a>: 언뜻 보면 아델리 펭귄과 매우 비슷하지만, 몸집이 조금 더 작고, 목에서 머리 쪽으로 이어지는 검은 털이 눈에 띈다. 어린 고삐 펭귄들은 회갈색 빛을 띄는 털을 가지고 있으며, 목 아래 부분은 더 하얗다. 무리를 지어 살아가며 일부일처제를 지키기 때문에 짝짓기 이후에도 부부로써 오랫동안 함께 살아간다.</li>
+</ul>
+<div class="figure">
+<img src="assets/images/penguin-species.png" style="width:100.0%" alt=""><p class="caption">팔머 펭귄 3종 세트</p>
+</div>
+<p>다음으로 <code>iris</code> 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로 조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(<code>culmen</code>) 길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.</p>
+<div class="figure">
+<img src="assets/images/penguin-species-variable.png" alt=""><p class="caption">팔머 펭귄 능선 변수</p>
+</div>
+</div>
+<div id="penguin-install-dataset" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#penguin-install-dataset"><i class="fas fa-link"></i></a>
+</h3>
+<p>CRAN에 등록되어 있어 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수로 직접 설치해도 되고,
+<code>remotes</code> 팩키지 <code>install_github()</code> 함수로 GitHub 저장소의 팔머펭귄 데이터를 설치해도 된다.
+정식 CRAN에 등록되기 이전에 GitHub에 먼저 등록되어 몇년간 정제과정을 거쳐 초기부터 사용하신 분은
+GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN 데이터나 GitHub 데이터나 이제 차이는 없다.</p>
+<p>도서관에서 책을 꺼내 열람실에서 살펴보듯이 설치된 <code>palmerpenguins</code> 데이터셋을
+<code><a href="https://allisonhorst.github.io/palmerpenguins/">library(palmerpenguins)</a></code> 함수로 불러온다. 책에 어떤 내용이 담겼는지 살펴보듯이
+<code>tidyverse</code>를 구성하는 <code>dplyr</code> 패키지 <code>glimpse()</code> 함수로 펭귄 데이터를 일별한다.</p>
+<pre><code>## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+</div>
+<div id="penguin-EDA-skimr" class="section level3" number="6.1.3">
+<h3>
+<span class="header-section-number">6.1.3</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#penguin-EDA-skimr"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://cran.r-project.org/web/packages/skimr/"><code>skimr</code></a> 패키지를 사용해서
+<code>penguins</code> 데이터프레임 자료구조를 일별한다.
+이를 통해서 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할 수 있다.
+또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다.
+그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:penguins-EDA-data-structure">Table 6.1: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">penguins</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">344</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Variable type: factor</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="16%">
+<col width="12%">
+<col width="16%">
+<col width="9%">
+<col width="10%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">species</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Ade: 152, Gen: 124, Chi: 68</td>
+</tr>
+<tr class="even">
+<td align="left">island</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="left">Bis: 168, Dre: 124, Tor: 52</td>
+</tr>
+<tr class="odd">
+<td align="left">sex</td>
+<td align="right">11</td>
+<td align="right">0.97</td>
+<td align="left">FALSE</td>
+<td align="right">2</td>
+<td align="left">mal: 168, fem: 165</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Variable type: numeric</strong></p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<colgroup>
+<col width="18%">
+<col width="10%">
+<col width="14%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="7%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">bill_length_mm</td>
+<td align="right">2</td>
+<td align="right">0.99</td>
+<td align="right">43.9</td>
+<td align="right">5.46</td>
+<td align="right">32.1</td>
+<td align="right">39.2</td>
+<td align="right">44.5</td>
+<td align="right">48.5</td>
+<td align="right">59.6</td>
+<td align="left">▃▇▇▆▁</td>
+</tr>
+<tr class="even">
+<td align="left">bill_depth_mm</td>
+<td align="right">2</td>
+<td align="right">0.99</td>
+<td align="right">17.1</td>
+<td align="right">1.97</td>
+<td align="right">13.1</td>
+<td align="right">15.6</td>
+<td align="right">17.3</td>
+<td align="right">18.7</td>
+<td align="right">21.5</td>
+<td align="left">▅▅▇▇▂</td>
+</tr>
+<tr class="odd">
+<td align="left">flipper_length_mm</td>
+<td align="right">2</td>
+<td align="right">0.99</td>
+<td align="right">200.9</td>
+<td align="right">14.06</td>
+<td align="right">172.0</td>
+<td align="right">190.0</td>
+<td align="right">197.0</td>
+<td align="right">213.0</td>
+<td align="right">231.0</td>
+<td align="left">▂▇▃▅▂</td>
+</tr>
+<tr class="even">
+<td align="left">body_mass_g</td>
+<td align="right">2</td>
+<td align="right">0.99</td>
+<td align="right">4201.8</td>
+<td align="right">801.95</td>
+<td align="right">2700.0</td>
+<td align="right">3550.0</td>
+<td align="right">4050.0</td>
+<td align="right">4750.0</td>
+<td align="right">6300.0</td>
+<td align="left">▃▇▆▃▂</td>
+</tr>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1.00</td>
+<td align="right">2008.0</td>
+<td align="right">0.82</td>
+<td align="right">2007.0</td>
+<td align="right">2007.0</td>
+<td align="right">2008.0</td>
+<td align="right">2009.0</td>
+<td align="right">2009.0</td>
+<td align="left">▇▁▇▁▇</td>
+</tr>
+</tbody>
+</table></div>
+<p>데이터가 크지 않아 인터랙티브 <code>reactive</code>, <code>DT</code> 패키지를 통해 전체 데이터를 살펴볼 수도 있고,
+첫 10개 관측점만 뽑아 일별할 수도 있다.</p>
+<pre><code>## # A tibble: 10 × 8
+##   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+##   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
+## 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+## 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+## 3 Adelie  Torge…           40.3          18                195        3250 fema…
+## 4 Adelie  Torge…           NA            NA                 NA          NA &lt;NA&gt; 
+## 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+## # … with 4 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
+</div>
+<div id="penguin-EDA" class="section level3" number="6.1.4">
+<h3>
+<span class="header-section-number">6.1.4</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#penguin-EDA"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>palmerpenguins</code> 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station)
+펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.
+그래프 문법에 따라 <code>x</code>, <code>y</code> 축을 데이터프레임 변수로 매핑하고
+산점도의 각 펭귄 물갈퀴 길이(<code>flipper_length_mm</code>)와 체질량(<code>body_mass_g</code>)은
+펭귄 종에 따라 <code>geom_point()</code>로 색상과 모양을 달리한다.</p>
+<div class="inline-figure"><img src="data-penguin_files/figure-html/mass-flipper-1.png" width="75%" style="display: block; margin: auto;"></div>
+</div>
+</div>
+<div id="gapminder" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> 갭마인더<a class="anchor" aria-label="anchor" href="#gapminder"><i class="fas fa-link"></i></a>
+</h2>
+<p>‘팩트풀니스’(Factfullness)는 ’사실충실성’으로 번역되고 팩트(사실)에 근거해 세계를 바라보고 이해하는 태도와 관점을 의미하는 것으로 얼마전 타계한 한스 로슬링의 마지막 저서 “Factfulness”의 책제목으로 더 유명하다. 저자는 세계에 관한 심각한 무지와 싸움을 평생의 사명으로 삼아 다양한 업적을 남겼으며 데이터 시각화를 통해 그동안 보지 못했던 사실을 일반인이면 누구나 쉽게 이해하고 의사결정을 빠른 시간내에 내릴 수 있도록 도움을 주였다. 그가 남긴 업적중의 하나는 데이터로 통상 <code>gapminder</code> 로 알려져 있으며 제니 브라이언트 박사가 R 데이터 패키지로 제작하여 쉽게 다가설 수 있게 되었다. <code>gapminder</code> 데이터는 시각화는 물론 애니메이션 시각화의 예제로도 많이 사용되고 있다.</p>
+<p>갭마인더 데이터셋은 1952년부터 5년 간격으로 2007년까지 142개 국가 인구수, 기대수명(<code>lifeExp</code>), 인구수(<code>pop</code>),
+1인당 국민소득(<code>gdpPercap</code>)에 대한 정보를 담고 있어 기대수명과 1인당 국민소득을 통해 1952년부터 국가별 발전사항 다른 관점으로 불평등에 대한 사실을 시각화를 통해 직시할 수 있다.</p>
+<div id="gapminder-install-dataset" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#gapminder-install-dataset"><i class="fas fa-link"></i></a>
+</h3>
+<p>CRAN에 등록되어 있어 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수로 직접 설치해도 되고,
+<code>remotes</code> 팩키지 <code>install_github()</code> 함수로 GitHub 저장소의 갭마인더 데이터를 설치해도 된다.
+팔머 펭귄 데이터와 마찬가지로 안정화 되었기 때문에 CRAN 데이터나 GitHub 데이터나 이제 차이는 없다.</p>
+</div>
+<div id="gapminder-EDA-skimr" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#gapminder-EDA-skimr"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://cran.r-project.org/web/packages/skimr/"><code>skimr</code></a> 패키지를 사용해서
+<code>gapminder</code> 데이터프레임 자료구조를 일별한다.
+이를 통해서 1,704개 펭귄 관측값이 있으며, 6개 칼럼으로 구성된 것을 확인할 수 있다.
+또한, 범주형 변수가 2개, 숫자형 변수가 4개로 구성되어 있다.
+그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:gapminder-EDA-data-structure">Table 6.2: </span>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">gapminder</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">1704</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">factor</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Variable type: factor</strong></p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="14%">
+<col width="10%">
+<col width="14%">
+<col width="8%">
+<col width="9%">
+<col width="41%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="left">ordered</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">country</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">142</td>
+<td align="left">Afg: 12, Alb: 12, Alg: 12, Ang: 12</td>
+</tr>
+<tr class="even">
+<td align="left">continent</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">FALSE</td>
+<td align="right">5</td>
+<td align="left">Afr: 624, Asi: 396, Eur: 360, Ame: 300</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Variable type: numeric</strong></p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<colgroup>
+<col width="13%">
+<col width="9%">
+<col width="13%">
+<col width="8%">
+<col width="8%">
+<col width="7%">
+<col width="8%">
+<col width="8%">
+<col width="8%">
+<col width="8%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1.98e+03</td>
+<td align="right">1.73e+01</td>
+<td align="right">1952.0</td>
+<td align="right">1.97e+03</td>
+<td align="right">1.98e+03</td>
+<td align="right">1.99e+03</td>
+<td align="right">2.01e+03</td>
+<td align="left">▇▅▅▅▇</td>
+</tr>
+<tr class="even">
+<td align="left">lifeExp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">5.95e+01</td>
+<td align="right">1.29e+01</td>
+<td align="right">23.6</td>
+<td align="right">4.82e+01</td>
+<td align="right">6.07e+01</td>
+<td align="right">7.08e+01</td>
+<td align="right">8.26e+01</td>
+<td align="left">▁▆▇▇▇</td>
+</tr>
+<tr class="odd">
+<td align="left">pop</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2.96e+07</td>
+<td align="right">1.06e+08</td>
+<td align="right">60011.0</td>
+<td align="right">2.79e+06</td>
+<td align="right">7.02e+06</td>
+<td align="right">1.96e+07</td>
+<td align="right">1.32e+09</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td align="left">gdpPercap</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7.22e+03</td>
+<td align="right">9.86e+03</td>
+<td align="right">241.2</td>
+<td align="right">1.20e+03</td>
+<td align="right">3.53e+03</td>
+<td align="right">9.33e+03</td>
+<td align="right">1.14e+05</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table></div>
+<p>데이터가 크지 않아 인터랙티브 <code>reactive</code>, <code>DT</code> 패키지를 통해 전체 데이터를 살펴볼 수도 있고,
+첫 10개 관측점만 뽑아 일별할 수도 있다.</p>
+<pre><code>## # A tibble: 10 × 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+## # … with 4 more rows</code></pre>
+</div>
+<div id="gapminder-EDA" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#gapminder-EDA"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>gapminder</code> 데이터셋에서 <code>dplyr</code> 패키지 <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> 함수를 이용하여 대륙명이 오세아니아를
+제외하고 나머지 대륙(아프리카, 아메리카, 아시아, 유럽)에 속한
+국가를 색상을 달리하여 각 국가별로 연도별 기대수명의 변화를 시각화한다.</p>
+<div class="inline-figure"><img src="data-penguin_files/figure-html/gapminder-lifeExp-1.png" width="75%" style="display: block; margin: auto;"></div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></div>
+<div class="next"><a href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggplot-datasets"><span class="header-section-number">6</span> 준비된 데이터</a></li>
+<li>
+<a class="nav-link" href="#palmer-penguins"><span class="header-section-number">6.1</span> 팔머 펭귄</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#penguins-study"><span class="header-section-number">6.1.1</span> 펭귄 공부</a></li>
+<li><a class="nav-link" href="#penguin-install-dataset"><span class="header-section-number">6.1.2</span> 데이터셋 설치</a></li>
+<li><a class="nav-link" href="#penguin-EDA-skimr"><span class="header-section-number">6.1.3</span> 자료구조 일별</a></li>
+<li><a class="nav-link" href="#penguin-EDA"><span class="header-section-number">6.1.4</span> 탐색적 데이터 분석</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#gapminder"><span class="header-section-number">6.2</span> 갭마인더</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#gapminder-install-dataset"><span class="header-section-number">6.2.1</span> 데이터셋 설치</a></li>
+<li><a class="nav-link" href="#gapminder-EDA-skimr"><span class="header-section-number">6.2.2</span> 자료구조 일별</a></li>
+<li><a class="nav-link" href="#gapminder-EDA"><span class="header-section-number">6.2.3</span> 탐색적 데이터 분석</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-03.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

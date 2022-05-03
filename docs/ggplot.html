@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>7 . 그래프 문법 | 데이터 시각화</title>
+<title>8 . 그래프 문법 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="7.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
+<meta name="description" content="8.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="7 . 그래프 문법 | 데이터 시각화">
+<meta property="og:title" content="8 . 그래프 문법 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="7.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
+<meta property="og:description" content="8.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7 . 그래프 문법 | 데이터 시각화">
-<meta name="twitter:description" content="7.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
+<meta name="twitter:title" content="8 . 그래프 문법 | 데이터 시각화">
+<meta name="twitter:description" content="8.1 그래프 문법의 존재이유 Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 데이터 그래픽(data graphics)에 많은 영향을 주어 ggplot2, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다. 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -71,12 +71,13 @@
 <li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
 <li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
 <li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 시각화 구성요소</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="active" href="ggplot.html"><span class="header-section-number">7</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">8</span> 시각화 패턴</a></li>
-<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">9</span> 사례</a></li>
+<li><a class="active" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html"><span class="header-section-number">10</span> 사례</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -85,13 +86,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot" class="section level1" number="8">
 <h1>
-<span class="header-section-number">7 . </span> 그래프 문법<a class="anchor" aria-label="anchor" href="#ggplot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8 . </span> 그래프 문법<a class="anchor" aria-label="anchor" href="#ggplot"><i class="fas fa-link"></i></a>
 </h1>
-<div id="why-ggplot2" class="section level2" number="7.1">
+<div id="why-ggplot2" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">7.1</span> 그래프 문법의 존재이유<a class="anchor" aria-label="anchor" href="#why-ggplot2"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> 그래프 문법의 존재이유<a class="anchor" aria-label="anchor" href="#why-ggplot2"><i class="fas fa-link"></i></a>
 </h2>
 <p>Leland Wilkinson의 “The Grammar of Graphics”는 1999년 첫 출간된 이후 <strong>데이터 그래픽(data graphics)</strong>에 많은 영향을 주어 <code>ggplot2</code>, Polaris → Tableau, Vega-Lite 등의 형태로 우리곁에 다가섰다.
 기존 데이터를 시각화한 다양한 그래픽 객체를 만드려면 각 그래픽 객체별로 따로 사용법을 익혀야만 되었다.
@@ -104,77 +105,77 @@
 <img src="assets/images/ggplot_why.png" style="width:100.0%" alt=""><p class="caption"><code>ggplot</code>이 필요한 이유</p>
 </div>
 </div>
-<div id="ggplot2-steps" class="section level2" number="7.2">
+<div id="ggplot2-steps" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">7.2</span> 그래프 문법<a class="anchor" aria-label="anchor" href="#ggplot2-steps"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> 그래프 문법<a class="anchor" aria-label="anchor" href="#ggplot2-steps"><i class="fas fa-link"></i></a>
 </h2>
 <p>그래프 문법은 총 8가지 층으로 구성되어 있는데 이를 각 층별로 나눠보면 다음과 같다.</p>
-<div id="ggplot2-steps-data" class="section level3" number="7.2.1">
+<div id="ggplot2-steps-data" class="section level3" number="8.2.1">
 <h3>
-<span class="header-section-number">7.2.1</span> 데이터(Data)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.1</span> 데이터(Data)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>그래프 문법 <code>ggplot</code>에 데이터는 깔끔한 데이터(tidy data)를 가정한다. 이를 위해서 기존 <code>wide</code>형태 데이터는 key-value <code>long</code> 형태로 바뀌어 준비한다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-data.png" style="width:100.0%" alt=""><p class="caption">깔끔한 데이터 <code>wide</code>, <code>long</code> 데이터</p>
 </div>
 </div>
-<div id="ggplot2-steps-mapping" class="section level3" number="7.2.2">
+<div id="ggplot2-steps-mapping" class="section level3" number="8.2.2">
 <h3>
-<span class="header-section-number">7.2.2</span> 매핑(Mapping)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-mapping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.2</span> 매핑(Mapping)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-mapping"><i class="fas fa-link"></i></a>
 </h3>
 <p>깔끔한 데이터가 준비되면 다음 단계로 칼럼에 해당되는 각 변수를 <code>aes()</code> 함수를 사용해서 <code>aes(x=x, y=y, color=z, ...)</code>와 같은 방식으로 데이터와 그래프를 매핑한다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-mapping.png" style="width:100.0%" alt=""><p class="caption">데이터를 그래프에 매핑</p>
 </div>
 </div>
-<div id="ggplot2-steps-statistics" class="section level3" number="7.2.3">
+<div id="ggplot2-steps-statistics" class="section level3" number="8.2.3">
 <h3>
-<span class="header-section-number">7.2.3</span> 통계량(statistics)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.3</span> 통계량(statistics)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-statistics"><i class="fas fa-link"></i></a>
 </h3>
 <p>범주형 그래프를 시각화할 경우 빈도수를 통계량으로 계산해놔야 하고, 연속형 변수를 히스토그램으로 표현할 때도 마찬가지 방식으로 구간별 빈도수를 계산해놔야 하고, 특히 상자그림(boxplot)을 시각화할 경우 각 분위수는 물론이고 중위수도 및 interquantile도 계산해서 수염의 끝도 계산해놔야 제대로된 상자그림을 시각화할 수 있다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-stat.png" style="width:100.0%" alt=""><p class="caption">그래프별 기본설정 통계량</p>
 </div>
 </div>
-<div id="ggplot2-steps-scales" class="section level3" number="7.2.4">
+<div id="ggplot2-steps-scales" class="section level3" number="8.2.4">
 <h3>
-<span class="header-section-number">7.2.4</span> 척도(scales)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-scales"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.4</span> 척도(scales)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-scales"><i class="fas fa-link"></i></a>
 </h3>
 <p>X축, Y축의 척도를 그래프에서 자동으로 인식하는데는 한계가 있어 이를 필요한 경우 적절한 형태로 설정한다. <code>scale_&lt;x, y, color, fill, ...&gt;_&lt;유형&gt;()</code> 구문을 갖는다. 예를 들어 Y축을 담당하는 변수가 로그척도(log)가 적합한 경우 이를 <code>scale_y_log10()</code>와 같이 변수를 특성을 반영한 척도를 설정한다. 변수가 날짜나 시간인 경우 <code>scale_x_date()</code>, <code>scale_x_datetime()</code>을 활용하여 적절한 형태로 설정한다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-scales.png" style="width:100.0%" alt=""><p class="caption"><code>aes</code> 매핑된 축 척도지정</p>
 </div>
 </div>
-<div id="ggplot2-steps-geometries" class="section level3" number="7.2.5">
+<div id="ggplot2-steps-geometries" class="section level3" number="8.2.5">
 <h3>
-<span class="header-section-number">7.2.5</span> 기하형상(geometries)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-geometries"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.5</span> 기하형상(geometries)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-geometries"><i class="fas fa-link"></i></a>
 </h3>
 <p>예를 들어, 범주형 변수를 <code>aes()</code>로 지정하고 이를 적절한 그래프로 표현하기 위한 결정과정으로 <code>geom_*()</code> 방식으로 원그래프, 막대그래프, 점그래프 등으로 변수를 시각화객체로 지정한다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-geometries.png" style="width:100.0%" alt=""><p class="caption">기하형상 지정</p>
 </div>
 </div>
-<div id="ggplot2-steps-facet" class="section level3" number="7.2.6">
+<div id="ggplot2-steps-facet" class="section level3" number="8.2.6">
 <h3>
-<span class="header-section-number">7.2.6</span> 작은 창(facet)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-facet"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.6</span> 작은 창(facet)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-facet"><i class="fas fa-link"></i></a>
 </h3>
 <p>원본 데이터를 그룹으로 쪼개 작은 창에 동일한 시각화 객체를 표현하는 방법으로 다차원 데이터를 차원별로 나눠 볼 수 있다. 중요한 점은 각 작은 창이 동일한 유형의 그래프라는 점이 중요하다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-facet.png" style="width:100.0%" alt=""><p class="caption">그룹으로 쪼갠 작은 창(facet)</p>
 </div>
 </div>
-<div id="ggplot2-steps-coordinate" class="section level3" number="7.2.7">
+<div id="ggplot2-steps-coordinate" class="section level3" number="8.2.7">
 <h3>
-<span class="header-section-number">7.2.7</span> 좌표계(coordinate)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-coordinate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.7</span> 좌표계(coordinate)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-coordinate"><i class="fas fa-link"></i></a>
 </h3>
 <p>깔끔한 데이터를 그래프에 매칭하여 시각화한 후에 경우에 따라서 좌표계를 변경할 경우가 있다. <code>coord_fixed()</code>, <code>coord_polar()</code>, <code>coord_flip()</code> 등을 사용해서 특정 영역 확대, 데카르트 좌표계에서 극좌표계, X-Y 축 변경 등의 작업을 수행할 수 있다.</p>
 <div class="figure">
 <img src="assets/images/ggplot-coordinate.png" style="width:100.0%" alt=""><p class="caption">좌표계 변환</p>
 </div>
 </div>
-<div id="ggplot2-steps-theme" class="section level3" number="7.2.8">
+<div id="ggplot2-steps-theme" class="section level3" number="8.2.8">
 <h3>
-<span class="header-section-number">7.2.8</span> 분위기 풍(theme)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-theme"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.8</span> 분위기 풍(theme)<a class="anchor" aria-label="anchor" href="#ggplot2-steps-theme"><i class="fas fa-link"></i></a>
 </h3>
 <p>분위기 풍(theme)은 앞선 깔끔한 데이터를 시각화 객체로 변환시키는 과정과 아무런 연관이 없다. 대신 외양을 보기좋게 하는 역할을 수행한다. 즉, 시각화에 알맞는 색상 팔레트를 적용시키고, 글꼴을 바꾸는 작업이 여기에 해당된다.</p>
 <div class="figure">
@@ -183,9 +184,9 @@
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 </div>
-<div id="ggplot2-steps-extension" class="section level2" number="7.3">
+<div id="ggplot2-steps-extension" class="section level2" number="8.3">
 <h2>
-<span class="header-section-number">7.3</span> <code>ggplot</code> 확장<a class="anchor" aria-label="anchor" href="#ggplot2-steps-extension"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3</span> <code>ggplot</code> 확장<a class="anchor" aria-label="anchor" href="#ggplot2-steps-extension"><i class="fas fa-link"></i></a>
 </h2>
 <p>기본 <code>ggplot</code> 그래프 객체를 갖게 되면 2개 이상의 그래프를 합치거나 배열을 달리하고,
 강조를 하고 주석(annotation)을 달고 애니메이션과 인터랙티브 기능을 추가하여 확장시킬 수 있다.</p>
@@ -195,25 +196,25 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></div>
-<div class="next"><a href="ggplot-pattern.html"><span class="header-section-number">8</span> 시각화 패턴</a></div>
+<div class="next"><a href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot"><span class="header-section-number">7</span> 그래프 문법</a></li>
-<li><a class="nav-link" href="#why-ggplot2"><span class="header-section-number">7.1</span> 그래프 문법의 존재이유</a></li>
+<li><a class="nav-link" href="#ggplot"><span class="header-section-number">8</span> 그래프 문법</a></li>
+<li><a class="nav-link" href="#why-ggplot2"><span class="header-section-number">8.1</span> 그래프 문법의 존재이유</a></li>
 <li>
-<a class="nav-link" href="#ggplot2-steps"><span class="header-section-number">7.2</span> 그래프 문법</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot2-steps-data"><span class="header-section-number">7.2.1</span> 데이터(Data)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-mapping"><span class="header-section-number">7.2.2</span> 매핑(Mapping)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-statistics"><span class="header-section-number">7.2.3</span> 통계량(statistics)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-scales"><span class="header-section-number">7.2.4</span> 척도(scales)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-geometries"><span class="header-section-number">7.2.5</span> 기하형상(geometries)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-facet"><span class="header-section-number">7.2.6</span> 작은 창(facet)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-coordinate"><span class="header-section-number">7.2.7</span> 좌표계(coordinate)</a></li>
-<li><a class="nav-link" href="#ggplot2-steps-theme"><span class="header-section-number">7.2.8</span> 분위기 풍(theme)</a></li>
+<a class="nav-link" href="#ggplot2-steps"><span class="header-section-number">8.2</span> 그래프 문법</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ggplot2-steps-data"><span class="header-section-number">8.2.1</span> 데이터(Data)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-mapping"><span class="header-section-number">8.2.2</span> 매핑(Mapping)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-statistics"><span class="header-section-number">8.2.3</span> 통계량(statistics)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-scales"><span class="header-section-number">8.2.4</span> 척도(scales)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-geometries"><span class="header-section-number">8.2.5</span> 기하형상(geometries)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-facet"><span class="header-section-number">8.2.6</span> 작은 창(facet)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-coordinate"><span class="header-section-number">8.2.7</span> 좌표계(coordinate)</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-theme"><span class="header-section-number">8.2.8</span> 분위기 풍(theme)</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#ggplot2-steps-extension"><span class="header-section-number">7.3</span> ggplot 확장</a></li>
+<li><a class="nav-link" href="#ggplot2-steps-extension"><span class="header-section-number">8.3</span> ggplot 확장</a></li>
 </ul>
 
       <div class="book-extra">
@@ -230,7 +231,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-02.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

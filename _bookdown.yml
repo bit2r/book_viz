@@ -22,6 +22,7 @@ rmd_files: [
   "basics-component.Rmd",
 
   # 깔끔한 데이터
+  "data-penguin.Rmd",
   "data-tidyr.Rmd",
 
   # 시각화

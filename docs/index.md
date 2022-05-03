@@ -1,7 +1,7 @@
 --- 
 title: "데이터 시각화"
 author: "한국 R 사용자회"
-date: "2022-05-02"
+date: "2022-05-03"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
