@@ -27,6 +27,7 @@ rmd_files: [
   "data-penguin.Rmd",
   "data-tidyr.Rmd",
 
+
   # 시각화
   "viz-ggplot-concept.Rmd",
   "viz-ggplot.Rmd",
@@ -34,12 +35,13 @@ rmd_files: [
 
   # 사례
   "case-study.Rmd",
+  "case-study-worldcup.Rmd",
 
   # 참고문헌
   "references.Rmd"
 
 
-  # "viz-ggplot.Rmd"
+  # "case-study-worldcup.Rmd"
 ]
 
 output_dir: docs

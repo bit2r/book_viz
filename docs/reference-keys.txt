@@ -97,5 +97,13 @@ gghighlight-trend-line-label
 gghighlight-dumbbel-plot
 gghighlight-slope-plot
 case-journalism
-case-worldcup
 case-corona
+case-worldcup
+russia-2018-worldcup
+russia-2018-worldcup-germany
+russia-2018-worldcup-germany-player
+출전선수-명단
+russia-2018-worldcup-germany-goal
+russia-2018-worldcup-germany-ani
+russia-2018-worldcup-germany-player-first
+russia-2018-worldcup-germany-player-second
