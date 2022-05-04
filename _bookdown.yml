@@ -28,6 +28,7 @@ rmd_files: [
   "data-tidyr.Rmd",
 
   # 시각화
+  "viz-ggplot-concept.Rmd",
   "viz-ggplot.Rmd",
   "viz-pattern.Rmd",
 
@@ -37,7 +38,8 @@ rmd_files: [
   # 참고문헌
   "references.Rmd"
 
-  # "happy-visualization.Rmd"
+
+  # "viz-ggplot.Rmd"
 ]
 
 output_dir: docs

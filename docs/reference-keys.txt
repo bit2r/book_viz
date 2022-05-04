@@ -83,6 +83,13 @@ ggplot2-steps-facet
 ggplot2-steps-coordinate
 ggplot2-steps-theme
 ggplot2-steps-extension
+ggplot-visualization
+ggplot-visualization-step-02
+계층layers
+변환transformations과-통계량statistics
+다중-창multi-panel-그림
+change-text
+ggplot-export
 ggplot-pattern
 gghighlight-timeseries
 gghighlight-barplot-color
