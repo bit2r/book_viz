@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>7 . 깔끔화 방법 | 데이터 시각화</title>
+<title>8 . 깔끔화 방법 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="7.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
+<meta name="description" content="8.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="7 . 깔끔화 방법 | 데이터 시각화">
+<meta property="og:title" content="8 . 깔끔화 방법 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="7.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
+<meta property="og:description" content="8.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7 . 깔끔화 방법 | 데이터 시각화">
-<meta name="twitter:description" content="7.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
+<meta name="twitter:title" content="8 . 깔끔화 방법 | 데이터 시각화">
+<meta name="twitter:description" content="8.1 깔끔화 동사 dplyr 패키지 데이터 문법에 select, filter, mutate, group_by + summarize, arrange 5개 주요 동사(Verb)를 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 tidyr 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다. 깔끔한 데이터(Tidy...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -67,21 +67,22 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
 <li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">2</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">3</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">4</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">5</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></li>
-<li><a class="active" href="tidy-data-how.html"><span class="header-section-number">7</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
+<li><a class="active" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">8</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">9</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">10</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">10</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">11</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">12</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">11</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">12</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">13</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -90,13 +91,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data-how" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data-how" class="section level1" number="8">
 <h1>
-<span class="header-section-number">7 . </span> 깔끔화 방법<a class="anchor" aria-label="anchor" href="#tidy-data-how"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8 . </span> 깔끔화 방법<a class="anchor" aria-label="anchor" href="#tidy-data-how"><i class="fas fa-link"></i></a>
 </h1>
-<div id="tidyr-verbs-how" class="section level2" number="7.1">
+<div id="tidyr-verbs-how" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">7.1</span> 깔끔화 동사<a class="anchor" aria-label="anchor" href="#tidyr-verbs-how"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> 깔끔화 동사<a class="anchor" aria-label="anchor" href="#tidyr-verbs-how"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>dplyr</code> 패키지 데이터 문법에 <code>select</code>, <code>filter</code>, <code>mutate</code>, <code>group_by + summarize</code>, <code>arrange</code> 5개 주요 동사(Verb)를
 사용해서 데이터와 커뮤니케이션하며 데이터 조작을 하듯이 <code>tidyr</code> 패키지 깔끔한 데이터 조작 동사를 익혀두면 엉망진창인 데이터에 특효약이다.</p>
@@ -106,11 +107,11 @@
 <code>tidyr</code> 팩키지에 포함된 Tidy Data 관련 핵심을 이루는 함수로 다음을 꼽을 수 있다.</p>
 <ul>
 <li>
-<code>pivot_longer()</code> / <code>pivot_wider()</code> : 데이터프레임 형태 변환 동사</li>
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> / <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> : 데이터프레임 형태 변환 동사</li>
 <li>
-<code>separate()</code>, <code>separate_rows()</code> / <code>unite()</code> : 변수 쪼개고 합하는 동사</li>
+<code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows()</a></code> / <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code> : 변수 쪼개고 합하는 동사</li>
 <li>
-<code>expand_grid()</code> : 결측값 처리 동사</li>
+<code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> : 결측값 처리 동사</li>
 </ul>
 <p><strong>깔끔한 데이터 관련 R 패키지</strong>는 해드릴 위컴이 주축이 되어 10년 이상 발전시켜
 완성한 개념으로 그 단계 단계마다 개발된 팩키지가 있고 개념을
@@ -130,26 +131,26 @@
 다음에 나온 사례가 엉망진창 데이터 전부는 아니지만 각 사례별로 깔끔한 데이터로 변환시키는
 과정을 살펴보면 향후 맞닥드릴 수 있는 데이터 문제에 좋은 영감을 줄 것으로 생각된다.</p>
 </div>
-<div id="pivot-revolution" class="section level2" number="7.2">
+<div id="pivot-revolution" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">7.2</span> <code>pivot_*()</code> 동사<a class="anchor" aria-label="anchor" href="#pivot-revolution"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> <code>pivot_*()</code> 동사<a class="anchor" aria-label="anchor" href="#pivot-revolution"><i class="fas fa-link"></i></a>
 </h2>
 <p>해들리 위컴이 언급했듯이, <code>gather</code>/<code>spread</code>는 사라지지 않고 훨씬 더 나은 모습으로 재탄생했습니다.
-<code>pivot_longer()</code>, <code>pivot_wider()</code> 함수는 <code>gather()</code>, <code>spread()</code> 함수를 개선하면서 다른 팩키지의 최신 기능을 추가시켰다.</p>
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> 함수는 <code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/spread.html">spread()</a></code> 함수를 개선하면서 다른 팩키지의 최신 기능을 추가시켰다.</p>
 <ul>
 <li>
-<code>pivot_longer()</code>은 <code>data.table</code> 패키지 <code>melt()</code>, <code>dcast()</code>와 연관됨.</li>
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>은 <code>data.table</code> 패키지 <code>melt()</code>, <code>dcast()</code>와 연관됨.</li>
 <li>
-<code>cdata</code> 패키지에 영감을 받아 <code>pivot_longer()</code>, <code>pivot_wider()</code> 명칭으로 통일됨.</li>
+<code>cdata</code> 패키지에 영감을 받아 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>, <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> 명칭으로 통일됨.</li>
 </ul>
 <p>기억하기 좋게 인텍스(index)를 갖는 긴 자료형(long)과 데카르트 평면(Cartesian)과 같은
 넓은(wide) 자료형으로 구분한다.
 <code>tidyr</code> 패키지가 버전 1.0으로 정식 버젼업하면서 생겨난 가장 큰 변화 중 하나가 아닐까 싶다.</p>
-<div id="pivot-longer-example" class="section level3" number="7.2.1">
+<div id="pivot-longer-example" class="section level3" number="8.2.1">
 <h3>
-<span class="header-section-number">7.2.1</span> 데카르트 평면 → 인덱스: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.1</span> 데카르트 평면 → 인덱스: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example"><i class="fas fa-link"></i></a>
 </h3>
-<p><code>pivot_longer()</code> 함수를 사용해서 데카르트 평면과 같이 넓은 데이터(wide)를 인덱스가 붙은 긴 형태(long) 데이터로 변환시킬 수 있다. <code>relig_income</code> 데이터는 <code>gather/spread</code> 시절부터 자주 예제 데이터로 사용되던 예제 데이터셋이다.</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수를 사용해서 데카르트 평면과 같이 넓은 데이터(wide)를 인덱스가 붙은 긴 형태(long) 데이터로 변환시킬 수 있다. <code>relig_income</code> 데이터는 <code>gather/spread</code> 시절부터 자주 예제 데이터로 사용되던 예제 데이터셋이다.</p>
 <p><code>religion</code> 변수를 제외하고 나머지 변수가 <code>names_to</code>를 통해 인덱스 명을 바꿀 수 있고 이들이 담고 있던 값은 <code>values_to</code>로 떨어지게 된다.</p>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
@@ -187,9 +188,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="pivot-longer-example-prefix" class="section level3" number="7.2.2">
+<div id="pivot-longer-example-prefix" class="section level3" number="8.2.2">
 <h3>
-<span class="header-section-number">7.2.2</span> 접두사(prefix) 제거: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-prefix"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.2</span> 접두사(prefix) 제거: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-prefix"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>names_prefix</code>를 사용해서 <code>$</code>, <code>&lt;$</code>, <code>&gt;</code> 붙은 값을 제거시킬 수 있다.</p>
 <pre><code>## # A tibble: 180 × 3
@@ -203,9 +204,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 Agnostic 50-75k   137
 ## # … with 174 more rows</code></pre>
 </div>
-<div id="pivot-longer-example-type" class="section level3" number="7.2.3">
+<div id="pivot-longer-example-type" class="section level3" number="8.2.3">
 <h3>
-<span class="header-section-number">7.2.3</span> 자료형 변환: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-type"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.3</span> 자료형 변환: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-type"><i class="fas fa-link"></i></a>
 </h3>
 <div class="row">
 <div class="col-md-6">
@@ -237,9 +238,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="pivot-longer-example-columns" class="section level3" number="7.2.4">
+<div id="pivot-longer-example-columns" class="section level3" number="8.2.4">
 <h3>
-<span class="header-section-number">7.2.4</span> 다수 칼럼: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.4</span> 다수 칼럼: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>who</code> 데이터셋과 같이 다수 칼럼이 포함된 경우가 있을 수 있다. 이런 경우 <code>names_pattern</code> 정규표현식을 적용시켜 변수를 추출할 수 있다. 먼저 <code>who</code> 데이터셋을 살펴보자.</p>
 <ul>
@@ -265,9 +266,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 India   IN    IND    2007 ep        f      3544  101015
 ## # … with 405,434 more rows</code></pre>
 </div>
-<div id="pivot-longer-example-rows" class="section level3" number="7.2.5">
+<div id="pivot-longer-example-rows" class="section level3" number="8.2.5">
 <h3>
-<span class="header-section-number">7.2.5</span> 한행에 다수 관측점: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-rows"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.5</span> 한행에 다수 관측점: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-rows"><i class="fas fa-link"></i></a>
 </h3>
 <p>한행에 관측점이 다수 있는 재미있는 데이터도 있다.
 즉, 첫번째 가정에 아이가 2명 있는데 첫째 아이 생일과 성별, 둘째 아이 생일과 성별이 한 행에 놓여있는 경우가 이에 해당된다.</p>
@@ -291,11 +292,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6      4 child1 2004-10-10      1
 ## # … with 3 more rows</code></pre>
 </div>
-<div id="pivot-longer-example-duplicated" class="section level3" number="7.2.6">
+<div id="pivot-longer-example-duplicated" class="section level3" number="8.2.6">
 <h3>
-<span class="header-section-number">7.2.6</span> 칼럼명이 중복됨: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-duplicated"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.6</span> 칼럼명이 중복됨: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-duplicated"><i class="fas fa-link"></i></a>
 </h3>
-<p>종복된 칼럼명이 존재하는 경우 작업하기 까다로운데… <code>pivot_longer()</code>에서 자동으로 칼럼을 추가시켜 문제를 풀어준다.</p>
+<p>종복된 칼럼명이 존재하는 경우 작업하기 까다로운데… <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>에서 자동으로 칼럼을 추가시켜 문제를 풀어준다.</p>
 <div class="row">
 <div class="col-md-6">
 <p><strong>중복칼럼 데이터셋</strong></p>
@@ -322,11 +323,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="pivot-longer-wider" class="section level2" number="7.3">
+<div id="pivot-longer-wider" class="section level2" number="8.3">
 <h2>
-<span class="header-section-number">7.3</span> 인덱스 → 데카르트 평면: <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3</span> 인덱스 → 데카르트 평면: <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider"><i class="fas fa-link"></i></a>
 </h2>
-<p><code>pivot_wider()</code>는 깔끔한 데이터를 만드는데 그다지 흔한 경우는 아니지만, 요약표를 만드거나 할 때 종종 사용되고, <code>pivot_longer()</code>와 정반대라고 보면 된다.</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>는 깔끔한 데이터를 만드는데 그다지 흔한 경우는 아니지만, 요약표를 만드거나 할 때 종종 사용되고, <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>와 정반대라고 보면 된다.</p>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </style>
@@ -338,7 +339,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <code>values-from</code>은 값(value)을 지정하는 칼럼</li>
 </ul>
 </div>
-<p><code><a href="https://tidyr.tidyverse.org/reference/fish_encounters.html">tidyr::fish_encounters</a></code> 패키지에 내장된 <code>fish_encounters</code> 데이터셋은 <a href="https://fishsciences.github.io/post/visualizing-fish-encounter-histories/">“Visualizing Fish Encounter Histories”, February 3 2018</a>에 나온 물고기 포획 방류, 재포획 즉, capture-recapture 데이터셋이다. <code>pivot_wider()</code> 함수에 <code>names_from</code>, <code>value_from</code>을 지정하여 데카르트 평면에 좌표로 찍듯이 데이터를 펼친다. 결측값이 생기는 것은 <code>values_fill</code>을 사용해서 0으로 채워넣게 되면 결측값도 정리되고 사람이 이해하기 쉬운 데이터로 즉시 일별하여 확인이 가능하다.</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/fish_encounters.html">tidyr::fish_encounters</a></code> 패키지에 내장된 <code>fish_encounters</code> 데이터셋은 <a href="https://fishsciences.github.io/post/visualizing-fish-encounter-histories/">“Visualizing Fish Encounter Histories”, February 3 2018</a>에 나온 물고기 포획 방류, 재포획 즉, capture-recapture 데이터셋이다. <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> 함수에 <code>names_from</code>, <code>value_from</code>을 지정하여 데카르트 평면에 좌표로 찍듯이 데이터를 펼친다. 결측값이 생기는 것은 <code>values_fill</code>을 사용해서 0으로 채워넣게 되면 결측값도 정리되고 사람이 이해하기 쉬운 데이터로 즉시 일별하여 확인이 가능하다.</p>
 <div class="row">
 <div class="col-md-4">
 <p><strong>깔끔한 데이터: 인덱스 긴 형식</strong></p>
@@ -367,11 +368,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## # … with 4 more rows</code></pre>
 </div>
 </div>
-<div id="pivot-longer-wider-aggregation" class="section level3" number="7.3.1">
+<div id="pivot-longer-wider-aggregation" class="section level3" number="8.3.1">
 <h3>
-<span class="header-section-number">7.3.1</span> 총계(aggregation): <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider-aggregation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.1</span> 총계(aggregation): <code>pivot_wider()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-wider-aggregation"><i class="fas fa-link"></i></a>
 </h3>
-<p><code>pivot_wider()</code>를 통해 총계(aggregate)를 내야하는 상황이 발생하곤 한다.
+<p><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>를 통해 총계(aggregate)를 내야하는 상황이 발생하곤 한다.
 <code>datasets</code> 패키지에 내장된 실험계획법이 적용된 데이터 <code>warpbreaks</code>를 보면 <code>wool</code>, <code>tension</code> 두가지 요인으로 총 9번 실험한 결과가 <code>breaks</code>에 담겨진 것을 확인할 수 있다.</p>
 <pre><code>## # A tibble: 6 × 3
 ##   wool  tension     n
@@ -405,13 +406,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="separate-unite-verbs" class="section level2" number="7.4">
+<div id="separate-unite-verbs" class="section level2" number="8.4">
 <h2>
-<span class="header-section-number">7.4</span> <code>separate()</code>와 <code>unite()</code><a class="anchor" aria-label="anchor" href="#separate-unite-verbs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4</span> <code>separate()</code>와 <code>unite()</code><a class="anchor" aria-label="anchor" href="#separate-unite-verbs"><i class="fas fa-link"></i></a>
 </h2>
-<div id="separate-columns" class="section level3" number="7.4.1">
+<div id="separate-columns" class="section level3" number="8.4.1">
 <h3>
-<span class="header-section-number">7.4.1</span> 칼럼에 변수 두개 포함<a class="anchor" aria-label="anchor" href="#separate-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.1</span> 칼럼에 변수 두개 포함<a class="anchor" aria-label="anchor" href="#separate-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p>칼럼 하나에 다수 변수가 포함된 경우를 흔히 발견할 수 있다. <code>dplyr</code> 팩키지에는 <code>starwars</code> 데이터셋에 등장하는 인물에 대한 인적정보가 담겨있다. 예를 들어, <code>name</code> 칼럼은 두 변수가 숨어 있다. 하나는 성(<code>last name</code>) 다른 하나는 이름(<code>first name</code>)이다. 이를 두개로 쪼개어 두는 것이 Tidy Data를 만든다고 볼 수 있다. 꼭 그런 것은 아니고 경우에 따라 차이가 있지만, 개념적으로 그렇다는 것이다. 상황에 맞춰 유연하게 사용한다.</p>
 <pre><code>## # A tibble: 35 × 4
@@ -424,7 +425,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 5 Beru Whitesun lars Human      165    75
 ## 6 Biggs Darklighter  Human      183    84
 ## # … with 29 more rows</code></pre>
-<p><code>separate()</code> 함수를 사용해서 칼럼을 두개로 쪼갠다. 이런 경우 <code>sep=</code> 인자를 통해 구분자를 지정한다. 공백, <code>;</code>, <code>,</code> 등 문제에 따라 구분자를 달리 사용한다.</p>
+<p><code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> 함수를 사용해서 칼럼을 두개로 쪼갠다. 이런 경우 <code>sep=</code> 인자를 통해 구분자를 지정한다. 공백, <code>;</code>, <code>,</code> 등 문제에 따라 구분자를 달리 사용한다.</p>
 <pre><code>## # A tibble: 35 × 5
 ##   first_name last_name   species height  mass
 ##   &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
@@ -436,9 +437,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 Biggs      Darklighter Human      183    84
 ## # … with 29 more rows</code></pre>
 </div>
-<div id="separate-columns-many" class="section level3" number="7.4.2">
+<div id="separate-columns-many" class="section level3" number="8.4.2">
 <h3>
-<span class="header-section-number">7.4.2</span> 칼럼에 변수 다수 포함<a class="anchor" aria-label="anchor" href="#separate-columns-many"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.2</span> 칼럼에 변수 다수 포함<a class="anchor" aria-label="anchor" href="#separate-columns-many"><i class="fas fa-link"></i></a>
 </h3>
 <p>TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일을 제작하는데 필요한 재표가 <code>ingredient</code> 칼럼 안에 콤마(<code>,</code>)로 묶여있다. 이런 데이터는 절대로 Tidy한 데이터가 아니라서 적절한 조치가 필요하다.</p>
 <pre><code>## # A tibble: 546 × 2
@@ -451,7 +452,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 5 155 Belmont                          Dark rum, Light rum, Vodka, Orange juice 
 ## 6 24k nightmare                        Goldschlager, Jägermeister, Rumple Minze…
 ## # … with 540 more rows</code></pre>
-<p>먼저 <code>stringr</code> 팩키지 <code>str_split()</code> 함수로 <code>ingredient</code> 칼럼을 <code>,</code>을 구분자로 삼아 쪼갠 후에 list-column 형태 칼럼(<code>ingredient_lc</code>)으로 저장시킨다. 그리고 나서 <code>unnest()</code> 함수로 중첩된 것을 풀게 되면 다음과 같은 티블 데이터프레임이 되어 Tidy Data로 변환된다.</p>
+<p>먼저 <code>stringr</code> 팩키지 <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> 함수로 <code>ingredient</code> 칼럼을 <code>,</code>을 구분자로 삼아 쪼갠 후에 list-column 형태 칼럼(<code>ingredient_lc</code>)으로 저장시킨다. 그리고 나서 <code><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest()</a></code> 함수로 중첩된 것을 풀게 되면 다음과 같은 티블 데이터프레임이 되어 Tidy Data로 변환된다.</p>
 <pre><code>## # A tibble: 2,104 × 3
 ##   drink                                ingredient                  ingredient_lc
 ##   &lt;chr&gt;                                &lt;chr&gt;                       &lt;chr&gt;        
@@ -474,11 +475,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 151 Florida Bushwacker               8
 ## # … with 540 more rows</code></pre>
 </div>
-<div id="separete-rows-quickly" class="section level3" number="7.4.3">
+<div id="separete-rows-quickly" class="section level3" number="8.4.3">
 <h3>
-<span class="header-section-number">7.4.3</span> <code>separate_rows()</code> 함수로 빠르게<a class="anchor" aria-label="anchor" href="#separete-rows-quickly"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.3</span> <code>separate_rows()</code> 함수로 빠르게<a class="anchor" aria-label="anchor" href="#separete-rows-quickly"><i class="fas fa-link"></i></a>
 </h3>
-<p>상기 과정이 다소 많은 동사를 조합해서 결과를 도출하고 있다고 생각된다면 <code>separate_rows()</code> 함수를 사용해서 깔끔한 데이터를 만든 후에 <code>count</code> 함수와 <code>sort = TRUE</code>를 활용하여 동일한 작업을 간단히 마무리 할 수 있다.</p>
+<p>상기 과정이 다소 많은 동사를 조합해서 결과를 도출하고 있다고 생각된다면 <code><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows()</a></code> 함수를 사용해서 깔끔한 데이터를 만든 후에 <code>count</code> 함수와 <code>sort = TRUE</code>를 활용하여 동일한 작업을 간단히 마무리 할 수 있다.</p>
 <pre><code>## # A tibble: 546 × 2
 ##   drink                      n
 ##   &lt;chr&gt;                  &lt;int&gt;
@@ -491,9 +492,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## # … with 540 more rows</code></pre>
 </div>
 </div>
-<div id="fix-missing-data" class="section level2" number="7.5">
+<div id="fix-missing-data" class="section level2" number="8.5">
 <h2>
-<span class="header-section-number">7.5</span> 결측 데이터<a class="anchor" aria-label="anchor" href="#fix-missing-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5</span> 결측 데이터<a class="anchor" aria-label="anchor" href="#fix-missing-data"><i class="fas fa-link"></i></a>
 </h2>
 <p><a href="https://data.world/tdreabing/nuclear-weapon-explosions">data.world Nuclear Weapon Explosions BY THOMAS DRÄBING</a> 웹사이트에서 핵폭탄 실험 데이터를 다운로드 받을 수 있다.
 데이터 자체는 완벽하지만 의미상 문제가 있다.
@@ -511,12 +512,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 5 Russia  1951          2
 ## 6 USA     1951         16
 ## # … with 7 more rows</code></pre>
-<div id="expand-grid-comes-in" class="section level3" number="7.5.1">
+<div id="expand-grid-comes-in" class="section level3" number="8.5.1">
 <h3>
-<span class="header-section-number">7.5.1</span> 결측값 명시: <code>expand_grid()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.1</span> 결측값 명시: <code>expand_grid()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in"><i class="fas fa-link"></i></a>
 </h3>
-<p>상기와 같은 문제를 해결하기 위해 <code>expand_grid()</code> 함수를 사용해서 핵실험을 수행한 모든 국가에 대해 해당 년도를 모두 생성할 필요가 있다.
-3개 국가에 대해 10년을 <code>expand_grid()</code> 함수로 조합하게 되면 30개 관측점이 생기는데 미국이 핵실험을 하지 않은 1947년의 경우 <code>NA</code> 값이 생긴다. 이를 채워주어야 한다. 앞서 <code>expand_grid()</code> 함수로 생성된 Tidy Data를 염두에 두고 이를 <code>left_join()</code> 함수와 조인을 걸어 나중에 치환시킬 데이터프레임을 사전 제작한다.</p>
+<p>상기와 같은 문제를 해결하기 위해 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수를 사용해서 핵실험을 수행한 모든 국가에 대해 해당 년도를 모두 생성할 필요가 있다.
+3개 국가에 대해 10년을 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수로 조합하게 되면 30개 관측점이 생기는데 미국이 핵실험을 하지 않은 1947년의 경우 <code>NA</code> 값이 생긴다. 이를 채워주어야 한다. 앞서 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수로 생성된 Tidy Data를 염두에 두고 이를 <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> 함수와 조인을 걸어 나중에 치환시킬 데이터프레임을 사전 제작한다.</p>
 <pre><code>## # A tibble: 30 × 3
 ##   국가   연도 핵실험횟수
 ##   &lt;chr&gt; &lt;dbl&gt;      &lt;int&gt;
@@ -528,12 +529,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 USA    1950         NA
 ## # … with 24 more rows</code></pre>
 </div>
-<div id="expand-grid-comes-in-replace_na" class="section level3" number="7.5.2">
+<div id="expand-grid-comes-in-replace_na" class="section level3" number="8.5.2">
 <h3>
-<span class="header-section-number">7.5.2</span> 결측값 치환: <code>replace_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-replace_na"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2</span> 결측값 치환: <code>replace_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-replace_na"><i class="fas fa-link"></i></a>
 </h3>
-<p>결측값을 특정 값으로 채워 넣고자 하는 경우 <code>replace_na()</code> 함수를 사용한다.
-먼저 <code>replace_na()</code> 함수를 사용해서 <code>n_bombs</code> 변수에 <code>NA</code> 결측값을 0으로 채워넣는다.
+<p>결측값을 특정 값으로 채워 넣고자 하는 경우 <code><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na()</a></code> 함수를 사용한다.
+먼저 <code><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na()</a></code> 함수를 사용해서 <code>n_bombs</code> 변수에 <code>NA</code> 결측값을 0으로 채워넣는다.
 다른 국가명이나 연도에 결측값이 있는 경우 동일하게 변수명을 지정하고 결측값을 지정하여 해결한다.</p>
 <pre><code>## # A tibble: 30 × 3
 ##   국가   연도 핵실험횟수
@@ -546,12 +547,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 USA    1950          0
 ## # … with 24 more rows</code></pre>
 </div>
-<div id="expand-grid-comes-in-drop" class="section level3" number="7.5.3">
+<div id="expand-grid-comes-in-drop" class="section level3" number="8.5.3">
 <h3>
-<span class="header-section-number">7.5.3</span> 결측값 제거: <code>drop_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-drop"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.3</span> 결측값 제거: <code>drop_na()</code><a class="anchor" aria-label="anchor" href="#expand-grid-comes-in-drop"><i class="fas fa-link"></i></a>
 </h3>
 <p>다른 것 다 모르겠고 데이터프레임에 결측값이 있으면 안되기 때문에 그냥 제거한다.
-이럴 때 사용하는 함수가 <code>drop_na()</code>다.</p>
+이럴 때 사용하는 함수가 <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code>다.</p>
 <pre><code>## # A tibble: 13 × 3
 ##   국가   연도 핵실험횟수
 ##   &lt;chr&gt; &lt;dbl&gt;      &lt;int&gt;
@@ -567,38 +568,38 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="ggplot-datasets.html"><span class="header-section-number">6</span> 준비된 데이터</a></div>
+<div class="prev"><a href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></div>
 <div class="next"><a href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tidy-data-how"><span class="header-section-number">7</span> 깔끔화 방법</a></li>
-<li><a class="nav-link" href="#tidyr-verbs-how"><span class="header-section-number">7.1</span> 깔끔화 동사</a></li>
+<li><a class="nav-link" href="#tidy-data-how"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="nav-link" href="#tidyr-verbs-how"><span class="header-section-number">8.1</span> 깔끔화 동사</a></li>
 <li>
-<a class="nav-link" href="#pivot-revolution"><span class="header-section-number">7.2</span> pivot_*() 동사</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#pivot-longer-example"><span class="header-section-number">7.2.1</span> 데카르트 평면 → 인덱스: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-prefix"><span class="header-section-number">7.2.2</span> 접두사(prefix) 제거: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-type"><span class="header-section-number">7.2.3</span> 자료형 변환: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-columns"><span class="header-section-number">7.2.4</span> 다수 칼럼: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-rows"><span class="header-section-number">7.2.5</span> 한행에 다수 관측점: pivot_longer()</a></li>
-<li><a class="nav-link" href="#pivot-longer-example-duplicated"><span class="header-section-number">7.2.6</span> 칼럼명이 중복됨: pivot_longer()</a></li>
+<a class="nav-link" href="#pivot-revolution"><span class="header-section-number">8.2</span> pivot_*() 동사</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#pivot-longer-example"><span class="header-section-number">8.2.1</span> 데카르트 평면 → 인덱스: pivot_longer()</a></li>
+<li><a class="nav-link" href="#pivot-longer-example-prefix"><span class="header-section-number">8.2.2</span> 접두사(prefix) 제거: pivot_longer()</a></li>
+<li><a class="nav-link" href="#pivot-longer-example-type"><span class="header-section-number">8.2.3</span> 자료형 변환: pivot_longer()</a></li>
+<li><a class="nav-link" href="#pivot-longer-example-columns"><span class="header-section-number">8.2.4</span> 다수 칼럼: pivot_longer()</a></li>
+<li><a class="nav-link" href="#pivot-longer-example-rows"><span class="header-section-number">8.2.5</span> 한행에 다수 관측점: pivot_longer()</a></li>
+<li><a class="nav-link" href="#pivot-longer-example-duplicated"><span class="header-section-number">8.2.6</span> 칼럼명이 중복됨: pivot_longer()</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#pivot-longer-wider"><span class="header-section-number">7.3</span> 인덱스 → 데카르트 평면: pivot_wider()</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#pivot-longer-wider-aggregation"><span class="header-section-number">7.3.1</span> 총계(aggregation): pivot_wider()</a></li></ul>
+<a class="nav-link" href="#pivot-longer-wider"><span class="header-section-number">8.3</span> 인덱스 → 데카르트 평면: pivot_wider()</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#pivot-longer-wider-aggregation"><span class="header-section-number">8.3.1</span> 총계(aggregation): pivot_wider()</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#separate-unite-verbs"><span class="header-section-number">7.4</span> separate()와 unite()</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#separate-columns"><span class="header-section-number">7.4.1</span> 칼럼에 변수 두개 포함</a></li>
-<li><a class="nav-link" href="#separate-columns-many"><span class="header-section-number">7.4.2</span> 칼럼에 변수 다수 포함</a></li>
-<li><a class="nav-link" href="#separete-rows-quickly"><span class="header-section-number">7.4.3</span> separate_rows() 함수로 빠르게</a></li>
+<a class="nav-link" href="#separate-unite-verbs"><span class="header-section-number">8.4</span> separate()와 unite()</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#separate-columns"><span class="header-section-number">8.4.1</span> 칼럼에 변수 두개 포함</a></li>
+<li><a class="nav-link" href="#separate-columns-many"><span class="header-section-number">8.4.2</span> 칼럼에 변수 다수 포함</a></li>
+<li><a class="nav-link" href="#separete-rows-quickly"><span class="header-section-number">8.4.3</span> separate_rows() 함수로 빠르게</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#fix-missing-data"><span class="header-section-number">7.5</span> 결측 데이터</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#expand-grid-comes-in"><span class="header-section-number">7.5.1</span> 결측값 명시: expand_grid()</a></li>
-<li><a class="nav-link" href="#expand-grid-comes-in-replace_na"><span class="header-section-number">7.5.2</span> 결측값 치환: replace_na()</a></li>
-<li><a class="nav-link" href="#expand-grid-comes-in-drop"><span class="header-section-number">7.5.3</span> 결측값 제거: drop_na()</a></li>
+<a class="nav-link" href="#fix-missing-data"><span class="header-section-number">8.5</span> 결측 데이터</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#expand-grid-comes-in"><span class="header-section-number">8.5.1</span> 결측값 명시: expand_grid()</a></li>
+<li><a class="nav-link" href="#expand-grid-comes-in-replace_na"><span class="header-section-number">8.5.2</span> 결측값 치환: replace_na()</a></li>
+<li><a class="nav-link" href="#expand-grid-comes-in-drop"><span class="header-section-number">8.5.3</span> 결측값 제거: drop_na()</a></li>
 </ul>
 </li>
 </ul>
@@ -617,7 +618,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-03.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

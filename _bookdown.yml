@@ -14,6 +14,7 @@ rmd_files: [
 
   # 들어가며
   "hello-world.Rmd",
+  "happy-visualization.Rmd",
 
   # 구성요소
   "basics.Rmd",
@@ -36,6 +37,7 @@ rmd_files: [
   # 참고문헌
   "references.Rmd"
 
+  # "happy-visualization.Rmd"
 ]
 
 output_dir: docs

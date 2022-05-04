@@ -8,6 +8,14 @@ hello-world
 napoleon-invasion
 napoleon-viz
 references
+happy-viz
+viz-secret-dataframe
+viz-secret-explicit-dataframe
+viz-secret-with
+viz-secret-case-study
+viz-secret-case-study-data
+viz-secret-case-study-facet
+viz-secret-summary
 viz-font
 font-coding
 r-viz-font
