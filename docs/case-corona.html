@@ -100,7 +100,7 @@
 <p>정말 2020년 대한민국은 다른 국가와 비교하여 바이러스로부터 국민은 안전하게 지켰을까?</p>
 <p>이런 질문에 답을 하기 위해서 2015년부터 2020년까지 대한민국과 비교되는 주요 국가를 추려 월별 사망자수를 뽑아 비교해보자. 이를 위해서 먼저 데이터는 <a href="https://github.com/akarlinsky/world_mortality">World Mortality Dataset</a> 을 다운로드 받아 데이터를 전처리한 후에 시각화를 통해 해답을 구해보자.</p>
 <p>전세계 코로나19 월별 사망자 데이터를 가져와서 우리나라와 비교가 되는 국가를 추려 <code>ggplot</code> 시각화를 위해 데이터 전처리 작업을 수행하고 작은 창(facet)에 2015년부터 2020년 1~12월까지 시각화한다. 코로나19로 인한 국가별 사망자 비교를 위해 색상을 달리하여 강조한다.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/">reactable</a></span><span class="op">)</span>
@@ -160,7 +160,7 @@
 <div class="inline-figure"><img src="case-study-corona_files/figure-html/case-study-corona-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>대한민국을 비롯한 주요 선진국 총 9 개국은 인구가 다르기 때문에 절대적인 사망자수만 놓고 보게되면 아무래도 인구가 많은 나라가 사망자수가 많다. 월별 절대 사망자수를 놓고 봐도 그 이전 5년과 확연히 다른 사망자 패턴 즉 유난히 2020년 사망자가 많이 늘어난 것은 코로나19로 인한 국가적인 방역실패로 단정지을 수 있다. 특히 2020년 상반기 코로나19로 인한 사망자 급증과 도시 봉쇄 등 언론을 통해 널리 알려진 국제뉴스 진원지가 영국, 이탈리아, 프랑스, 미국, 브라질이라는 것은 우연이 아니다.</p>
 <p>국가별로 절대 인구규모가 다르기 때문에 <code>y</code>-축을 상대척도로 바꿔 국가내 사망자수가 코로나19의 영향을 받았는지 확대해서 면밀히 비교하도록 시각화한다.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">deaths_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span>, y<span class="op">=</span><span class="va">사망자</span>, group <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">is_2020</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>

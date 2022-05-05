@@ -97,6 +97,17 @@ gghighlight-trend-line-label
 gghighlight-dumbbel-plot
 gghighlight-slope-plot
 case-journalism
+case-study-crawling
+case-study-19th
+case-19th-crawling
+case-19th-cleaning
+case-20th
+case-20th-crawling-function
+case-20th-crawling
+case-20th-cleaning
+case-19th-20th
+early-voting-dataframe
+timeline-viz-diff
 case-worldcup
 russia-2018-worldcup
 russia-2018-worldcup-germany

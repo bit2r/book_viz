@@ -35,13 +35,15 @@ rmd_files: [
 
   # 사례
   "case-study.Rmd",
+  "case-study-journalism.Rmd",
   "case-study-worldcup.Rmd",
   "case-study-corona.Rmd",
 
   # 참고문헌
   "references.Rmd"
 
-  # "case-study-corona.Rmd",
+  # "case-study-journalism.Rmd",
+
 ]
 
 output_dir: docs

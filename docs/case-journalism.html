@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>12 . 데이터 저널리즘 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="12 . 데이터 저널리즘 | 데이터 시각화">
+<meta name="description" content="오마이뉴스 제20대 대통령 선거, 사전투표 역사를 새로 쓰다 - 마의 30%대 넘긴 사전투표율 데이터 저널리즘 기사에 포함된 시각화 객체를 작성해보자. 제20대 대통령선거에서 사전투표율이 30%를 넘긴 사실과 이를 한눈에 사전투표율 변화를 제19대 대통령선거와 비교하여 2일에 걸쳐 실시된 사전투표를 그래프 우측에 사전투표율 차이를 꼼꼼히 작성한 것이...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="12 . 데이터 저널리즘 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="12 . 데이터 저널리즘 | 데이터 시각화">
+<meta property="og:description" content="오마이뉴스 제20대 대통령 선거, 사전투표 역사를 새로 쓰다 - 마의 30%대 넘긴 사전투표율 데이터 저널리즘 기사에 포함된 시각화 객체를 작성해보자. 제20대 대통령선거에서 사전투표율이 30%를 넘긴 사실과 이를 한눈에 사전투표율 변화를 제19대 대통령선거와 비교하여 2일에 걸쳐 실시된 사전투표를 그래프 우측에 사전투표율 차이를 꼼꼼히 작성한 것이...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12 . 데이터 저널리즘 | 데이터 시각화">
-<meta name="twitter:description" content="12 . 데이터 저널리즘 | 데이터 시각화">
+<meta name="twitter:description" content="오마이뉴스 제20대 대통령 선거, 사전투표 역사를 새로 쓰다 - 마의 30%대 넘긴 사전투표율 데이터 저널리즘 기사에 포함된 시각화 객체를 작성해보자. 제20대 대통령선거에서 사전투표율이 30%를 넘긴 사실과 이를 한눈에 사전투표율 변화를 제19대 대통령선거와 비교하여 2일에 걸쳐 실시된 사전투표를 그래프 우측에 사전투표율 차이를 꼼꼼히 작성한 것이...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -96,14 +96,357 @@
 <h1>
 <span class="header-section-number">12 . </span> 데이터 저널리즘<a class="anchor" aria-label="anchor" href="#case-journalism"><i class="fas fa-link"></i></a>
 </h1>
+<p>오마이뉴스 <a href="http://omn.kr/1xnps">제20대 대통령 선거, 사전투표 역사를 새로 쓰다 - 마의 30%대 넘긴 사전투표율</a> 데이터 저널리즘 기사에 포함된 시각화 객체를 작성해보자. 제20대 대통령선거에서 사전투표율이 30%를 넘긴 사실과 이를 한눈에 사전투표율 변화를 제19대 대통령선거와 비교하여 2일에 걸쳐 실시된 사전투표를 그래프 우측에 사전투표율 차이를 꼼꼼히 작성한 것이 이채로운 기사다.</p>
+<p>이 기사를 작성하기 위해 공공데이터를 크롤링하여 정제하는 과정을 거치고 이를 다양한 시각화 방법론 중에서 독자에게 객관적인 사실을 읽기 편하고 정보를 제대로 제공할 수 있는 형태로 전달하도록 <code>ggplot</code>을 사용해서 제작했다.</p>
+<div id="case-study-crawling" class="section level2" number="12.1">
+<h2>
+<span class="header-section-number">12.1</span> 크롤링<a class="anchor" aria-label="anchor" href="#case-study-crawling"><i class="fas fa-link"></i></a>
+</h2>
+<p>먼저 <a href="http://info.nec.go.kr/">중앙선거관리위원회 선거통계시스템</a> 웹사이트에서 제19대
+대통령선거 사전투표율 데이터를 시도별로 크롤링한다. 오마이뉴스 기자가 제19대와 제20대를 비교하여 5년간의 사전투표율 변화를 통해 유권자의 표심과 사회적 변화를 담아내고자 두 시점 2017년과 2022년을 각각 가져온다.</p>
+<div id="case-study-19th" class="section level3" number="12.1.1">
+<h3>
+<span class="header-section-number">12.1.1</span> 제19대 대통령 선거<a class="anchor" aria-label="anchor" href="#case-study-19th"><i class="fas fa-link"></i></a>
+</h3>
+<p>중앙선관위 선거통계시스템에서 시도별로 사전투표율 데이터를 조회하도록 했기 때문에 각 시도별로 반복이 필요하기 때문에 함수로 작성해서 특정 시도를 기준으로 테스트 작업을 수행한다.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 0. 패키지 ----------------</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
 
+<span class="co">## 크롤링 함수 </span>
+
+<span class="va">get_early_voting_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sido_code</span> <span class="op">=</span> <span class="st">"1100"</span>, <span class="va">date_code</span> <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n------------------------------\n"</span>, <span class="va">sido_code</span>, <span class="st">":"</span>, <span class="va">date_code</span>, <span class="st">"\n"</span><span class="op">)</span>
+  
+  <span class="va">nec_url</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"http://info.nec.go.kr/electioninfo/electionInfo_report.xhtml?"</span>,
+                      <span class="st">"electionId=0000000000"</span>,
+                      <span class="st">"&amp;requestURI=%2FWEB-INF%2Fjsp%2Felectioninfo%2F0000000000%2Fvc%2Fvcap01.jsp"</span>,
+                      <span class="st">"&amp;topMenuId=VC"</span>,
+                      <span class="st">"&amp;secondMenuId=VCAP01"</span>,
+                      <span class="st">"&amp;menuId=VCAP01"</span>,
+                      <span class="st">"&amp;statementId=VCAP01_%234"</span>,
+                      <span class="st">"&amp;oldElectionType=1"</span>,
+                      <span class="st">"&amp;electionType=1"</span>,
+                      <span class="st">"&amp;electionName=20170509"</span>,
+                      <span class="st">"&amp;cityCode={sido_code}"</span>,
+                      <span class="st">"&amp;dateCode={date_code}"</span><span class="op">)</span>
+
+  <span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"C"</span><span class="op">)</span>
+  
+  <span class="va">nec_html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">nec_url</span><span class="op">)</span>
+  
+  <span class="va">nec_raw</span> <span class="op">&lt;-</span> <span class="va">nec_html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span>css <span class="op">=</span> <span class="st">'#table01'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"Korean"</span><span class="op">)</span>
+  
+  <span class="va">nec_colnames</span> <span class="op">&lt;-</span> <span class="va">nec_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rdrr.io/r/base/dput.html">dput</a></span><span class="op">(</span><span class="op">)</span>
+  
+  <span class="va">nec_tbl</span> <span class="op">&lt;-</span> <span class="va">nec_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">nec_colnames</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">`7시`</span><span class="op">:</span><span class="va">`18시`</span>, names_to <span class="op">=</span> <span class="st">"시간"</span>, values_to <span class="op">=</span> <span class="st">"값"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>구분 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">값</span>, <span class="st">"%"</span><span class="op">)</span>, <span class="st">"투표율"</span>, <span class="st">"투표자수"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">구분</span>, values_from <span class="op">=</span> <span class="va">값</span><span class="op">)</span>
+  
+  <span class="va">nec_tbl</span>
+
+<span class="op">}</span>
+
+<span class="co"># get_early_voting_data("4900", "2") # 함수테스트</span></code></pre></div>
+</div>
+<div id="case-19th-crawling" class="section level3" number="12.1.2">
+<h3>
+<span class="header-section-number">12.1.2</span> 데이터 긁어오기<a class="anchor" aria-label="anchor" href="#case-19th-crawling"><i class="fas fa-link"></i></a>
+</h3>
+<p>앞서 작성한 함수를 시도 및 구시군별 크롤링하여 데이터프레임으로 저장한다.
+특이한 점은 <code>map2</code> 함수형 프로그래밍 기법을 적용하여 코드를 <code>for</code>문 없이
+간결하게 작성했다.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">presid_sigungu_code_2017</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/presid_sigungu_code_2017.csv"</span><span class="op">)</span>
+
+<span class="va">early_voting_code</span> <span class="op">&lt;-</span> <span class="va">presid_sigungu_code_2017</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">시도코드</span>, <span class="va">시도명</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">n</span><span class="op">)</span>
+
+<span class="va">early_voting_2017_raw</span> <span class="op">&lt;-</span> <span class="va">early_voting_code</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표일 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">사전투표일</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">시도코드</span>, <span class="va">사전투표일</span>, <span class="va">get_early_voting_data</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="case-19th-cleaning" class="section level3" number="12.1.3">
+<h3>
+<span class="header-section-number">12.1.3</span> 데이터 정제<a class="anchor" aria-label="anchor" href="#case-19th-cleaning"><i class="fas fa-link"></i></a>
+</h3>
+<p>제19대 대통령 선거 구시구별 사전투표일 누적투표수를 시각화 가능한 형태로 저장시킨다.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">early_voting_2017_tbl</span> <span class="op">&lt;-</span> <span class="va">early_voting_2017_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">data</span>, names_repair <span class="op">=</span> <span class="st">"unique"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"시도코드"</span>, <span class="st">"시도명_2"</span>, <span class="st">"사전투표일"</span>, <span class="st">"구시군명"</span>, <span class="st">"선거인수"</span>, 
+              <span class="st">"시간"</span>, <span class="st">"투표자수"</span>, <span class="st">"투표율"</span>, <span class="st">"시도명_9"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">## 변수명 R4.2 버그 </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>시도명 <span class="op">=</span> <span class="va">시도명_2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>구시군명 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">시도명_9</span><span class="op">)</span>, <span class="va">구시군명</span>, <span class="va">시도명_9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">시도코드</span>, <span class="op">-</span><span class="va">시도명_9</span><span class="op">)</span> 
+
+<span class="va">early_voting_2017_order</span> <span class="op">&lt;-</span> <span class="va">early_voting_2017_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span>, <span class="va">사전투표일</span>, <span class="va">시간</span>, <span class="va">선거인수</span>, <span class="va">투표자수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">구시군명</span> <span class="op">!=</span> <span class="st">"합계"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">사전투표일</span>, values_from <span class="op">=</span> <span class="va">투표자수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">선거인수</span><span class="op">:</span><span class="va">`2`</span>, <span class="va">parse_number</span> <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>누적투표수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">`1`</span><span class="op">)</span> <span class="op">+</span> <span class="va">`2`</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">`2`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">`1`</span><span class="op">:</span><span class="va">누적투표수</span>, names_to <span class="op">=</span> <span class="st">"사전투표일"</span>, values_to <span class="op">=</span> <span class="st">"누적투표수"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표일 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">사전투표일</span> <span class="op">==</span> <span class="st">"누적투표수"</span>, <span class="st">"2일"</span>, <span class="st">"1일"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간순서 <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{사전투표일}-{시간}"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span>, <span class="va">시간순서</span><span class="op">)</span> 
+
+<span class="va">early_voting_2017</span> <span class="op">&lt;-</span> <span class="va">early_voting_2017_order</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표율 <span class="op">=</span> <span class="va">누적투표수</span> <span class="op">/</span> <span class="va">선거인수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>선거구분 <span class="op">=</span> <span class="st">"제19대"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">선거구분</span>, .before <span class="op">=</span> <span class="va">시도명</span><span class="op">)</span>
+
+<span class="va">early_voting_2017</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="st">"data/early_voting_2017.rds"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="case-20th" class="section level2" number="12.2">
+<h2>
+<span class="header-section-number">12.2</span> 제20대 대통령 선거<a class="anchor" aria-label="anchor" href="#case-20th"><i class="fas fa-link"></i></a>
+</h2>
+<p>제20대 대통령선거 사전투표율 데이터도 제19대 대통령선거와 동일한 방식으로
+크롤링한다.</p>
+<div id="case-20th-crawling-function" class="section level3" number="12.2.1">
+<h3>
+<span class="header-section-number">12.2.1</span> 크롤링 함수<a class="anchor" aria-label="anchor" href="#case-20th-crawling-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>제19대와 달리 제20대는 데이터 제공방식에 차이가 있어 크롤링함수를 이에 맞춰
+작성하여 시도별로 크롤링할 수 있는 함수를 제작한다.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">get_early_voting_data_latest</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">sido_code</span> <span class="op">=</span> <span class="st">"1100"</span>, <span class="va">date_code</span> <span class="op">=</span> <span class="st">"1"</span>, <span class="va">time_code</span> <span class="op">=</span> <span class="st">"07"</span><span class="op">)</span> <span class="op">{</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"\n------------------------------\n"</span>, <span class="va">sido_code</span>, <span class="st">":"</span>, <span class="va">date_code</span>, <span class="st">":"</span>, <span class="va">time_code</span>, <span class="st">"\n"</span><span class="op">)</span>
+  
+  <span class="va">nec_url</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"http://info.nec.go.kr/electioninfo/electionInfo_report.xhtml?"</span>,
+                      <span class="st">"electionId=0020220309"</span>,
+                      <span class="st">"&amp;requestURI=%2FWEB-INF%2Fjsp%2Felectioninfo%2F0020220309%2Fvc%2Fvcap01.jsp"</span>,
+                      <span class="st">"&amp;topMenuId=VC"</span>,
+                      <span class="st">"&amp;secondMenuId=VCAP01"</span>,
+                      <span class="st">"&amp;menuId=VCAP01"</span>,
+                      <span class="st">"&amp;statementId=VCAP01_%232"</span>,
+                      <span class="st">"&amp;cityCode={sido_code}"</span>,
+                      <span class="st">"&amp;dateCode={date_code}"</span>,
+                      <span class="st">"&amp;timeCode={time_code}"</span><span class="op">)</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"C"</span><span class="op">)</span>
+  
+  <span class="va">nec_html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">nec_url</span><span class="op">)</span>
+  
+  <span class="va">nec_raw</span> <span class="op">&lt;-</span> <span class="va">nec_html</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_element</a></span><span class="op">(</span>css <span class="op">=</span> <span class="st">'#table01'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  
+  <span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"Korean"</span><span class="op">)</span>
+  
+  <span class="va">nec_tbl</span> <span class="op">&lt;-</span> <span class="va">nec_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"구시군명"</span>, <span class="st">"선거인수"</span>, <span class="st">"사전투표자수"</span>, <span class="st">"사전투표율"</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="va">nec_tbl</span>
+
+<span class="op">}</span>
+
+<span class="co"># get_early_voting_data_latest("4900", "2", "17")</span></code></pre></div>
+</div>
+<div id="case-20th-crawling" class="section level3" number="12.2.2">
+<h3>
+<span class="header-section-number">12.2.2</span> 데이터 긁어오기<a class="anchor" aria-label="anchor" href="#case-20th-crawling"><i class="fas fa-link"></i></a>
+</h3>
+<p>크로링함수가 완성되었다면 시도코드와 사전투표일, 사전투표시간을 달리하여
+함수형프로그래밍 기법을 적용하여 간결한 크롤링함수를 작성한다.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">early_voting_2022_raw</span> <span class="op">&lt;-</span> <span class="va">early_voting_code</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표일 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">사전투표일</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표시간 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span>, <span class="fl">34</span> <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">사전투표시간</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표시간 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">사전투표시간</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">.</span>, <span class="fl">2</span>, <span class="st">"left"</span>, pad <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">시도코드</span>, <span class="va">사전투표일</span>, <span class="va">사전투표시간</span><span class="op">)</span>, <span class="va">get_early_voting_data_latest</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># early_voting_2022_raw</span></code></pre></div>
+</div>
+<div id="case-20th-cleaning" class="section level3" number="12.2.3">
+<h3>
+<span class="header-section-number">12.2.3</span> 데이터 정제<a class="anchor" aria-label="anchor" href="#case-20th-cleaning"><i class="fas fa-link"></i></a>
+</h3>
+<p>제20대 대통령 선거 구시구별 사전투표일 누적투표수를 시각화 가능한 형태로 저장시킨다.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">early_voting_2022_tbl</span> <span class="op">&lt;-</span> <span class="va">early_voting_2022_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span><span class="va">.x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_all</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">as.character</span> <span class="op">)</span> <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">data</span>, names_repair <span class="op">=</span> <span class="st">"unique"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">선거인수</span><span class="op">:</span><span class="va">사전투표율</span>, <span class="va">parse_number</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">early_voting_2022_order</span> <span class="op">&lt;-</span> <span class="va">early_voting_2022_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">구시군명</span> <span class="op">!=</span> <span class="st">"합계"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span>, <span class="va">사전투표일</span>, 시간<span class="op">=</span><span class="va">사전투표시간</span>, <span class="va">선거인수</span>, 투표자수<span class="op">=</span><span class="va">사전투표자수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from<span class="op">=</span><span class="va">사전투표일</span>, values_from <span class="op">=</span> <span class="va">투표자수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>누적투표수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">`1`</span><span class="op">)</span> <span class="op">+</span> <span class="va">`2`</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">`2`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">`1`</span><span class="op">:</span><span class="va">누적투표수</span>, names_to <span class="op">=</span> <span class="st">"사전투표일"</span>, values_to <span class="op">=</span> <span class="st">"누적투표수"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표일 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">사전투표일</span> <span class="op">==</span> <span class="st">"누적투표수"</span>, <span class="st">"2일"</span>, <span class="st">"1일"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간순서 <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{사전투표일}-{시간}"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">시도명</span>, <span class="va">구시군명</span>, <span class="va">시간순서</span><span class="op">)</span> 
+
+<span class="va">early_voting_2022</span> <span class="op">&lt;-</span> <span class="va">early_voting_2022_order</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표율 <span class="op">=</span> <span class="va">누적투표수</span> <span class="op">/</span> <span class="va">선거인수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>선거구분 <span class="op">=</span> <span class="st">"제20대"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">선거구분</span>, .before <span class="op">=</span> <span class="va">시도명</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">구시군명</span> <span class="op">!=</span> <span class="st">"합계"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">시간</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간 <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">'{str_pad(시간, 2, "left", "0")}시'</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">early_voting_2022</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="st">"data/early_voting_2022.rds"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="case-19th-20th" class="section level2" number="12.3">
+<h2>
+<span class="header-section-number">12.3</span> 결합 : 19대 + 20대<a class="anchor" aria-label="anchor" href="#case-19th-20th"><i class="fas fa-link"></i></a>
+</h2>
+<p>앞서 크로링한 19대와 20대 대통령선거 사전투표 구시군별 시간대별 데이터를
+데이터프레임으로 결합하여 시각화를 준비한다.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">early_voting_2022</span> <span class="op">&lt;-</span>  
+  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"data/early_voting_2022.rds"</span><span class="op">)</span>
+
+<span class="va">early_voting_2017</span> <span class="op">&lt;-</span>  
+  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"data/early_voting_2017.rds"</span><span class="op">)</span>
+
+<span class="va">early_voting</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">early_voting_2017</span>, <span class="va">early_voting_2022</span><span class="op">)</span>
+
+<span class="co"># early_voting</span></code></pre></div>
+</div>
+<div id="early-voting-dataframe" class="section level2" number="12.4">
+<h2>
+<span class="header-section-number">12.4</span> 데이터프레임<a class="anchor" aria-label="anchor" href="#early-voting-dataframe"><i class="fas fa-link"></i></a>
+</h2>
+<p>시간대별로 제19대와 제20대 대통령선거를 비교하여 시각화하기 위해 <code>ggplot</code>에 입력값인
+데이터프레임에 필요한 변수작업을 사전 준비하여 시각화에 집중할 수 있도록 작업내용을
+구분해둔다.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">early_voting_timeline</span> <span class="op">&lt;-</span> <span class="va">early_voting</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">선거구분</span>, <span class="va">시간순서</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>선거인수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">선거인수</span><span class="op">)</span>,
+            사전투표수 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">누적투표수</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>사전투표율 <span class="op">=</span> <span class="va">사전투표수</span> <span class="op">/</span> <span class="va">선거인수</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## 시간순서 맞춤 </span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">시간순서</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"일"</span>, <span class="st">"시간"</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">일</span><span class="op">:</span><span class="va">시간</span>, <span class="va">parse_number</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간 <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_pad.html">str_pad</a></span><span class="op">(</span><span class="va">시간</span>, <span class="fl">2</span>, <span class="st">"left"</span>, <span class="st">"0"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>시간순서 <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{일}일-{시간}시"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">선거구분</span>, <span class="va">시간순서</span>, <span class="va">사전투표율</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## ggalt::geom_dumbbell</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">선거구분</span>, values_from <span class="op">=</span> <span class="va">사전투표율</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>구분 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">시간순서</span>, <span class="st">"1일"</span><span class="op">)</span>, <span class="st">"첫째날"</span>, <span class="st">"둘째날"</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+</div>
+<div id="timeline-viz-diff" class="section level2" number="12.5">
+<h2>
+<span class="header-section-number">12.5</span> 시각화<a class="anchor" aria-label="anchor" href="#timeline-viz-diff"><i class="fas fa-link"></i></a>
+</h2>
+<p>뉴스기사에 바로 사용할 수 있는 고품질 <code>ggplot</code> 객체를 작성하여 <code>png</code> 파일로
+작성하여 로컬 파일로 내보낸다. 기본 개념은 시간에 대한 순서를 정렬하여 맞추고
+두선거를 아령그래프를 주된 시각화기법을 두고 작성한 후 독자가 큰 흐름을 읽을 수
+있게 만들고 마지막으로 우측에 20대 대선과 19대 대선 시간대별 투표율 차이를
+계산하여 한번에 필요한 모든 정보를 독자가 얻을 수 있도록 제작한다.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hrbrmstr/ggalt">ggalt</a></span><span class="op">)</span>
+
+<span class="va">early_voting_timeline_diff_g</span> <span class="op">&lt;-</span> <span class="va">early_voting_timeline</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>차이 <span class="op">=</span> <span class="va">제20대</span> <span class="op">-</span> <span class="va">제19대</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">시간순서</span>, x <span class="op">=</span> <span class="va">제19대</span>, xend <span class="op">=</span> <span class="va">제20대</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu"><a href="https://rdrr.io/pkg/ggalt/man/geom_dumbbell.html">geom_dumbbell</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">구분</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">3</span>, colour_x <span class="op">=</span> <span class="st">"red"</span>, colour_xend <span class="op">=</span> <span class="st">"blue"</span>,
+                dot_guide<span class="op">=</span><span class="cn">TRUE</span>, dot_guide_size<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="fl">15</span>, base_family <span class="op">=</span> <span class="st">"NanumBarunPen"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span>,
+          legend.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">15</span><span class="op">)</span>, 
+          legend.text<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">13</span><span class="op">)</span>,
+          strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">rel</a></span><span class="op">(</span><span class="fl">1.3</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"black"</span>, family <span class="op">=</span> <span class="st">"NanumMyeongjo"</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>,
+          axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">rel</a></span><span class="op">(</span><span class="fl">1.5</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"gray35"</span>, family <span class="op">=</span> <span class="st">"NanumBarunpen"</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>,
+          axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">rel</a></span><span class="op">(</span><span class="fl">1.3</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"black"</span>, family <span class="op">=</span> <span class="st">"NanumBarunpen"</span>, face<span class="op">=</span><span class="st">"bold"</span><span class="op">)</span>,
+          strip.background<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">"gray95"</span><span class="op">)</span>,
+          plot.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">25</span>, face<span class="op">=</span><span class="st">"bold"</span>, family <span class="op">=</span> <span class="st">"NanumBarunpen"</span><span class="op">)</span>,
+          plot.subtitle<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="fl">13</span>, colour<span class="op">=</span><span class="st">"grey10"</span>, family <span class="op">=</span> <span class="st">"NanumBarunpen"</span><span class="op">)</span>,
+          plot.tag.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.91</span>, <span class="fl">0.93</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>,
+         y<span class="op">=</span><span class="st">""</span>,
+         title <span class="op">=</span> <span class="st">"제19, 20대 대통령선거 사전투표율 시간대별 비교"</span>,
+         caption <span class="op">=</span> <span class="st">"데이터 출처: 중앙선거관리위원회 선거통계시스템"</span>,
+         tag <span class="op">=</span> <span class="st">"투표율 차이"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.45</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+      <span class="st">"제19대"</span> <span class="op">=</span> <span class="st">"red"</span>,
+      <span class="st">"제20대"</span> <span class="op">=</span> <span class="st">"blue"</span>,
+      <span class="st">"첫째날"</span> <span class="op">=</span> <span class="st">"gray50"</span>,
+      <span class="st">"둘째날"</span> <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+     <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">제19대</span>, label <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{scales::percent(제19대, accuracy = 0.1)}"</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu">geom_text_repel</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">제20대</span>, label <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{scales::percent(제20대, accuracy = 0.1)}"</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span>  <span class="op">+</span>
+     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin<span class="op">=</span><span class="fl">.4</span>, xmax<span class="op">=</span><span class="fl">.45</span>, ymin<span class="op">=</span><span class="op">-</span><span class="cn">Inf</span>, ymax<span class="op">=</span><span class="cn">Inf</span><span class="op">)</span>, fill<span class="op">=</span><span class="st">"gray90"</span><span class="op">)</span> <span class="op">+</span>
+     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">차이</span>, accuracy <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, y<span class="op">=</span><span class="va">시간순서</span>, x<span class="op">=</span><span class="fl">.425</span><span class="op">)</span>, fontface<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="fl">5</span>, family<span class="op">=</span><span class="st">"NanumBarunPen"</span><span class="op">)</span> 
+
+<span class="va">early_voting_timeline_diff_g</span>
+
+<span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_png.html">agg_png</a></span><span class="op">(</span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"assets/images/early_voting_timeline_diff_g.png"</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">297</span>, height <span class="op">=</span> <span class="fl">210</span>, units <span class="op">=</span> <span class="st">"mm"</span>, res <span class="op">=</span> <span class="fl">600</span><span class="op">)</span>
+<span class="va">early_voting_timeline_diff_g</span>
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="assets/images/early_voting_timeline_diff_g.png" style="width:100.0%" alt=""><p class="caption">제19대 대선과 비교한 시간대별 사전투표 투표율 추이</p>
+</div>
+
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="%EC%82%AC%EB%A1%80.html">사례</a></div>
 <div class="next"><a href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#case-journalism"><span class="header-section-number">12</span> 데이터 저널리즘</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#case-journalism"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
+<li>
+<a class="nav-link" href="#case-study-crawling"><span class="header-section-number">12.1</span> 크롤링</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#case-study-19th"><span class="header-section-number">12.1.1</span> 제19대 대통령 선거</a></li>
+<li><a class="nav-link" href="#case-19th-crawling"><span class="header-section-number">12.1.2</span> 데이터 긁어오기</a></li>
+<li><a class="nav-link" href="#case-19th-cleaning"><span class="header-section-number">12.1.3</span> 데이터 정제</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#case-20th"><span class="header-section-number">12.2</span> 제20대 대통령 선거</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#case-20th-crawling-function"><span class="header-section-number">12.2.1</span> 크롤링 함수</a></li>
+<li><a class="nav-link" href="#case-20th-crawling"><span class="header-section-number">12.2.2</span> 데이터 긁어오기</a></li>
+<li><a class="nav-link" href="#case-20th-cleaning"><span class="header-section-number">12.2.3</span> 데이터 정제</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#case-19th-20th"><span class="header-section-number">12.3</span> 결합 : 19대 + 20대</a></li>
+<li><a class="nav-link" href="#early-voting-dataframe"><span class="header-section-number">12.4</span> 데이터프레임</a></li>
+<li><a class="nav-link" href="#timeline-viz-diff"><span class="header-section-number">12.5</span> 시각화</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
