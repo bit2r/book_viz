@@ -36,12 +36,12 @@ rmd_files: [
   # 사례
   "case-study.Rmd",
   "case-study-worldcup.Rmd",
+  "case-study-corona.Rmd",
 
   # 참고문헌
   "references.Rmd"
 
-
-  # "case-study-worldcup.Rmd"
+  # "case-study-corona.Rmd",
 ]
 
 output_dir: docs
