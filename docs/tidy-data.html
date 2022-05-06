@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>6 . 깔끔한 데이터 개념 | 데이터 시각화</title>
+<title>7 . 깔끔한 데이터 개념 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
 <meta name="description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="6 . 깔끔한 데이터 개념 | 데이터 시각화">
+<meta property="og:title" content="7 . 깔끔한 데이터 개념 | 데이터 시각화">
 <meta property="og:type" content="book">
 <meta property="og:description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="6 . 깔끔한 데이터 개념 | 데이터 시각화">
+<meta name="twitter:title" content="7 . 깔끔한 데이터 개념 | 데이터 시각화">
 <meta name="twitter:description" content="div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;} 톨스토이 장편소설 “안나 카레니나”에 나오는 유명한 문구로 행복한 가정 원칙이 있다. “행복한 가정은 모두 비슷한 이유로 행복하지만 불행한 가정은 저마다의 이유로 불행하다.” (“Все счастливые семьи...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,24 +66,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
-<li><a class="" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="active" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="active" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">14</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -92,9 +93,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidy-data" class="section level1" number="7">
 <h1>
-<span class="header-section-number">6 . </span> 깔끔한 데이터 개념<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7 . </span> 깔끔한 데이터 개념<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
 </h1>
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
@@ -108,9 +109,9 @@ Happy families are all alike, but every unhappy family is unhappy in its own way
 </blockquote>
 <p><strong>유발 하라리</strong>도 이를 차용하여 “세상에 실패한 국가의 유형도 각기 저마다의 이유로 다르지만, 성공한 국가는 비슷한 이유를 갖는다”라고 주장했고, <strong>해들리 위컴(Hadley Wickham)</strong>도 “Like families, tidy datasets are all alike but every messy dataset is messy in its own way.” <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">Tidy Data</a>에 대한 정의를 내리면서 동일한 주장을 했다.</p>
 </div>
-<div id="tidy-data" class="section level2" number="6.1">
+<div id="tidy-data" class="section level2" number="7.1">
 <h2>
-<span class="header-section-number">6.1</span> 데이터 깔끔화<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.1</span> 데이터 깔끔화<a class="anchor" aria-label="anchor" href="#tidy-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>시각화를 하기 전에 데이터를 깔끔하게 해야하는 이유는 근본적으로 사람이 보는 데이터와 기계가 처리하는
 데이터의 형태가 다르기 때문이다. 즉, 사람이 보기 좋은 데이터는 기계가 처리하기 어렵고,
@@ -128,9 +129,9 @@ Happy families are all alike, but every unhappy family is unhappy in its own way
 칼럼 그룹집단 비교보다 관측점 그룹집단 사이 비교를 하는 것이 더 쉽다.
 최근에 <code><a href="https://dplyr.tidyverse.org/reference/rowwise.html">rowwise()</a></code> 연산자가 도입되어 필요한 경우 행으로 데이터 작업하는 것도 수월해졌다.</p>
 </div>
-<div id="tidy-data-setup" class="section level2" number="6.2">
+<div id="tidy-data-setup" class="section level2" number="7.2">
 <h2>
-<span class="header-section-number">6.2</span> 깔끔한 데이터<a class="anchor" aria-label="anchor" href="#tidy-data-setup"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> 깔끔한 데이터<a class="anchor" aria-label="anchor" href="#tidy-data-setup"><i class="fas fa-link"></i></a>
 </h2>
 <p>깔끔한 데이터는 데이터셋의 의미를 구조에 매칭하는 표준적인 방식이다.
 행, 열, 테이블이 관측점, 변수, 형식에 매칭되는 방식에 따라
@@ -182,9 +183,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <li>Tidy-input → 함수 f(x) → Tidy-output</li>
 </ul>
 </div>
-<div id="messy-data-definition" class="section level2" number="6.3">
+<div id="messy-data-definition" class="section level2" number="7.3">
 <h2>
-<span class="header-section-number">6.3</span> 엉망진창 데이터<a class="anchor" aria-label="anchor" href="#messy-data-definition"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3</span> 엉망진창 데이터<a class="anchor" aria-label="anchor" href="#messy-data-definition"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>깔끔하지 않는 데이터(messy data)</strong> 는 앞서 언급한 깔끔한 데이터와 다른 형태 데이터를 지칭한다.
 컴퓨터 과학에서 말하는 코드 제3 정규형이지만, 해들리 위컴이 통계적 언어로 다시 표현한 것이다.
@@ -306,9 +307,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 </div>
 </div>
-<div id="tidy-data-case-study" class="section level2" number="6.4">
+<div id="tidy-data-case-study" class="section level2" number="7.4">
 <h2>
-<span class="header-section-number">6.4</span> 깔끔한 데이터 사례<a class="anchor" aria-label="anchor" href="#tidy-data-case-study"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4</span> 깔끔한 데이터 사례<a class="anchor" aria-label="anchor" href="#tidy-data-case-study"><i class="fas fa-link"></i></a>
 </h2>
 <p>깔끔하지 못한 데이터로 지목(?)된 퓨리서치 원데이터는 <a href="http://pewforum.org/Datasets/Dataset-Download.aspx">Pew Research Center Religion &amp; Public Life</a> 웹사이트에서
 2015년 다운로드 받았고, <a href="https://github.com/hadley/tidy-data/blob/master/data/pew.sav">GitHub</a>에
@@ -488,9 +489,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>사실 깔끔하게 정리된 데이터는 사람이 보기에 적합하지는 않다. 오히려 엉망진창인
 퓨리서치 원데이터가 사람이 이해하고 보기에는 더 편하다.</p>
 </div>
-<div id="make-tidy-data-code" class="section level2" number="6.5">
+<div id="make-tidy-data-code" class="section level2" number="7.5">
 <h2>
-<span class="header-section-number">6.5</span> 깔끔한 데이터 제작 코드<a class="anchor" aria-label="anchor" href="#make-tidy-data-code"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5</span> 깔끔한 데이터 제작 코드<a class="anchor" aria-label="anchor" href="#make-tidy-data-code"><i class="fas fa-link"></i></a>
 </h2>
 <p>다운로드 받은 <code>pew.sav</code> 파일을 데이터프레임으로 만든 후 범주형 자료분석을 위해서 요인형(factor) 변수로 수준을 정리한 후 <code>count</code> 함수를 빈도수를 산출한다.</p>
 <div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
@@ -787,16 +788,16 @@ $100-150k
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></div>
-<div class="next"><a href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></div>
+<div class="next"><a href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">6.1</span> 데이터 깔끔화</a></li>
-<li><a class="nav-link" href="#tidy-data-setup"><span class="header-section-number">6.2</span> 깔끔한 데이터</a></li>
-<li><a class="nav-link" href="#messy-data-definition"><span class="header-section-number">6.3</span> 엉망진창 데이터</a></li>
-<li><a class="nav-link" href="#tidy-data-case-study"><span class="header-section-number">6.4</span> 깔끔한 데이터 사례</a></li>
-<li><a class="nav-link" href="#make-tidy-data-code"><span class="header-section-number">6.5</span> 깔끔한 데이터 제작 코드</a></li>
+<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="nav-link" href="#tidy-data"><span class="header-section-number">7.1</span> 데이터 깔끔화</a></li>
+<li><a class="nav-link" href="#tidy-data-setup"><span class="header-section-number">7.2</span> 깔끔한 데이터</a></li>
+<li><a class="nav-link" href="#messy-data-definition"><span class="header-section-number">7.3</span> 엉망진창 데이터</a></li>
+<li><a class="nav-link" href="#tidy-data-case-study"><span class="header-section-number">7.4</span> 깔끔한 데이터 사례</a></li>
+<li><a class="nav-link" href="#make-tidy-data-code"><span class="header-section-number">7.5</span> 깔끔한 데이터 제작 코드</a></li>
 </ul>
 
       <div class="book-extra">
@@ -813,7 +814,7 @@ $100-150k
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-05.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

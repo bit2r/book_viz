@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>7 . 준비된 데이터 | 데이터 시각화</title>
+<title>8 . 준비된 데이터 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
 <meta name="description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="7 . 준비된 데이터 | 데이터 시각화">
+<meta property="og:title" content="8 . 준비된 데이터 | 데이터 시각화">
 <meta property="og:type" content="book">
 <meta property="og:description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="7 . 준비된 데이터 | 데이터 시각화">
+<meta name="twitter:title" content="8 . 준비된 데이터 | 데이터 시각화">
 <meta name="twitter:description" content="시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가 엉망진창인 경우 시각화 범위도 축소되고 시각화 각 단계를 건널 때마다 문제를 해결해 가면서 시각화 작업을 수행하게 되어 노력대비 기대한 산출물을 얻을 가능성은 낮아진다. 데이터...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,24 +66,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
-<li><a class="" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="active" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="active" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">14</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -92,9 +93,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-datasets" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-datasets" class="section level1" number="8">
 <h1>
-<span class="header-section-number">7 . </span> 준비된 데이터<a class="anchor" aria-label="anchor" href="#ggplot-datasets"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8 . </span> 준비된 데이터<a class="anchor" aria-label="anchor" href="#ggplot-datasets"><i class="fas fa-link"></i></a>
 </h1>
 <p>시각화 작업을 할 때 가장 문제되는 것 중 하나가 원천데이터다. 데이터가 깔끔하게
 준비되어 있으면 시각화 업무에 집중하여 놀라운 성과물을 낼 수 있다. 반면에 데이터가
@@ -104,15 +105,15 @@
 <p>데이터 사이언스와 시각화의 예제 데이터로 가장 많이 추천되는 것이
 <a href="https://github.com/jennybc/gapminder">갭마인더(<code>gapminder</code>)</a>와 <a href="https://allisonhorst.github.io/palmerpenguins/">팔머펭귄(<code>palmerpenguins</code>)</a> 데이터셋이다.
 두 데이터셋 모두 CRAN에 등록된 공식 데이터 패키지다.</p>
-<div id="palmer-penguins" class="section level2" number="7.1">
+<div id="palmer-penguins" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">7.1</span> 팔머 펭귄<a class="anchor" aria-label="anchor" href="#palmer-penguins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> 팔머 펭귄<a class="anchor" aria-label="anchor" href="#palmer-penguins"><i class="fas fa-link"></i></a>
 </h2>
 <p>미국에서 “George Floyd”가 경찰에 의해 살해되면서 촉발된 <a href="https://ko.wikipedia.org/wiki/Black_Lives_Matter">“Black Lives Matter”</a> 운동은 아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다.</p>
 <p>데이터 과학에서도 최근 R.A. Fisher의 과거 저술한 “The genetical theory of natural selection” <span class="citation">(<a href="references-1.html#ref-fisher1958genetical" role="doc-biblioref">Fisher 1958</a>)</span> 우생학(Eugenics) 대한 관점이 논란이 되면서 R 데이터 과학의 첫 데이터셋으로 붓꽃 <code>iris</code> 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는 움직임이 활발히 전개되고 있다. <a href="https://github.com/allisonhorst/palmerpenguins"><code>palmerpenguins</code></a> 데이터셋이 대안으로 많은 호응을 얻고 있다.</p>
-<div id="penguins-study" class="section level3" number="7.1.1">
+<div id="penguins-study" class="section level3" number="8.1.1">
 <h3>
-<span class="header-section-number">7.1.1</span> 펭귄 공부<a class="anchor" aria-label="anchor" href="#penguins-study"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.1</span> 펭귄 공부<a class="anchor" aria-label="anchor" href="#penguins-study"><i class="fas fa-link"></i></a>
 </h3>
 <p>팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 링크된 나무위키에서 참조 가능하다.</p>
 <ul>
@@ -131,9 +132,9 @@
 <img src="assets/images/penguin-species-variable.png" alt=""><p class="caption">팔머 펭귄 능선 변수</p>
 </div>
 </div>
-<div id="penguin-install-dataset" class="section level3" number="7.1.2">
+<div id="penguin-install-dataset" class="section level3" number="8.1.2">
 <h3>
-<span class="header-section-number">7.1.2</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#penguin-install-dataset"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.2</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#penguin-install-dataset"><i class="fas fa-link"></i></a>
 </h3>
 <p>CRAN에 등록되어 있어 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수로 직접 설치해도 되고,
 <code>remotes</code> 팩키지 <code>install_github()</code> 함수로 GitHub 저장소의 팔머펭귄 데이터를 설치해도 된다.
@@ -153,9 +154,9 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 ## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
 ## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
-<div id="penguin-EDA-skimr" class="section level3" number="7.1.3">
+<div id="penguin-EDA-skimr" class="section level3" number="8.1.3">
 <h3>
-<span class="header-section-number">7.1.3</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#penguin-EDA-skimr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.3</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#penguin-EDA-skimr"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://cran.r-project.org/web/packages/skimr/"><code>skimr</code></a> 패키지를 사용해서
 <code>penguins</code> 데이터프레임 자료구조를 일별한다.
@@ -164,7 +165,7 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:penguins-EDA-data-structure">Table 7.1: </span>Data summary</caption>
+<span id="tab:penguins-EDA-data-structure">Table 8.1: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -358,9 +359,9 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 ## 6 Adelie  Torge…           39.3          20.6              190        3650 male 
 ## # … with 4 more rows, and 1 more variable: year &lt;int&gt;</code></pre>
 </div>
-<div id="penguin-EDA" class="section level3" number="7.1.4">
+<div id="penguin-EDA" class="section level3" number="8.1.4">
 <h3>
-<span class="header-section-number">7.1.4</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#penguin-EDA"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.4</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#penguin-EDA"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>palmerpenguins</code> 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer station)
 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를 그려보자.
@@ -370,24 +371,24 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 <div class="inline-figure"><img src="data-penguin_files/figure-html/mass-flipper-1.png" width="75%" style="display: block; margin: auto;"></div>
 </div>
 </div>
-<div id="gapminder" class="section level2" number="7.2">
+<div id="gapminder" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">7.2</span> 갭마인더<a class="anchor" aria-label="anchor" href="#gapminder"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> 갭마인더<a class="anchor" aria-label="anchor" href="#gapminder"><i class="fas fa-link"></i></a>
 </h2>
 <p>‘팩트풀니스’(Factfullness)는 ’사실충실성’으로 번역되고 팩트(사실)에 근거해 세계를 바라보고 이해하는 태도와 관점을 의미하는 것으로 얼마전 타계한 한스 로슬링의 마지막 저서 “Factfulness”의 책제목으로 더 유명하다. 저자는 세계에 관한 심각한 무지와 싸움을 평생의 사명으로 삼아 다양한 업적을 남겼으며 데이터 시각화를 통해 그동안 보지 못했던 사실을 일반인이면 누구나 쉽게 이해하고 의사결정을 빠른 시간내에 내릴 수 있도록 도움을 주였다. 그가 남긴 업적중의 하나는 데이터로 통상 <code>gapminder</code> 로 알려져 있으며 제니 브라이언트 박사가 R 데이터 패키지로 제작하여 쉽게 다가설 수 있게 되었다. <code>gapminder</code> 데이터는 시각화는 물론 애니메이션 시각화의 예제로도 많이 사용되고 있다.</p>
 <p>갭마인더 데이터셋은 1952년부터 5년 간격으로 2007년까지 142개 국가 인구수, 기대수명(<code>lifeExp</code>), 인구수(<code>pop</code>),
 1인당 국민소득(<code>gdpPercap</code>)에 대한 정보를 담고 있어 기대수명과 1인당 국민소득을 통해 1952년부터 국가별 발전사항 다른 관점으로 불평등에 대한 사실을 시각화를 통해 직시할 수 있다.</p>
-<div id="gapminder-install-dataset" class="section level3" number="7.2.1">
+<div id="gapminder-install-dataset" class="section level3" number="8.2.1">
 <h3>
-<span class="header-section-number">7.2.1</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#gapminder-install-dataset"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.1</span> 데이터셋 설치<a class="anchor" aria-label="anchor" href="#gapminder-install-dataset"><i class="fas fa-link"></i></a>
 </h3>
 <p>CRAN에 등록되어 있어 <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> 함수로 직접 설치해도 되고,
 <code>remotes</code> 팩키지 <code>install_github()</code> 함수로 GitHub 저장소의 갭마인더 데이터를 설치해도 된다.
 팔머 펭귄 데이터와 마찬가지로 안정화 되었기 때문에 CRAN 데이터나 GitHub 데이터나 이제 차이는 없다.</p>
 </div>
-<div id="gapminder-EDA-skimr" class="section level3" number="7.2.2">
+<div id="gapminder-EDA-skimr" class="section level3" number="8.2.2">
 <h3>
-<span class="header-section-number">7.2.2</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#gapminder-EDA-skimr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.2</span> 자료구조 일별<a class="anchor" aria-label="anchor" href="#gapminder-EDA-skimr"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://cran.r-project.org/web/packages/skimr/"><code>skimr</code></a> 패키지를 사용해서
 <code>gapminder</code> 데이터프레임 자료구조를 일별한다.
@@ -396,7 +397,7 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:gapminder-EDA-data-structure">Table 7.2: </span>Data summary</caption>
+<span id="tab:gapminder-EDA-data-structure">Table 8.2: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -569,9 +570,9 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 ## 6 Afghanistan Asia       1977    38.4 14880372      786.
 ## # … with 4 more rows</code></pre>
 </div>
-<div id="gapminder-EDA" class="section level3" number="7.2.3">
+<div id="gapminder-EDA" class="section level3" number="8.2.3">
 <h3>
-<span class="header-section-number">7.2.3</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#gapminder-EDA"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.3</span> 탐색적 데이터 분석<a class="anchor" aria-label="anchor" href="#gapminder-EDA"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>gapminder</code> 데이터셋에서 <code>dplyr</code> 패키지 <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> 함수를 이용하여 대륙명이 오세아니아를
 제외하고 나머지 대륙(아프리카, 아메리카, 아시아, 유럽)에 속한
@@ -582,25 +583,25 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></div>
-<div class="next"><a href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></div>
+<div class="prev"><a href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></div>
+<div class="next"><a href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot-datasets"><span class="header-section-number">7</span> 준비된 데이터</a></li>
+<li><a class="nav-link" href="#ggplot-datasets"><span class="header-section-number">8</span> 준비된 데이터</a></li>
 <li>
-<a class="nav-link" href="#palmer-penguins"><span class="header-section-number">7.1</span> 팔머 펭귄</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#penguins-study"><span class="header-section-number">7.1.1</span> 펭귄 공부</a></li>
-<li><a class="nav-link" href="#penguin-install-dataset"><span class="header-section-number">7.1.2</span> 데이터셋 설치</a></li>
-<li><a class="nav-link" href="#penguin-EDA-skimr"><span class="header-section-number">7.1.3</span> 자료구조 일별</a></li>
-<li><a class="nav-link" href="#penguin-EDA"><span class="header-section-number">7.1.4</span> 탐색적 데이터 분석</a></li>
+<a class="nav-link" href="#palmer-penguins"><span class="header-section-number">8.1</span> 팔머 펭귄</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#penguins-study"><span class="header-section-number">8.1.1</span> 펭귄 공부</a></li>
+<li><a class="nav-link" href="#penguin-install-dataset"><span class="header-section-number">8.1.2</span> 데이터셋 설치</a></li>
+<li><a class="nav-link" href="#penguin-EDA-skimr"><span class="header-section-number">8.1.3</span> 자료구조 일별</a></li>
+<li><a class="nav-link" href="#penguin-EDA"><span class="header-section-number">8.1.4</span> 탐색적 데이터 분석</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#gapminder"><span class="header-section-number">7.2</span> 갭마인더</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#gapminder-install-dataset"><span class="header-section-number">7.2.1</span> 데이터셋 설치</a></li>
-<li><a class="nav-link" href="#gapminder-EDA-skimr"><span class="header-section-number">7.2.2</span> 자료구조 일별</a></li>
-<li><a class="nav-link" href="#gapminder-EDA"><span class="header-section-number">7.2.3</span> 탐색적 데이터 분석</a></li>
+<a class="nav-link" href="#gapminder"><span class="header-section-number">8.2</span> 갭마인더</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#gapminder-install-dataset"><span class="header-section-number">8.2.1</span> 데이터셋 설치</a></li>
+<li><a class="nav-link" href="#gapminder-EDA-skimr"><span class="header-section-number">8.2.2</span> 자료구조 일별</a></li>
+<li><a class="nav-link" href="#gapminder-EDA"><span class="header-section-number">8.2.3</span> 탐색적 데이터 분석</a></li>
 </ul>
 </li>
 </ul>
@@ -619,7 +620,7 @@ GitHub 저장소 설치가 편할 수 있다. 안정화 되었기 때문에 CRAN
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-05.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

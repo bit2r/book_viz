@@ -4,6 +4,17 @@ fig:ggplot-coordinate
 fig:linear-log-scales
 tab:penguins-EDA-data-structure
 tab:gapminder-EDA-data-structure
+viz-motivation
+viz-tamara-why
+viz-anscombe
+viz-anscombe-descriptive
+viz-anscombe-viz
+viz-framework
+viz-R-system
+viz-base-system
+viz-lattice-system
+viz-ggplot-system
+viz-grid
 hello-world
 napoleon-invasion
 napoleon-viz

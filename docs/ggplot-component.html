@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>5 . 구성요소 | 데이터 시각화</title>
+<title>6 . 구성요소 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
-<meta name="description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<meta name="description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  6.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="5 . 구성요소 | 데이터 시각화">
+<meta property="og:title" content="6 . 구성요소 | 데이터 시각화">
 <meta property="og:type" content="book">
-<meta property="og:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<meta property="og:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  6.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5 . 구성요소 | 데이터 시각화">
-<meta name="twitter:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  5.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
+<meta name="twitter:title" content="6 . 구성요소 | 데이터 시각화">
+<meta name="twitter:description" content="깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다. 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.  6.1 시각적 매핑(Aesthetics) ggplot에서 시각적...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -66,24 +66,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
-<li><a class="" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="active" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="active" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">14</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -92,15 +93,15 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-component" class="section level1" number="5">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-component" class="section level1" number="6">
 <h1>
-<span class="header-section-number">5 . </span> 구성요소<a class="anchor" aria-label="anchor" href="#ggplot-component"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6 . </span> 구성요소<a class="anchor" aria-label="anchor" href="#ggplot-component"><i class="fas fa-link"></i></a>
 </h1>
 <p>깔끔한 데이터(tidy data)가 준비되면 이를 시각화하기 위해서는 데이터를 시각화 객체에 매핑하게 되는 메커니즘이 필요하다.
 주요 구성요소로 시각적 매핑(Aesthetics), 척도(Scale), 좌표계(Coordiate System), 축(Axis) 등이 필요하다.</p>
-<div id="ggplot-aesthetics" class="section level2" number="5.1">
+<div id="ggplot-aesthetics" class="section level2" number="6.1">
 <h2>
-<span class="header-section-number">5.1</span> 시각적 매핑(Aesthetics)<a class="anchor" aria-label="anchor" href="#ggplot-aesthetics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.1</span> 시각적 매핑(Aesthetics)<a class="anchor" aria-label="anchor" href="#ggplot-aesthetics"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>ggplot</code>에서 시각적 매핑(Aesthetics)는 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> 내에 시각적으로 표현되는 모든 것을 담고 있다.
 시각화 대상은 크게 두가지로 나눠지는데 연속형과 범주형이다. 온도나 몸무게 같은 경우는 특정 두 데이터 값 사이 연속된 값이 있지만,
@@ -109,13 +110,13 @@
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ggplot-six-aesthetics"></span>
 <img src="basics-component_files/figure-html/ggplot-six-aesthetics-1.png" alt="위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑" width="576"><p class="caption">
-그림 5.1: 위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑
+그림 6.1: 위치, 모양, 크기, 색상, 선굵기, 선유형 등 시각적 매핑
 </p>
 </div>
 </div>
-<div id="scale-mapping" class="section level2" number="5.2">
+<div id="scale-mapping" class="section level2" number="6.2">
 <h2>
-<span class="header-section-number">5.2</span> 척도 매핑<a class="anchor" aria-label="anchor" href="#scale-mapping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2</span> 척도 매핑<a class="anchor" aria-label="anchor" href="#scale-mapping"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터가 주어지면 시각적 객체(모양, 색상, 크기 등)와 매핑을 해야 되는데 그 둘 사이를 연결하는 것이 척도(Scale)이다.
 <code>x</code>축과, <code>y</code>축 척도에 시각적 객체를 매핑해야 비로서 데이터 값을 그래프로 표현된다.
@@ -124,13 +125,13 @@
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ggplot-scale"></span>
 <img src="basics-component_files/figure-html/ggplot-scale-1.png" alt="시각적 객체 척도 매핑" width="576"><p class="caption">
-그림 5.2: 시각적 객체 척도 매핑
+그림 6.2: 시각적 객체 척도 매핑
 </p>
 </div>
 </div>
-<div id="coordinate" class="section level2" number="5.3">
+<div id="coordinate" class="section level2" number="6.3">
 <h2>
-<span class="header-section-number">5.3</span> 좌표계<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3</span> 좌표계<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터 시각화에서 앞서 데이터를 척도와 시각적 객체로 준비를 했다면 이를 최종 그래프로 제작하기 위해서는 좌표계가 필요하다.
 네이버 사전에서 좌표계는 공간상의 한 점의 위치를 표시하는 숫자들의 순서쌍인 좌표를 정하기 위한 체계로서, 원점과 기준 길이, 기준 축이나 기준선들의 집합을 통틀어 이르는 말이다. 가장 널리 사용되는 좌표계는 데카르트 직각좌표계와 극좌표계가 널리 사용된다.
@@ -138,13 +139,13 @@
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ggplot-coordinate"></span>
 <img src="basics-component_files/figure-html/ggplot-coordinate-1.png" alt="직교좌표계와 극좌표계" width="576"><p class="caption">
-그림 5.3: 직교좌표계와 극좌표계
+그림 6.3: 직교좌표계와 극좌표계
 </p>
 </div>
 </div>
-<div id="coordinate" class="section level2" number="5.4">
+<div id="coordinate" class="section level2" number="6.4">
 <h2>
-<span class="header-section-number">5.4</span> 축(axis)<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4</span> 축(axis)<a class="anchor" aria-label="anchor" href="#coordinate"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터 값을 선형 척도에 매핑하여 시각화하는 것이 일반적이지만 <code>x, y</code> 축이
 대표적으로 날짜와 같은 시계열 데이터인 경우 혹은 시분초를 나타내는 경우도 있어 이에 맞춰
@@ -156,23 +157,23 @@
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:linear-log-scales"></span>
 <img src="basics-component_files/figure-html/linear-log-scales-1.png" alt="선형, 로그, 제곱근 축" width="576"><p class="caption">
-그림 5.4: 선형, 로그, 제곱근 축
+그림 6.4: 선형, 로그, 제곱근 축
 </p>
 </div>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="viz-color.html"><span class="header-section-number">4</span> 색상</a></div>
+<div class="prev"><a href="viz-color.html"><span class="header-section-number">5</span> 색상</a></div>
 <div class="next"><a href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot-component"><span class="header-section-number">5</span> 구성요소</a></li>
-<li><a class="nav-link" href="#ggplot-aesthetics"><span class="header-section-number">5.1</span> 시각적 매핑(Aesthetics)</a></li>
-<li><a class="nav-link" href="#scale-mapping"><span class="header-section-number">5.2</span> 척도 매핑</a></li>
-<li><a class="nav-link" href="#coordinate"><span class="header-section-number">5.3</span> 좌표계</a></li>
-<li><a class="nav-link" href="#coordinate"><span class="header-section-number">5.4</span> 축(axis)</a></li>
+<li><a class="nav-link" href="#ggplot-component"><span class="header-section-number">6</span> 구성요소</a></li>
+<li><a class="nav-link" href="#ggplot-aesthetics"><span class="header-section-number">6.1</span> 시각적 매핑(Aesthetics)</a></li>
+<li><a class="nav-link" href="#scale-mapping"><span class="header-section-number">6.2</span> 척도 매핑</a></li>
+<li><a class="nav-link" href="#coordinate"><span class="header-section-number">6.3</span> 좌표계</a></li>
+<li><a class="nav-link" href="#coordinate"><span class="header-section-number">6.4</span> 축(axis)</a></li>
 </ul>
 
       <div class="book-extra">
@@ -189,7 +190,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-05.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>1 . 시각화 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content="컴퓨터를 기반으로 한 시각화 시스템은 시각적으로 데이터를 표현함으로서 사람이 작업을 더욱 효율적으로 수행할 수 있도록 돕는다. 시각화는 시각지능을 갖춘 인공지능을 통해 사람을 대체하는데 초점을 둔 것이라보다 시각화를 통해 인간능력을 보조하고 증강시키는데 유용하다. 따라서, 완전 자동화 해결책이 존재하고 신뢰성이 있는 경우 대안이 존재하는 경우...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="1 . 시각화 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content="컴퓨터를 기반으로 한 시각화 시스템은 시각적으로 데이터를 표현함으로서 사람이 작업을 더욱 효율적으로 수행할 수 있도록 돕는다. 시각화는 시각지능을 갖춘 인공지능을 통해 사람을 대체하는데 초점을 둔 것이라보다 시각화를 통해 인간능력을 보조하고 증강시키는데 유용하다. 따라서, 완전 자동화 해결책이 존재하고 신뢰성이 있는 경우 대안이 존재하는 경우...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1 . 시각화 | 데이터 시각화">
+<meta name="twitter:description" content="컴퓨터를 기반으로 한 시각화 시스템은 시각적으로 데이터를 표현함으로서 사람이 작업을 더욱 효율적으로 수행할 수 있도록 돕는다. 시각화는 시각지능을 갖춘 인공지능을 통해 사람을 대체하는데 초점을 둔 것이라보다 시각화를 통해 인간능력을 보조하고 증강시키는데 유용하다. 따라서, 완전 자동화 해결책이 존재하고 신뢰성이 있는 경우 대안이 존재하는 경우...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">데이터 시각화</a></li>
+<li><a class="active" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
+<li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
+<li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="viz-motivation" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1 . </span> 시각화<a class="anchor" aria-label="anchor" href="#viz-motivation"><i class="fas fa-link"></i></a>
+</h1>
+<p>컴퓨터를 기반으로 한 시각화 시스템은 시각적으로 데이터를 표현함으로서
+사람이 작업을 더욱 효율적으로 수행할 수 있도록 돕는다.</p>
+<p>시각화는 시각지능을 갖춘 인공지능을 통해 사람을 대체하는데 초점을 둔 것이라보다
+시각화를 통해 인간능력을 보조하고 증강시키는데 유용하다.</p>
+<p>따라서, 완전 자동화 해결책이 존재하고 신뢰성이 있는 경우 대안이 존재하는 경우 시각화는 필요하지 않다. 하지만, 많은 분석과 개발문제에 어떤 질문을 던져야 되는지 사전에 알고 있는 경우가 적어, 명세가 분명하지 않는 경우 시각화가 적합하다.</p>
+<div id="viz-tamara-why" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> 왜 시각화가 필요한가?<a class="anchor" aria-label="anchor" href="#viz-tamara-why"><i class="fas fa-link"></i></a>
+</h2>
+<p>시각화는 최종 데이터분석 결과를 표현하는 데이터 과학 제품과 인포그래픽으로 많은 관심을 받았다. 하지만 꼭 시각화가 데이터 과학 최종 결과물로 의미가 있는 것은 아니다. 인포그래픽과 같은 최종 결과를 제작하는 과정은 수많은 시도와 실패의 결과물로 조금씩 진전을 이뤄낸 산출물이다. 이 과정에서 데이터에 대한 충분한 이해가 필요한데 원본 데이터를 눈으로 일일이 살펴보거나 요약 통계량으로 데이터가 갖고 있는 의미를 충분히 살펴보는데는 한계가 있다.
+원데이터를 첫번째 행부터 마지막행까지 첫번째 변수부터 마지막 변수까지 일일이 살펴보는 작업은 상당한 인지부하를 가져와 쉽게 피로를 유발한다. <strong>인지부하(cognitive load)</strong>를 <strong>시각적 지각(perception)</strong>으로 해당 작업을 바꿔 수월히 업무를 수행하는데 필수적인 기법이 <strong>시각화(Visualization)</strong>라고 볼 수 있다.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span>
+
+<span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/women.html">women</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:right;">
+height
+</th>
+<th style="text-align:right;">
+weight
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+115
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+117
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+120
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+123
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+126
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+129
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+132
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+135
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+142
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+146
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+150
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+154
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+159
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+164
+</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>datasets</code> 패키지에 포하함된 <code>women</code> 데이터는 이미 정렬이 되어 있어서, 신장이 커짐에 따라 체중이 증가하는 것을 알 수 있지만, 데이터만 보고 이해하려면 인지적으로 데이터 한줄을 읽고 머리속으로 생각하고, 두번째 줄을 읽고 생각하고, … 이런 과정을 반복하면서 인지적 부하가 증가하게 된다.
+하지만, 시각적으로 표현하게 되면 한눈에 신장과 체중 관계를 볼 수 있다.</p>
+<p><code>women</code> 데이터셋이 몸무게는 파운드(lbs), 신장(inch)로 되어 있어 우리나라에서 사용하는
+kg, cm 단위로 시각화에 앞서 변환시킨다.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">women</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">2.54</span> <span class="op">*</span> <span class="va">height</span>,
+         weight <span class="op">=</span> <span class="fl">0.45</span> <span class="op">*</span> <span class="va">weight</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">weight</span>, x<span class="op">=</span><span class="va">height</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">'pink'</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color<span class="op">=</span><span class="st">'blue'</span>, size<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"신장"</span>,
+         y <span class="op">=</span> <span class="st">"몸무게"</span>,
+         title <span class="op">=</span> <span class="st">"신장과 몸무게 관계"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-motivation-woman-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-anscombe" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Anscombe 4종류 데이터<a class="anchor" aria-label="anchor" href="#viz-anscombe"><i class="fas fa-link"></i></a>
+</h2>
+<p>Anscombe<span class="citation">(<a href="references-1.html#ref-anscombe1973graphs" role="doc-biblioref">Anscombe 1973</a>)</span>는 1973년 “Anscombe’s Quartet”로 알려진 동일한 통계량을 갖는 4종류 데이터셋을 만들어서 시각화의 중요성을 공개했다. 4종류의 데이터는 모두 동일한 평균, 분산,
+상관계수와 회귀식을 갖는다. 두 변수 <code>x</code>, <code>y</code>에 대한 통계량에 대한 정보는 다음과 같다.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center">통계량</th>
+<th align="center">값</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">평균(<code>x</code>)</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">분산(<code>x</code>)</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">평균(<code>y</code>)</td>
+<td align="center">7.5</td>
+</tr>
+<tr class="even">
+<td align="center">분산(<code>y</code>)</td>
+<td align="center">4.1</td>
+</tr>
+<tr class="odd">
+<td align="center">상관계수</td>
+<td align="center">0.82</td>
+</tr>
+<tr class="even">
+<td align="center">회귀식</td>
+<td align="center"><span class="math inline">\(y = 3.0 + 0.5 \times x\)</span></td>
+</tr>
+</tbody>
+</table></div>
+<div id="viz-anscombe-descriptive" class="section level3" number="1.2.1">
+<h3>
+<span class="header-section-number">1.2.1</span> 데이터셋 기술통계량<a class="anchor" aria-label="anchor" href="#viz-anscombe-descriptive"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>datasets</code> 패키지 내부에 <code>anscombe</code> 명칭으로 데이터셋이 포함되어 있어 앞서 제기한
+기술통계량이 맞는지 평균, 분산, 상관계수, 회귀식 회귀계수를 통해 소수점 아래 일부 차이가 있지만 동일하다는 것을 확인할 수 있다.</p>
+</div>
+<div id="viz-anscombe-viz" class="section level3" number="1.2.2">
+<h3>
+<span class="header-section-number">1.2.2</span> 데이터셋 시각화<a class="anchor" aria-label="anchor" href="#viz-anscombe-viz"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>anscombe</code> 데이터셋 기술 통계량을 통해 4종류 데이터셋이 동일한 분도를 갖고 있고
+표본추출로 보면 모집단에서 잘 추출된 표본이라고 볼수도 있으나 시각화를 통해 보면
+전혀 다른 특성을 갖는 데이터라는 것을 한번에 알 수 있다. 즉, 가장 일반적으로
+첫번째 데이터셋과 같은 특성이 기술통계량을 통해 존재한다는 것이 일반적이다.
+하지만, 2차식이 내재된 두 변수의 관계(두번째 데이터셋)일 수도 있으며,
+강한 선형 관계가 두변수 사이 존재하지만 튀는 관측점이 하나 존재하는 관계(세번째 데이터셋)일 수도
+있으며 네번째 데이터세의 경우 데이터 입력과정에서 오류가 의심되는 경우(네번째 데이터셋)일 수도 있다.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># https://rpubs.com/debosruti007/anscombeQuartet 코드를 일부 변형하여 시각화 사용</span>
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">anscombe</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">y1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">3</span>, slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"cornflowerblue"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"첫번째 데이터셋"</span><span class="op">)</span>
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">anscombe</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x2</span>, <span class="va">y2</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">3</span>, slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"cornflowerblue"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"두번째 데이터셋"</span><span class="op">)</span>
+<span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">anscombe</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x3</span>, <span class="va">y3</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">3</span>, slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"cornflowerblue"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"세번째 데이터셋"</span><span class="op">)</span>
+<span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">anscombe</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x4</span>, <span class="va">y4</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"darkorange"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">3</span>, slope <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"cornflowerblue"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"네번째 데이터셋"</span><span class="op">)</span>
+
+<span class="fu">gridExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>, ncol<span class="op">=</span><span class="fl">2</span>, top <span class="op">=</span> <span class="st">"앤스컴 콰르텟(Anscombe's Quartet)"</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-motivation-quartet-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+</div>
+<div id="viz-framework" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> 시각화 얼개<a class="anchor" aria-label="anchor" href="#viz-framework"><i class="fas fa-link"></i></a>
+</h2>
+<p>오랜동안 시각화를 연구한 타마라 먼즈너(Tamara Munzner) 교수는 시각화를 위한 얼개(framework)로
+다음 4가지 영약으로 나눠 공학적 접근을 취할 것을 제안하고 있다.<span class="citation">(<a href="references-1.html#ref-munzner2014visualization" role="doc-biblioref">Munzner 2014</a>)</span>
+타마라 교수가 제안한 시각화 분석 얼개는 4가지 부분으로 구성된다.</p>
+<ul>
+<li>전문영역 : 최종 사용자 고객이 누군인가?</li>
+<li>추상화
+<ul>
+<li>전문영역의 구체적인 점을 시각화 용어로 번역
+<ul>
+<li>
+<strong>데이터 추상화</strong> : 시각화하는 것이 무엇(what)인가?</li>
+<li>
+<strong>작업 추상화</strong> : 왜(why) 사용자가 눈을 돌리는가?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>표현양식(idiom)
+<ul>
+<li>데이터가 어떻게(How) 시각화되는가?
+<ul>
+<li>
+<strong>시각적 인코딩 표현양식</strong> : 시각화하는 방법</li>
+<li>
+<strong>상호작용 표현양식</strong> : 조작하는 방법</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>알고리즘
+<ul>
+<li>효율적 연산방법</li>
+</ul>
+</li>
+</ul>
+<div class="figure">
+<img src="assets/images/viz-framework.png" style="width:100.0%" alt=""><p class="caption">시각화 얼개</p>
+</div>
+<p>시각화 시스템 실행시간, 메모리 사용량 등을 측정하고, 연산 복잡성을 분석하는 알고리즘 작업은 컴퓨터 과학자의 몫이다.
+여러가지 대안 시스템 아키텍처를 정당화하고 시각적 인코딩 방법과 상호작용하는 표현양식을 설계하는 것은 시스템 설계자의 몫이다.
+시각화 시스템 결과물을 정량적으로 분석하고, 사용자 인간에 대한 실험을 추진하는 것은 인지심리학자의 몫이다.
+이를 감싸고 있는 데이터 추상화와 작업추상화가 있는데, 시스템 설계자가 앞단에서 설계하면 후행단에서 인지심리학자가 검증하고, 컴퓨터 과학자가 개발하는 구조를 갖는다.</p>
+<p>이 모든 시작은 전문영역에서 문제점을 인식하고 기존의 도구를 사용하는 목표 사용자를 관측하는 것에서 시작되는데 이는 인류학자, 민족지라는 분야와 연관된다.
+따라서, 기술중심으로 밖으로 퍼져나갈 수도 있지만, 문제해결작업으로 시각화를 활용하는 것도 가능한 접근법이다.</p>
+</div>
+<div id="viz-R-system" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> R 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-R-system"><i class="fas fa-link"></i></a>
+</h2>
+<p>동일한 시각화 산출물을 제작한다고 하더라도 철학에 따라 차이점이 있다.
+크게 시각화 도구는 명령형과 선언형으로 나눠지고 그래프 문법을 따르는
+<code>ggplot</code>의 경우 선언형에 해당된다.</p>
+<div id="viz-programming" class="rmdimportant">
+<h4>
+시각화 도구
+<a class="anchor" aria-label="anchor" href="#viz-programming"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>
+<strong>명령형(imperative)</strong>: “방법(how)”에 초점, Processing, OpenGL, prefuse</li>
+<li>
+<strong>선언형(declarative)</strong>: “무엇(what)”에 초점, D3, ggplot2, Protovis</li>
+</ul>
+</div>
+<p>R은 역사가 오래된 검증된 언어라 보니 그 시대의 컴퓨팅 환경과
+축적된 지적자산이 반영되어 다양한 시각화 시스템이 존재한다.
+가장 대표적으로 3가지 시각화 시스템을 이해하면 실무적으로 충분하다.</p>
+<ul>
+<li>Base 시각화 시스템</li>
+<li>
+<code>lattice</code> 시각화 시스템: Cleveland의 <strong>Trellis Graphics</strong>에서 출발</li>
+<li>
+<code>ggplot</code> 시각화 시스템: Wilkinson의 <strong>Grammar of Graphics</strong>에서 출발</li>
+</ul>
+<p>2017년 3월 기준 R 팩키지를 시각화 시스템으로 구분하면 다음과 같다.
+현재는 <code>ggplot</code>이 후발주자의 잇점을 발휘하여 대세로 자리잡았고
+이는 <code>ggplot2</code> 패키지 기여자수, 코드 길이, 연관된 패키지수를 확인하면
+쉽게 파악할 수 있다.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center">시각화 시스템</th>
+<th align="center">팩키지 갯수</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Base 시각화</td>
+<td align="center">5,612</td>
+</tr>
+<tr class="even">
+<td align="center">
+<code>lattice</code> 시각화</td>
+<td align="center">3,654</td>
+</tr>
+<tr class="odd">
+<td align="center">
+<code>ggplot</code> 시각화</td>
+<td align="center">1,566</td>
+</tr>
+</tbody>
+</table></div>
+<div id="viz-base-system" class="section level3" number="1.4.1">
+<h3>
+<span class="header-section-number">1.4.1</span> Base 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-base-system"><i class="fas fa-link"></i></a>
+</h3>
+<p>R설치하면 내장된 Base 시각화 시스템은 <strong>화가의 팔레트(Artist Palallete)</strong> 모형으로 빈 도화지 캔바스 위에 화가가 그림을 그리는 것과 동일한 방식으로 시각화 산출물을 만들어 나간다.
+<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 혹은 유사한 시각화 함수로 시작해서 텍스트(<code>text</code>), 선(<code>line</code>), 점(<code>point</code>), 축(<code>axis</code>) 등을 표현하는데 <strong>주석(Annotation)</strong> 함수를 활용한다.</p>
+<p>따라서, 사람이 사고하는 방식으로 시각화 산출물을 만들어 나가 편리하지만, 시각화 산출물을 다시 그리려고 하면 처음부터 다시 해야 되기 때문에 시각화 산출물을
+만드는 초기부터 시간을 갖고 잘 설계해 나가야 된다. 그리고, 시각화 산출물이 생성되면 다른 것으로 변환하기 어려운 단점이 있고, 그래픽 언어가 아니라 일련의 R 명령어
+묶음에 불가하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-base-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-lattice-system" class="section level3" number="1.4.2">
+<h3>
+<span class="header-section-number">1.4.2</span> <code>lattice</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-lattice-system"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>lattice</code> 시각화 시스템은 <code>lattice</code> 팩키지를 통해 설치되고, 함수 호출(<code>xyplot()</code>, <code>bwplot()</code> 등)을 통해 시각화 산출물을 생성하게 된다.
+조건에 따라 일변량 혹은 다변량 변수를 시각화하는데 유용하다. 즉, 특정 범주형 변수 수준에 따라 두 변수간의 관계를 시각적으로 표현하는 것을 예로 들 수 있다.
+전체 시각화 산출물 결과는 여백(margin), 공간 등은 자동으로 한번에 정해져서, 화면에 다수 시각화 산출물을 배치할 때 유용하다.</p>
+<p>하지만, 함수호출 한번으로 전체 시각화 산출물을 명세하는 것이 쉽지는 않다. 특히 주석(Annotation)을 시각화 산출물에 다는 것이 그다지 직관적이는 않다.
+그리고 <code>lattice</code> 함수를 통해 시각화 산출물이 만들어지면 더이상 추가는 불가하다.</p>
+<p><a href="https://statkclee.github.io/statistics/stat-modeling.html">키보드 자판으로 통계모형을 R로 표현하는 방법</a>처럼 변수들을 <code>lattice</code> 시각화 시스템에서
+공식으로 표현할 수 있다는 점은 큰 장점중 하나다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-lattice-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-ggplot-system" class="section level3" number="1.4.3">
+<h3>
+<span class="header-section-number">1.4.3</span> <code>ggplot</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-ggplot-system"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>ggplot</code> 시각화 시스템은 <code>ggplot2</code> 팩키지를 통해 설치가 가능하다. Base 시각화 시스템과 <code>lattice</code> 시각화 시스템의 장점을 취사선택해서 개발된 것으로 보는 견해도 있다.
+그래픽 문법(Grammer of Graphic)에 기반하고 있으며, <code>lattice</code> 시각화 시스템처럼 공백, 텍스트, 제목 등을 자동으로 설정하고,
+Base 시각화 시스템에서 지원하는 다양한 그래픽 요소를 추가하는 것도 가능하다. 전반적으로 <code>lattice</code>느낌이 나지만 사용하기는 직관적이며 다양한 그래픽 요소를
+추가하는 것도 쉽다. 물론 <code>ggplot</code>에서 자동으로 설정하는 것도 원하는 설정으로 바꾸는 것도 가능하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-ggplot-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-grid" class="section level3" number="1.4.4">
+<h3>
+<span class="header-section-number">1.4.4</span> <code>grid</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-grid"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>grid</code> 시각화 시스템은 <code>lattice</code>와 <code>ggplot</code>의 기반이 되는 시각화 시스템으로 R 버전 1.8.0 부터 Base 팩키지의 일부가 되었다.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/29349398/r-package-grid-disappeared"&gt;R package grid disappeared?&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>
+grid_0.7-4에서 <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/doc/changes.txt">Base 팩키지 일부</a>가 되어 버젼이 Base 팩키지에 맞춰 버젼이 급상승했다.</p>
+<p><code>grid</code> 시각화 시스템을 사용해서 위와 동일하게 상기 그래프를 그리면 다음과 같다.
+<code>grid</code> 시스템을 숙달하기까지 시간이 걸리지만, 익숙해지면 장점이 상당하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-grid-system-1.png" width="576" style="display: block; margin: auto;"></div>
+
+</div>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html">데이터 시각화</a></div>
+<div class="next"><a href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viz-motivation"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="nav-link" href="#viz-tamara-why"><span class="header-section-number">1.1</span> 왜 시각화가 필요한가?</a></li>
+<li>
+<a class="nav-link" href="#viz-anscombe"><span class="header-section-number">1.2</span> Anscombe 4종류 데이터</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viz-anscombe-descriptive"><span class="header-section-number">1.2.1</span> 데이터셋 기술통계량</a></li>
+<li><a class="nav-link" href="#viz-anscombe-viz"><span class="header-section-number">1.2.2</span> 데이터셋 시각화</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#viz-framework"><span class="header-section-number">1.3</span> 시각화 얼개</a></li>
+<li>
+<a class="nav-link" href="#viz-R-system"><span class="header-section-number">1.4</span> R 시각화 시스템</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viz-base-system"><span class="header-section-number">1.4.1</span> Base 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-lattice-system"><span class="header-section-number">1.4.2</span> lattice 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-ggplot-system"><span class="header-section-number">1.4.3</span> ggplot 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-grid"><span class="header-section-number">1.4.4</span> grid 시각화 시스템</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

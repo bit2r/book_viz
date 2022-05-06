@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>2 . 행복한 시각화 | 데이터 시각화</title>
+<title>3 . 행복한 시각화 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
 <meta name="description" content="캐나다 브리티쉬 콜럼비아 대학 STAT545 교육과정이 공개되어 초창기 데이터 과학이 정립될 때 큰 역할을 하였다. “행복한 시각화 생활을 위한 비밀” 장에 성공적인 시각화를 핵심적인 내용이 담겨있다. 시각화 그래프를 제작하는데 어려움이 있다면, ggplot2 코드에 문제가 있다고 시각화 관련 부분에 집중적인 시간을 투여할 것이다. 하지만 다음...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="2 . 행복한 시각화 | 데이터 시각화">
+<meta property="og:title" content="3 . 행복한 시각화 | 데이터 시각화">
 <meta property="og:type" content="book">
 <meta property="og:description" content="캐나다 브리티쉬 콜럼비아 대학 STAT545 교육과정이 공개되어 초창기 데이터 과학이 정립될 때 큰 역할을 하였다. “행복한 시각화 생활을 위한 비밀” 장에 성공적인 시각화를 핵심적인 내용이 담겨있다. 시각화 그래프를 제작하는데 어려움이 있다면, ggplot2 코드에 문제가 있다고 시각화 관련 부분에 집중적인 시간을 투여할 것이다. 하지만 다음...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2 . 행복한 시각화 | 데이터 시각화">
+<meta name="twitter:title" content="3 . 행복한 시각화 | 데이터 시각화">
 <meta name="twitter:description" content="캐나다 브리티쉬 콜럼비아 대학 STAT545 교육과정이 공개되어 초창기 데이터 과학이 정립될 때 큰 역할을 하였다. “행복한 시각화 생활을 위한 비밀” 장에 성공적인 시각화를 핵심적인 내용이 담겨있다. 시각화 그래프를 제작하는데 어려움이 있다면, ggplot2 코드에 문제가 있다고 시각화 관련 부분에 집중적인 시간을 투여할 것이다. 하지만 다음...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,24 +66,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
-<li><a class="active" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="active" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">14</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -92,9 +93,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="happy-viz" class="section level1" number="2">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="happy-viz" class="section level1" number="3">
 <h1>
-<span class="header-section-number">2 . </span> 행복한 시각화<a class="anchor" aria-label="anchor" href="#happy-viz"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3 . </span> 행복한 시각화<a class="anchor" aria-label="anchor" href="#happy-viz"><i class="fas fa-link"></i></a>
 </h1>
 <p>캐나다 브리티쉬 콜럼비아 대학 <a href="https://stat545.com/">STAT545</a> 교육과정이 공개되어
 초창기 데이터 과학이 정립될 때 큰 역할을 하였다.
@@ -111,9 +112,9 @@
 그동안 자신을 괴롭혔던 시각화 관련 문제는 자연히 사라져 버린다.
 이를 위해서 <code>dplyr</code> 패키지의 데이터 다루는 여러 동사를 <code>tidyr</code> 패키지
 깔끔한 데이터 제작 동사와 결합하여 사용하게 되면 생산성을 크게 높일 수 있다.</p>
-<div id="viz-secret-dataframe" class="section level2" number="2.1">
+<div id="viz-secret-dataframe" class="section level2" number="3.1">
 <h2>
-<span class="header-section-number">2.1</span> 시각화 입력 자료구조: 데이터프레임<a class="anchor" aria-label="anchor" href="#viz-secret-dataframe"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.1</span> 시각화 입력 자료구조: 데이터프레임<a class="anchor" aria-label="anchor" href="#viz-secret-dataframe"><i class="fas fa-link"></i></a>
 </h2>
 <p>기억해야 할 단 한가지 사항은 시각화 자료구조는 데이터프레임이다.
 좀더 구체적으로 <strong>깔끔한 데이터</strong>다.
@@ -121,7 +122,7 @@
 가독성이 떨어짐은 물론 <code>tidyverse</code> 관습과 동떨어진 경우를 종종 보게 된다.</p>
 <p>예를 들어, 많은 경우 변수가 데이터프레임 밖에 복사되어
 작업공간에 독립된 객체로 존재시켜 이를 시각화하는 것이다.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
 <span class="va">life_exp</span> <span class="op">&lt;-</span> <span class="va">gapminder</span><span class="op">$</span><span class="va">lifeExp</span>
 <span class="va">year</span> <span class="op">&lt;-</span> <span class="va">gapminder</span><span class="op">$</span><span class="va">year</span></code></pre></div>
@@ -129,7 +130,7 @@
 근본 원인은 <code>ggplot2</code> 패키지 <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> 함수가 입력값이 데이터프레임이라는데 있다.
 즉, 데이터프레임을 입력받아 시각화 그래프를 출력으로 뱉어내는데 이를 충족시키지 못할 경우
 의도한 바가 컴퓨터에 전달되지 않아 오류가 나와 더이상 진전을 이룰 수가 없다.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -139,7 +140,7 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 모두 방식에는 다소 차이가 있지만 근본적으로 데이터프레임을 입력받아 시각화 그래프를 출력으로 내보낸다.</p>
 <p>파이프 연산자를 사용해서 좀더 직관적으로 코드를 다음과 같이 제작하게 되면
 의미가 명확해질 것이다.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">life_exp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
@@ -157,9 +158,9 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 예를 들어, <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>, <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>.
 따라서, 이런 방식이 기본디폴트 작업방식이 된다.</p>
 </div>
-<div id="viz-secret-explicit-dataframe" class="section level2" number="2.2">
+<div id="viz-secret-explicit-dataframe" class="section level2" number="3.2">
 <h2>
-<span class="header-section-number">2.2</span> <code>dplyr::data_frame()</code> 자료구조<a class="anchor" aria-label="anchor" href="#viz-secret-explicit-dataframe"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.2</span> <code>dplyr::data_frame()</code> 자료구조<a class="anchor" aria-label="anchor" href="#viz-secret-explicit-dataframe"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터는 이미 있는데 데이터프레임이 아니라면,
 “왜 데이터프레임이 아닌가?” 라고 본인에게 질문을 던진다.
@@ -172,7 +173,7 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 이것만으로도 데이터프레임과 연관된 문제를 회피할 수 있다.</p>
 <p>데이터프레임에 변수를 새로 추가하는 <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> 함수를 통해, 동일한 길이를 갖는
 연관된 변수를 처리할 자동으로 데이터프레임 내부에서 처리하여 반영한다.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="va">my_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/deprecated.html">data_frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,
              y <span class="op">=</span> <span class="va">x</span> <span class="op">^</span> <span class="fl">2</span>,
@@ -184,26 +185,26 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 ## $ x    &lt;int&gt; 1, 2, 3, 4, 5
 ## $ y    &lt;dbl&gt; 1, 4, 9, 16, 25
 ## $ text &lt;chr&gt; "alpha", "beta", "gamma", "delta", "epsilon"</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">text</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="happy-visualization_files/figure-html/data_frame-love-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="viz-secret-with" class="section level2" number="2.3">
+<div id="viz-secret-with" class="section level2" number="3.3">
 <h2>
-<span class="header-section-number">2.3</span> 다른 접근방식 <code>with()</code><a class="anchor" aria-label="anchor" href="#viz-secret-with"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.3</span> 다른 접근방식 <code>with()</code><a class="anchor" aria-label="anchor" href="#viz-secret-with"><i class="fas fa-link"></i></a>
 </h2>
 <p>데이터프레임을 시각화 입력으로 삼는 전략의 우수성을 기존 다른 접근법과 비교해보자.
 슬프게도 모든 함수가 <code>data=</code> 인자를 제공하지는 않는다.
 상관계수를 계산하는 <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> 함수를 예로 들어보자. 다음 코드는 동작하지 않는다:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">lifeExp</span>, data <span class="op">=</span> <span class="va">gapminder</span><span class="op">)</span>
 <span class="co"># Error in cor(year, lifeExp, data = gapminder) : </span>
 <span class="co">#  unused argument (data = gapminder)</span></code></pre></div>
 <p>물론 다음과 같이 데이터프레임 명칭을 항상 반복하면 원하는 결과를 얻을 수 있다.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">year</span>, <span class="va">gapminder</span><span class="op">$</span><span class="va">lifeExp</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.436</code></pre>
 <p>하지만, <code>gapminder</code>를 두번 타이핑하게 되어 중복 반복 작업이 있어
@@ -214,35 +215,35 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 두번째 인자는 특별히 격리된 환경에서 평가되는 표현식이 된다.
 명령어 한줄 혹은 여러줄로 된 토막 코드가 될 수도 있다.
 특별한 점은 데이터프레임에 변수를 이름으로 참조할 수 있다는 것이다.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">gapminder</span>,
      <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.436</code></pre>
 <p><code>magrittr</code> 팩키지를 사용하게 되면, 또다른 선택욥션이 <code>%$%</code> 연산자를 사용해서 데이터프레임 내부 변수를 노출시켜 향후 연산작업을 진행해 나가는 방식도 있다. 참고로 <code>magrittr</code> 패키지의 영감을 얻어
 <code>tiydverse</code> 생태계를 연결하는 <code>%&gt;%</code> 이 생겨났다.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span>
 <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/exposition.html">%$%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">lifeExp</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.436</code></pre>
 </div>
-<div id="viz-secret-case-study" class="section level2" number="2.4">
+<div id="viz-secret-case-study" class="section level2" number="3.4">
 <h2>
-<span class="header-section-number">2.4</span> 사례<a class="anchor" aria-label="anchor" href="#viz-secret-case-study"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4</span> 사례<a class="anchor" aria-label="anchor" href="#viz-secret-case-study"><i class="fas fa-link"></i></a>
 </h2>
 <p>특정한 국가 예를 들어 한국을 뽑아 연도별로 모든 정량적 변수를 도식화한다.</p>
 <p>본능적으로 먼저 <code>gapminder</code> 데이터에서 한국을 뽑아 변수별로 루프를 돌려서
 개별적으로 그림을 그리고 이를 한데 묶는다.
 사실 이러한 방식으로도 작업을 수행할 수 있다.
 하지만, 데이터 형태를 바꾸는 방식이 루프를 돌리는 것보다 현재 R 생태계를 고려하면 좀더 “R스럽다”.</p>
-<div id="viz-secret-case-study-data" class="section level3" number="2.4.1">
+<div id="viz-secret-case-study-data" class="section level3" number="3.4.1">
 <h3>
-<span class="header-section-number">2.4.1</span> 데이터 형태 바꾸기<a class="anchor" aria-label="anchor" href="#viz-secret-case-study-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.1</span> 데이터 형태 바꾸기<a class="anchor" aria-label="anchor" href="#viz-secret-case-study-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>먼저 <code>gapminder</code> 데이터에서 한국만 뽑아낸다.
 그리고 나서 <code>pop</code>, <code>lifeExp</code>, <code>gdpPercap</code> 변수를 <code>var</code> 동반변수를 키로
 <code>value</code> 변수를 값으로 하여 변수하나로 <code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code>함수를 통해 모은다.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">korea_dat</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Korea, Rep."</span><span class="op">)</span>
 
@@ -251,20 +252,20 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">korea_dat</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 12  6</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">korea_tidy</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 36  5</code></pre>
 <p>필터링된 <code>korea_dat</code>는 12 행을 갖는다.
 <code>korea_tidy</code> 데이터프레임에 변수를 세개 모아 쌓아서, 행의 갯수가 3 배 되는 것이 이해된다.
 즉, 폭이 넓은 데이터를 길이가 긴 데이터로 바꿔서 36 행을 갖는다.</p>
 </div>
-<div id="viz-secret-case-study-facet" class="section level3" number="2.4.2">
+<div id="viz-secret-case-study-facet" class="section level3" number="3.4.2">
 <h3>
-<span class="header-section-number">2.4.2</span> <code>facet</code> 기능으로 변수를 반복<a class="anchor" aria-label="anchor" href="#viz-secret-case-study-facet"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.2</span> <code>facet</code> 기능으로 변수를 반복<a class="anchor" aria-label="anchor" href="#viz-secret-case-study-facet"><i class="fas fa-link"></i></a>
 </h3>
 <p>데이터가 깔끔한 데이터프레임에 반복을 돌릴 수 있는 변수를 나타내는 적절한 요인으로 구성되어서,
 <code>facet</code> 기능을 구현하기만 하면 된다.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">korea_tidy</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">값</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">변수</span>, scales<span class="op">=</span><span class="st">"free_y"</span><span class="op">)</span> 
@@ -273,12 +274,12 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1950</span>, <span class="fl">2011</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="happy-visualization_files/figure-html/korea-facet-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="viz-secret-summary" class="section level3" number="2.4.3">
+<div id="viz-secret-summary" class="section level3" number="3.4.3">
 <h3>
-<span class="header-section-number">2.4.3</span> 요약<a class="anchor" aria-label="anchor" href="#viz-secret-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.4.3</span> 요약<a class="anchor" aria-label="anchor" href="#viz-secret-summary"><i class="fas fa-link"></i></a>
 </h3>
 <p>한국을 뽑아 시각화한 코드가 다음에 요약되어 있다.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="co">## 데이터프레임 데이터 조작: `dplyr`</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="st">"Korea, Rep."</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -304,20 +305,20 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></div>
+<div class="prev"><a href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></div>
 <div class="next"><a href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#happy-viz"><span class="header-section-number">2</span> 행복한 시각화</a></li>
-<li><a class="nav-link" href="#viz-secret-dataframe"><span class="header-section-number">2.1</span> 시각화 입력 자료구조: 데이터프레임</a></li>
-<li><a class="nav-link" href="#viz-secret-explicit-dataframe"><span class="header-section-number">2.2</span> dplyr::data_frame() 자료구조</a></li>
-<li><a class="nav-link" href="#viz-secret-with"><span class="header-section-number">2.3</span> 다른 접근방식 with()</a></li>
+<li><a class="nav-link" href="#happy-viz"><span class="header-section-number">3</span> 행복한 시각화</a></li>
+<li><a class="nav-link" href="#viz-secret-dataframe"><span class="header-section-number">3.1</span> 시각화 입력 자료구조: 데이터프레임</a></li>
+<li><a class="nav-link" href="#viz-secret-explicit-dataframe"><span class="header-section-number">3.2</span> dplyr::data_frame() 자료구조</a></li>
+<li><a class="nav-link" href="#viz-secret-with"><span class="header-section-number">3.3</span> 다른 접근방식 with()</a></li>
 <li>
-<a class="nav-link" href="#viz-secret-case-study"><span class="header-section-number">2.4</span> 사례</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#viz-secret-case-study-data"><span class="header-section-number">2.4.1</span> 데이터 형태 바꾸기</a></li>
-<li><a class="nav-link" href="#viz-secret-case-study-facet"><span class="header-section-number">2.4.2</span> facet 기능으로 변수를 반복</a></li>
-<li><a class="nav-link" href="#viz-secret-summary"><span class="header-section-number">2.4.3</span> 요약</a></li>
+<a class="nav-link" href="#viz-secret-case-study"><span class="header-section-number">3.4</span> 사례</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viz-secret-case-study-data"><span class="header-section-number">3.4.1</span> 데이터 형태 바꾸기</a></li>
+<li><a class="nav-link" href="#viz-secret-case-study-facet"><span class="header-section-number">3.4.2</span> facet 기능으로 변수를 반복</a></li>
+<li><a class="nav-link" href="#viz-secret-summary"><span class="header-section-number">3.4.3</span> 요약</a></li>
 </ul>
 </li>
 </ul>
@@ -336,7 +337,7 @@ R에는 <code>ggplot</code>을 비롯하여 Base 그래픽, <code>lattice</code>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-05.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

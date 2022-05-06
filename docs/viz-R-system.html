@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>2 . R 시각화 시스템 2 | 데이터 시각화</title>
+<meta name="author" content="한국 R 사용자회">
+<meta name="description" content="R에는 다양한 시각화 관련 시스템이 존재하지만, 가장 대표적으로 3가지 시각화 시스템을 이해하면 실무적으로 충분하다. Base 시각화 시스템 lattice 시각화 시스템: Cleveland의 Trellis Graphics에서 출발 ggplot 시각화 시스템: Wilkinson의 Grammar of Graphics에서 출발 2017년 3월 기준 R...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="2 . R 시각화 시스템 2 | 데이터 시각화">
+<meta property="og:type" content="book">
+<meta property="og:description" content="R에는 다양한 시각화 관련 시스템이 존재하지만, 가장 대표적으로 3가지 시각화 시스템을 이해하면 실무적으로 충분하다. Base 시각화 시스템 lattice 시각화 시스템: Cleveland의 Trellis Graphics에서 출발 ggplot 시각화 시스템: Wilkinson의 Grammar of Graphics에서 출발 2017년 3월 기준 R...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 . R 시각화 시스템 2 | 데이터 시각화">
+<meta name="twitter:description" content="R에는 다양한 시각화 관련 시스템이 존재하지만, 가장 대표적으로 3가지 시각화 시스템을 이해하면 실무적으로 충분하다. Base 시각화 시스템 lattice 시각화 시스템: Cleveland의 Trellis Graphics에서 출발 ggplot 시각화 시스템: Wilkinson의 Grammar of Graphics에서 출발 2017년 3월 기준 R...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 시각화</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">데이터 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="active" href="viz-R-system.html"><span class="header-section-number">2</span> R 시각화 시스템 2</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="viz-R-system" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2 . </span> R 시각화 시스템 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.coursera.org/learn/exploratory-data-analysis/lecture/MTRt4/plotting-systems-in-r"&gt;코세라 Lecture 10 - Plotting Systems in R&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a><a class="anchor" aria-label="anchor" href="#viz-R-system"><i class="fas fa-link"></i></a>
+</h1>
+<p>R에는 다양한 시각화 관련 시스템이 존재하지만, 가장 대표적으로 3가지 시각화 시스템을 이해하면 실무적으로 충분하다.</p>
+<ul>
+<li>Base 시각화 시스템</li>
+<li>
+<code>lattice</code> 시각화 시스템: Cleveland의 <strong>Trellis Graphics</strong>에서 출발</li>
+<li>
+<code>ggplot</code> 시각화 시스템: Wilkinson의 <strong>Grammar of Graphics</strong>에서 출발</li>
+</ul>
+<p>2017년 3월 기준 R 팩키지를 시각화 시스템으로 구분하면 다음과 같다.</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center">시각화 시스템</th>
+<th align="center">팩키지 갯수</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Base 시각화</td>
+<td align="center">5,612</td>
+</tr>
+<tr class="even">
+<td align="center">
+<code>lattice</code> 시각화</td>
+<td align="center">3,654</td>
+</tr>
+<tr class="odd">
+<td align="center">
+<code>ggplot</code> 시각화</td>
+<td align="center">1,566</td>
+</tr>
+</tbody>
+</table></div>
+<div id="viz-base" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Base 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-base"><i class="fas fa-link"></i></a>
+</h2>
+<p>R설치하면 내장된 Base 시각화 시스템은 <strong>화가의 팔레트(Artist Palallete)</strong> 모형으로 빈 도화지 캔바스 위에 화가가 그림을 그리는 것과 동일한 방식으로 시각화 산출물을 만들어 나간다.
+<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 혹은 유사한 시각화 함수로 시작해서 텍스트(<code>text</code>), 선(<code>line</code>), 점(<code>point</code>), 축(<code>axis</code>) 등을 표현하는데 <strong>주석(Annotation)</strong> 함수를 활용한다.</p>
+<p>따라서, 사람이 사고하는 방식으로 시각화 산출물을 만들어 나가 편리하지만, 시각화 산출물을 다시 그리려고 하면 처음부터 다시 해야 되기 때문에 시각화 산출물을
+만드는 초기부터 시간을 갖고 잘 설계해 나가야 된다. 그리고, 시각화 산출물이 생성되면 다른 것으로 변환하기 어려운 단점이 있고, 그래픽 언어가 아니라 일련의 R 명령어
+묶음에 불가하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-base-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-lattice" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> <code>lattice</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-lattice"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>lattice</code> 시각화 시스템은 <code>lattice</code> 팩키지를 통해 설치되고, 함수 호출(<code>xyplot()</code>, <code>bwplot()</code> 등)을 통해 시각화 산출물을 생성하게 된다.
+조건에 따라 일변량 혹은 다변량 변수를 시각화하는데 유용하다. 즉, 특정 범주형 변수 수준에 따라 두 변수간의 관계를 시각적으로 표현하는 것을 예로 들 수 있다.
+전체 시각화 산출물 결과는 여백(margin), 공간 등은 자동으로 한번에 정해져서, 화면에 다수 시각화 산출물을 배치할 때 유용하다.</p>
+<p>하지만, 함수호출 한번으로 전체 시각화 산출물을 명세하는 것이 쉽지는 않다. 특히 주석(Annotation)을 시각화 산출물에 다는 것이 그다지 직관적이는 않다.
+그리고 <code>lattice</code> 함수를 통해 시각화 산출물이 만들어지면 더이상 추가는 불가하다.</p>
+<p><a href="https://statkclee.github.io/statistics/stat-modeling.html">키보드 자판으로 통계모형을 R로 표현하는 방법</a>처럼 변수들을 <code>lattice</code> 시각화 시스템에서
+공식으로 표현할 수 있다는 점은 큰 장점중 하나다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-lattice-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-ggplot" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> <code>ggplot</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-ggplot"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>ggplot</code> 시각화 시스템은 <code>ggplot2</code> 팩키지를 통해 설치가 가능하다. Base 시각화 시스템과 <code>lattice</code> 시각화 시스템의 장점을 취사선택해서 개발된 것으로 보는 견해도 있다.
+그래픽 문법(Grammer of Graphic)에 기반하고 있으며, <code>lattice</code> 시각화 시스템처럼 공백, 텍스트, 제목 등을 자동으로 설정하고,
+Base 시각화 시스템에서 지원하는 다양한 그래픽 요소를 추가하는 것도 가능하다. 전반적으로 <code>lattice</code>느낌이 나지만 사용하기는 직관적이며 다양한 그래픽 요소를
+추가하는 것도 쉽다. 물론 <code>ggplot</code>에서 자동으로 설정하는 것도 원하는 설정으로 바꾸는 것도 가능하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-ggplot-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="viz-grid" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> <code>grid</code> 시각화 시스템<a class="anchor" aria-label="anchor" href="#viz-grid"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>grid</code> 시각화 시스템은 <code>lattice</code>와 <code>ggplot</code>의 기반이 되는 시각화 시스템으로 R 버전 1.8.0 부터 Base 팩키지의 일부가 되었다.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/29349398/r-package-grid-disappeared"&gt;R package grid disappeared?&lt;/a&gt;&lt;/p&gt;'><sup>3</sup></a>
+grid_0.7-4에서 <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/doc/changes.txt">Base 팩키지 일부</a>가 되어 버젼이 Base 팩키지에 맞춰 버젼이 급상승했다.</p>
+<p><code>grid</code> 시각화 시스템을 사용해서 위와 동일하게 상기 그래프를 그리면 다음과 같다.
+<code>grid</code> 시스템을 숙달하기까지 시간이 걸리지만, 익숙해지면 장점이 상당하다.</p>
+<div class="inline-figure"><img src="viz-motivation_files/figure-html/viz-grid-1.png" width="576" style="display: block; margin: auto;"></div>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-anscombe1973graphs" class="csl-entry">
+Anscombe, Francis J. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>The American Statistician</em> 27 (1): 17–21.
+</div>
+<div id="ref-munzner2014visualization" class="csl-entry">
+Munzner, Tamara. 2014. <em>Visualization Analysis and Design</em>. CRC press.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#viz-R-system"><span class="header-section-number">2</span> R 시각화 시스템 2</a></li>
+<li><a class="nav-link" href="#viz-base"><span class="header-section-number">2.1</span> Base 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-lattice"><span class="header-section-number">2.2</span> lattice 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-ggplot"><span class="header-section-number">2.3</span> ggplot 시각화 시스템</a></li>
+<li><a class="nav-link" href="#viz-grid"><span class="header-section-number">2.4</span> grid 시각화 시스템</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

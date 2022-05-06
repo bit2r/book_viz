@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>10 . ggplot 시각화 | 데이터 시각화</title>
+<title>11 . ggplot 시각화 | 데이터 시각화</title>
 <meta name="author" content="한국 R 사용자회">
 <meta name="description" content="학계 논문, 산업계 발표장표, 산학연구기관에서 발간하는 보고서에 즉시 사용할 수 있는 시각화 그래프를 어떻게 제작할 것인가? 이 문제에 가장 기본이 되는 것은 추적가능하고 재현가능한 시각화 그래프를 제작하여 체계적으로 관리하는 것이다. 특히, 그래프가 데이터에 근거하여 제작되는 그래프는 더욱 그렇다. 소프트웨어 카펜트리 “재현가능한 과학적 분석을...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="10 . ggplot 시각화 | 데이터 시각화">
+<meta property="og:title" content="11 . ggplot 시각화 | 데이터 시각화">
 <meta property="og:type" content="book">
 <meta property="og:description" content="학계 논문, 산업계 발표장표, 산학연구기관에서 발간하는 보고서에 즉시 사용할 수 있는 시각화 그래프를 어떻게 제작할 것인가? 이 문제에 가장 기본이 되는 것은 추적가능하고 재현가능한 시각화 그래프를 제작하여 체계적으로 관리하는 것이다. 특히, 그래프가 데이터에 근거하여 제작되는 그래프는 더욱 그렇다. 소프트웨어 카펜트리 “재현가능한 과학적 분석을...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="10 . ggplot 시각화 | 데이터 시각화">
+<meta name="twitter:title" content="11 . ggplot 시각화 | 데이터 시각화">
 <meta name="twitter:description" content="학계 논문, 산업계 발표장표, 산학연구기관에서 발간하는 보고서에 즉시 사용할 수 있는 시각화 그래프를 어떻게 제작할 것인가? 이 문제에 가장 기본이 되는 것은 추적가능하고 재현가능한 시각화 그래프를 제작하여 체계적으로 관리하는 것이다. 특히, 그래프가 데이터에 근거하여 제작되는 그래프는 더욱 그렇다. 소프트웨어 카펜트리 “재현가능한 과학적 분석을...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -66,24 +66,25 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="hello-world.html"><span class="header-section-number">1</span> 헬로우 월드</a></li>
-<li><a class="" href="happy-viz.html"><span class="header-section-number">2</span> 행복한 시각화</a></li>
+<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
+<li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
-<li><a class="" href="viz-font.html"><span class="header-section-number">3</span> 글꼴</a></li>
-<li><a class="" href="viz-color.html"><span class="header-section-number">4</span> 색상</a></li>
-<li><a class="" href="ggplot-component.html"><span class="header-section-number">5</span> 구성요소</a></li>
+<li><a class="" href="viz-font.html"><span class="header-section-number">4</span> 글꼴</a></li>
+<li><a class="" href="viz-color.html"><span class="header-section-number">5</span> 색상</a></li>
+<li><a class="" href="ggplot-component.html"><span class="header-section-number">6</span> 구성요소</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EC%A0%84%EC%9A%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0.html">시각화 전용 데이터</a></li>
-<li><a class="" href="tidy-data.html"><span class="header-section-number">6</span> 깔끔한 데이터 개념</a></li>
-<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">7</span> 준비된 데이터</a></li>
-<li><a class="" href="tidy-data-how.html"><span class="header-section-number">8</span> 깔끔화 방법</a></li>
+<li><a class="" href="tidy-data.html"><span class="header-section-number">7</span> 깔끔한 데이터 개념</a></li>
+<li><a class="" href="ggplot-datasets.html"><span class="header-section-number">8</span> 준비된 데이터</a></li>
+<li><a class="" href="tidy-data-how.html"><span class="header-section-number">9</span> 깔끔화 방법</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94.html">시각화</a></li>
-<li><a class="" href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></li>
-<li><a class="active" href="ggplot-visualization.html"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></li>
+<li><a class="" href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></li>
+<li><a class="active" href="ggplot-visualization.html"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="" href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></li>
 <li><a class="" href="%EC%82%AC%EB%A1%80.html">사례</a></li>
-<li><a class="" href="case-journalism.html"><span class="header-section-number">12</span> 데이터 저널리즘</a></li>
-<li><a class="" href="case-worldcup.html"><span class="header-section-number">13</span> 러시아 월드컵</a></li>
-<li><a class="" href="case-corona.html"><span class="header-section-number">14</span> 코로나19</a></li>
+<li><a class="" href="case-journalism.html"><span class="header-section-number">13</span> 데이터 저널리즘</a></li>
+<li><a class="" href="case-worldcup.html"><span class="header-section-number">14</span> 러시아 월드컵</a></li>
+<li><a class="" href="case-corona.html"><span class="header-section-number">15</span> 코로나19</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -92,9 +93,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-visualization" class="section level1" number="10">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ggplot-visualization" class="section level1" number="11">
 <h1>
-<span class="header-section-number">10 . </span> <code>ggplot</code> 시각화<a class="anchor" aria-label="anchor" href="#ggplot-visualization"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11 . </span> <code>ggplot</code> 시각화<a class="anchor" aria-label="anchor" href="#ggplot-visualization"><i class="fas fa-link"></i></a>
 </h1>
 <p>학계 논문, 산업계 발표장표, 산학연구기관에서 발간하는 보고서에
 즉시 사용할 수 있는 시각화 그래프를 어떻게 제작할 것인가?
@@ -151,9 +152,9 @@
 즉, 1인당 국민소득(<code>gdpPercap</code>)과 기대수명(<code>lifeExp</code>) 사이 관계를 파악하고자 산점도를
 그리는 것이다.</p>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter2-1.png" width="576" style="display: block; margin: auto;"></div>
-<div id="ggplot-visualization-step-02" class="section level2" number="10.1">
+<div id="ggplot-visualization-step-02" class="section level2" number="11.1">
 <h2>
-<span class="header-section-number">10.1</span> 한걸음 더 들어가 보자<a class="anchor" aria-label="anchor" href="#ggplot-visualization-step-02"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.1</span> 한걸음 더 들어가 보자<a class="anchor" aria-label="anchor" href="#ggplot-visualization-step-02"><i class="fas fa-link"></i></a>
 </h2>
 <p>기본적인 개념 이해를 바탕으로 그래프 문법에 따라 <code>ggplot</code> 그래프를 제작했다.
 상기예제를 변경해서, 기대수명이 시간에 따라 어떻게 변해왔는지 시각화하는 그림을 생성해보자.
@@ -170,9 +171,9 @@
 간극은 좁혀지고 있지 않다.</p>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-year-lifexp-point-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="계층layers" class="section level2" number="10.2">
+<div id="계층layers" class="section level2" number="11.2">
 <h2>
-<span class="header-section-number">10.2</span> 계층(Layers)<a class="anchor" aria-label="anchor" href="#%EA%B3%84%EC%B8%B5layers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.2</span> 계층(Layers)<a class="anchor" aria-label="anchor" href="#%EA%B3%84%EC%B8%B5layers"><i class="fas fa-link"></i></a>
 </h2>
 <p>산점도가 아마도 시간에 따라 변하는 정보를 시각화하는데 최선은 아니다.
 시간에 따른 시계열 변화에는 <strong>선그래프(line plot)</strong>가 적절하다.
@@ -201,9 +202,9 @@
 시각화 결과물을 제작할 수 있게 된다.</p>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch3-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="변환transformations과-통계량statistics" class="section level2" number="10.3">
+<div id="변환transformations과-통계량statistics" class="section level2" number="11.3">
 <h2>
-<span class="header-section-number">10.3</span> 변환(Transformations)과 통계량(statistics)<a class="anchor" aria-label="anchor" href="#%EB%B3%80%ED%99%98transformations%EA%B3%BC-%ED%86%B5%EA%B3%84%EB%9F%89statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3</span> 변환(Transformations)과 통계량(statistics)<a class="anchor" aria-label="anchor" href="#%EB%B3%80%ED%99%98transformations%EA%B3%BC-%ED%86%B5%EA%B3%84%EB%9F%89statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>ggplot</code>으로 데이터 위에 통계적 모형을 쉽게 겹치게도 할 수 있다.
 믿을 수 없다면 앞서 제작한 시각화 예제로 예제로 되돌아간다:</p>
@@ -243,9 +244,9 @@
 인자로 넘긴다.</p>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch4b-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="다중-창multi-panel-그림" class="section level2" number="10.4">
+<div id="다중-창multi-panel-그림" class="section level2" number="11.4">
 <h2>
-<span class="header-section-number">10.4</span> 다중-창(Multi-Panel) 그림<a class="anchor" aria-label="anchor" href="#%EB%8B%A4%EC%A4%91-%EC%B0%BDmulti-panel-%EA%B7%B8%EB%A6%BC"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.4</span> 다중-창(Multi-Panel) 그림<a class="anchor" aria-label="anchor" href="#%EB%8B%A4%EC%A4%91-%EC%B0%BDmulti-panel-%EA%B7%B8%EB%A6%BC"><i class="fas fa-link"></i></a>
 </h2>
 <p>앞에서 그래프 하나에 모든 대륙 국가에 대해 시간의 변화에 따른 기대수명 변화를 시각화했다.
 대안으로, <strong>패싯(facet)</strong> 창 계층을 추가해서, 그래프를 여러개 창으로 쪼갤 수도 있다:
@@ -262,9 +263,9 @@
 <p><code>facet_wrap</code> 계층은 “공식(formula)”을 인자로 받는데, (<code>~</code>) 틸드로 표기한다.
 <code>gapminder</code> 데이터셋 국가별 칼럼의 유일한 값 각각에 대해 별도 창을 통해 도식화한다.</p>
 </div>
-<div id="change-text" class="section level2" number="10.5">
+<div id="change-text" class="section level2" number="11.5">
 <h2>
-<span class="header-section-number">10.5</span> 텍스트 변경하기<a class="anchor" aria-label="anchor" href="#change-text"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5</span> 텍스트 변경하기<a class="anchor" aria-label="anchor" href="#change-text"><i class="fas fa-link"></i></a>
 </h2>
 <p>고품질 출판에 적합하게 그래프를 깔끔하게 만들려면, 텍스트 요소를 변경할 필요가 있다.
 x-축이 중복되어 난잡하게 보일 수 있고,
@@ -278,9 +279,9 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 채우기(<code>fill</code>) 범례는 <code>fill = "대륙"</code>으로 설정하게 된다.</p>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="ggplot-export" class="section level2" number="10.6">
+<div id="ggplot-export" class="section level2" number="11.6">
 <h2>
-<span class="header-section-number">10.6</span> 그래프 내보내기<a class="anchor" aria-label="anchor" href="#ggplot-export"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.6</span> 그래프 내보내기<a class="anchor" aria-label="anchor" href="#ggplot-export"><i class="fas fa-link"></i></a>
 </h2>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> 함수를 사용해서 <code>ggplot</code>으로 생성시킨 그래프를 내보내서 로컬 컴퓨터에 저장할 수 있다.
 고품질 그래픽 산출물을 생성하기 위해서
@@ -311,18 +312,18 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="ggplot.html"><span class="header-section-number">9</span> 그래프 문법</a></div>
-<div class="next"><a href="ggplot-pattern.html"><span class="header-section-number">11</span> 시각화 패턴</a></div>
+<div class="prev"><a href="ggplot.html"><span class="header-section-number">10</span> 그래프 문법</a></div>
+<div class="next"><a href="ggplot-pattern.html"><span class="header-section-number">12</span> 시각화 패턴</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#ggplot-visualization"><span class="header-section-number">10</span> ggplot 시각화</a></li>
-<li><a class="nav-link" href="#ggplot-visualization-step-02"><span class="header-section-number">10.1</span> 한걸음 더 들어가 보자</a></li>
-<li><a class="nav-link" href="#%EA%B3%84%EC%B8%B5layers"><span class="header-section-number">10.2</span> 계층(Layers)</a></li>
-<li><a class="nav-link" href="#%EB%B3%80%ED%99%98transformations%EA%B3%BC-%ED%86%B5%EA%B3%84%EB%9F%89statistics"><span class="header-section-number">10.3</span> 변환(Transformations)과 통계량(statistics)</a></li>
-<li><a class="nav-link" href="#%EB%8B%A4%EC%A4%91-%EC%B0%BDmulti-panel-%EA%B7%B8%EB%A6%BC"><span class="header-section-number">10.4</span> 다중-창(Multi-Panel) 그림</a></li>
-<li><a class="nav-link" href="#change-text"><span class="header-section-number">10.5</span> 텍스트 변경하기</a></li>
-<li><a class="nav-link" href="#ggplot-export"><span class="header-section-number">10.6</span> 그래프 내보내기</a></li>
+<li><a class="nav-link" href="#ggplot-visualization"><span class="header-section-number">11</span> ggplot 시각화</a></li>
+<li><a class="nav-link" href="#ggplot-visualization-step-02"><span class="header-section-number">11.1</span> 한걸음 더 들어가 보자</a></li>
+<li><a class="nav-link" href="#%EA%B3%84%EC%B8%B5layers"><span class="header-section-number">11.2</span> 계층(Layers)</a></li>
+<li><a class="nav-link" href="#%EB%B3%80%ED%99%98transformations%EA%B3%BC-%ED%86%B5%EA%B3%84%EB%9F%89statistics"><span class="header-section-number">11.3</span> 변환(Transformations)과 통계량(statistics)</a></li>
+<li><a class="nav-link" href="#%EB%8B%A4%EC%A4%91-%EC%B0%BDmulti-panel-%EA%B7%B8%EB%A6%BC"><span class="header-section-number">11.4</span> 다중-창(Multi-Panel) 그림</a></li>
+<li><a class="nav-link" href="#change-text"><span class="header-section-number">11.5</span> 텍스트 변경하기</a></li>
+<li><a class="nav-link" href="#ggplot-export"><span class="header-section-number">11.6</span> 그래프 내보내기</a></li>
 </ul>
 
       <div class="book-extra">
@@ -339,7 +340,7 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-05.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
