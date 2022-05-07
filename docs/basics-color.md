@@ -28,6 +28,11 @@ ColorBrewer 색상체계를 R에서 시각화를 할 때 사용될 수 있게 �
 RColorBrewer Dark2 팔레트를 통해 실제로 구현된 색상체계를 살펴보자.
 
 
+```r
+library(RColorBrewer)
+brewer.pal(n = 8, name = "Dark2")
+```
+
 ```
 ## [1] "#1B9E77" "#D95F02" "#7570B3" "#E7298A" "#66A61E" "#E6AB02" "#A6761D"
 ## [8] "#666666"
@@ -309,6 +314,11 @@ RGB 생상과 CMYK 생상을 PDF 파일로 찍어 상호 비교해보자. [^rgb-
 
 명칭을 명세해서 RColorBrewer 팔렛트 하나만 볼 수 있다.
 
+
+```r
+display.brewer.pal(n = 8, name = 'Dark2')
+```
+
 <img src="basics-color_files/figure-html/dataviz-brewer-palette-1.png" width="576" style="display: block; margin: auto;" />
 
 
@@ -338,6 +348,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 2색시자에 대한 효과적인 색상조합을 선택하는데 도움이 된다.
 
 
+```r
+library(dichromat) # install.packages("dichromat")
+```
 
 `colorschems` 목록에는 17 가지 색상조합이 담겨있는데, 적색과 녹색을 구별하는 능력이 없거나 예외적인 시력을 갖는 2색시자에게 적합하다.
 

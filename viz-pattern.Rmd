@@ -5,6 +5,9 @@ library(tidyverse)
 library(patchwork)
 library(lubridate)
 extrafont::loadfonts()
+
+knitr::opts_chunk$set(
+  echo = TRUE)
 ```
 
 

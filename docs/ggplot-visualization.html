@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="viz-motivations.html"><span class="header-section-number">1</span> 시각화</a></li>
 <li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
 <li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
@@ -123,6 +123,13 @@
 그래프 제작 방식을 명시적으로 표현하면 자동으로 고품질 그래프를 기계가 제작한다는
 점에서 차이가 난다.</p>
 <p>예제를 가지고 앞서 잡은 개념을 적용해보자.</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>데이터를 시각화하는 것이 목표이기 때문에 입력은 무조건 데이터가 되고
 데이터도 데이터프레임으로 준비하여 <code>ggplot</code>으로 보낸다.
@@ -144,6 +151,9 @@
 이를 통해 중복되는 코딩을 줄여 가독성도 높여 향후 유지보수와 재현가능하게 추적성도 높이는 효과가 있다.</p>
 <p>데이터프레임을 입력 데이터로 <code>ggplot</code>함수로 보내고 데이터프레임 변수와 시각적 매핑(aes)을 한다고
 도식화가 바로 되는 것은 아니다:</p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-visualization-step-1.png" width="576" style="display: block; margin: auto;"></div>
 <p><code>ggplot</code> 함수에 데이터를 시각적으로 표현하는 방법도 전달할 필요가 있다.
 <strong>geom</strong> 계층을 추가해서 해당 작업이 수행된다.
@@ -151,6 +161,10 @@
 <strong>x</strong>와 <strong>y</strong> 사이 관계를 시각적으로 산점도 형태로 표현하도록 <code>ggplot</code>에게 전달한다.
 즉, 1인당 국민소득(<code>gdpPercap</code>)과 기대수명(<code>lifeExp</code>) 사이 관계를 파악하고자 산점도를
 그리는 것이다.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter2-1.png" width="576" style="display: block; margin: auto;"></div>
 <div id="ggplot-visualization-step-02" class="section level2" number="11.1">
 <h2>
@@ -161,6 +175,10 @@
 <code>gapminder</code> 데이터프레임에서 1인당 국민소득(<code>gdpPercap</code>)과 기대수명(<code>lifeExp</code>) 변수를 이전 그래프 제작에
 사용했다면 시간에 따른 기대수명 변화를 파악하기 위해 먼저 <code>gapminder</code> 데이터프레임의
 <code>year</code> 변수에 주목하고 <strong>x</strong>-축에 반영하면 해당 문제를 풀 수 있다.</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-year-lifexp-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>이전 그래프에서 <code>aes</code> 함수를 사용해서 <strong>geom</strong> 산점도로 <strong>x</strong> 와 <strong>y</strong> 지점을
 각 점에 대해 표현했다. 변경할 수 있는 또다른 <em>시각적 매핑(aes)</em> 속성은 각 점에 대한 <em>색깔</em>이다.
@@ -169,6 +187,10 @@
 직접 눈으로 확인하여 기존에 갖고 있던 고정관념과 데이터를 통해 실증할 수도 있다.
 즉, 기대수명은 모든 대륙에서 국가별로 높아지고 있으나 아프리카 국가와 유럽국가들 사이
 간극은 좁혀지고 있지 않다.</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-year-lifexp-point-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 <div id="계층layers" class="section level2" number="11.2">
@@ -178,15 +200,29 @@
 <p>산점도가 아마도 시간에 따라 변하는 정보를 시각화하는데 최선은 아니다.
 시간에 따른 시계열 변화에는 <strong>선그래프(line plot)</strong>가 적절하다.
 <code>ggplot</code>에 점그래프 대신 선그래프(line plot)로 데이터를 시각화한다.</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">lifeExp</span>, by<span class="op">=</span><span class="va">country</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-line-1.png" width="576" style="display: block; margin: auto;"></div>
 <p><code>geom_point</code> 계층을 추가하는 대신에, <code>geom_line</code> 계층을 추가했다.
 <em>aes</em>로 <strong>group</strong>(혹은 <strong>by</strong>)를 추가하면 자동으로 <code>ggplot</code>이 각 국가를 직선으로 연결해서 도식화한다.</p>
 <p>하지만, 직선과 점을 함께 시각화하려고 하면 어떨까?
 단순히, 또다른 계층을 그림에 추가하면 된다:</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">lifeExp</span>, group<span class="op">=</span><span class="va">country</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-line-point-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>각 계층은 이전 계층 위에 도식화됨에 주목한다.
 이번 예제에서, 점이 직선 <em>위에</em> 도식화되었다.
 다음에 도식화한 산출물에서 결과를 확인할 수 있다.</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">lifeExp</span>, by<span class="op">=</span><span class="va">country</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-layer-example-1-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>시각적 매핑(<code>aes</code>)에서 <code>color=continent</code>가 전역이 아니라 <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> 내 로컬로
 이동한 것에도 주목한다. <em>aesthetic</em>인 <strong>색상</strong> 매핑이 <code>ggplot</code>에 전역으로 설정된 점 선택옵션에서
@@ -200,6 +236,11 @@
 <p>앞선 예제에서 점과 직선 계층 코딩 순서를 뒤바꾼다. 어떻게 될까요?
 선이 점 위에 올라온다! 이런 특성을 인지하고 염두에 두면 추후 좀더 미련한
 시각화 결과물을 제작할 수 있게 된다.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">lifeExp</span>, by<span class="op">=</span><span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch3-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 <div id="변환transformations과-통계량statistics" class="section level2" number="11.3">
@@ -208,12 +249,21 @@
 </h2>
 <p><code>ggplot</code>으로 데이터 위에 통계적 모형을 쉽게 겹치게도 할 수 있다.
 믿을 수 없다면 앞서 제작한 시각화 예제로 예제로 되돌아간다:</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter3-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>현재, 일인당 GDP에 일부 심각한 이상점이 있어 점(국가) 사이 내재된 관계를 보기 힘들다.
 <em>scale</em> 척도함수를 사용해서 y-축 척도를 변경한다.
 이것을 통해 데이터 값과 <em>aesthetic</em> 시각값 사이 매핑을 제어한다.
 <em>alpha</em> 함수를 통해 투명도도 조정할 수 있다.
 군집으로 많은 데이터가 모아진 경우 특히 투명도 조절을 유용하다.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/axis-scale-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>그래프에 렌더링하기 전에 <code>log10</code> 함수가 <code>gdpPercap</code> 칼럼값에 변환을 시켰다.
 그래서, 각 자리수 10은 변환된 척도에 1씩 증가에 대응된다.
@@ -228,8 +278,17 @@
 예를 들어, 각 대륙별로 다른 투명도를 적용시키고자 하면, <code>geom_point(aes(alpha = continent))</code> 코딩하는 것도 가능하다.</p>
 </blockquote>
 <p>또다른 계층(<code>geom_smooth</code>)을 추가해서 관계를 단순히 적합시킬 수 있다:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">gapminder</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lm-fit-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>굵은 선은 <code>geom_smooth</code> 계층에 <em>aesthetic</em> <strong>크기</strong>를 설정해서 조정할 수 있다:</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, size<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/lm-fit2-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>시각적 매핑(aes) 항목을 명세할 수 있는 방식이 두개 있다.
 바로 앞에서 <code>geom_smooth</code> 함수에 인자로 전달해서 <strong>크기</strong>에 대한 시각적 매핑 설정을 했다.
@@ -237,11 +296,23 @@
 <p>바로 앞 예제에서 점 계층에 나온 점 크기와 색상을 변경해보자.
 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> 함수를 사용하지 않고 특정 색상 예를 들어 오렌지(orange) 색상으로
 변경시키고 함께 크기도 달리한다.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, color<span class="op">=</span><span class="st">"orange"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, size<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch4a-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>한걸음 더 나아가 점(국가)들이 다른 형태(shape)를 갖고
 대륙별로 색상을 달리하는데 대륙별로 추세선을 반영한다.
 이 경우는 색상 인자를 시각적 매핑 함수 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> 내부로 위치를 조정하여
 인자로 넘긴다.</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color <span class="op">=</span> <span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span>, shape<span class="op">=</span><span class="fl">17</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, size<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch4b-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 <div id="다중-창multi-panel-그림" class="section level2" number="11.4">
@@ -259,6 +330,15 @@
 <p>여기서 <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> 함수는 문자를 전문으로 다루는 <code>stringr</code> 패키지의 함수로
 문자열의 일부를 추출하는데 사용했다. 물론 다른 함수나 코드를 통해 해당 문제를
 풀수도 있다. 주어진 문제를 풀 수 있는 가장 직관적이고 간결한 코드 작성을 추천한다.</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## A,Z 문자 시작 국가명 추출</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>AZ_country <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">country</span>, start <span class="op">=</span> <span class="fl">1L</span>, end <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AZ_country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## A,Z 문자 시작국가 작은 창 시각화</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">country</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-facet-1.png" width="576" style="display: block; margin: auto;"></div>
 <p><code>facet_wrap</code> 계층은 “공식(formula)”을 인자로 받는데, (<code>~</code>) 틸드로 표기한다.
 <code>gapminder</code> 데이터셋 국가별 칼럼의 유일한 값 각각에 대해 별도 창을 통해 도식화한다.</p>
@@ -277,6 +357,23 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 범례 제목은 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> 함수에서 명세한 것과 동일한 명칭을 사용한다.
 따라서, 색상 범례 제목은 <code>color = "대륙"</code>이 되는 반면에,
 채우기(<code>fill</code>) 범례는 <code>fill = "대륙"</code>으로 설정하게 된다.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## A,Z 문자 시작 국가명 추출</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>AZ_country <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">country</span>, start <span class="op">=</span> <span class="fl">1L</span>, end <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AZ_country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## A,Z 문자 시작국가 작은 창 시각화</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">country</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+      x <span class="op">=</span> <span class="st">"Year"</span>,              <span class="co"># x 축 제목</span>
+      y <span class="op">=</span> <span class="st">"Life expectancy"</span>,   <span class="co"># y 축 제목</span>
+      title <span class="op">=</span> <span class="st">"국가명 A, Z 시작국가 연도별 기대수명 비교"</span>,   <span class="co"># 그래프 제목</span>
+      color <span class="op">=</span> <span class="st">"대륙"</span>      <span class="co"># 범례 제목</span>
+    <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, 
+          axis.ticks.x<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 <div id="ggplot-export" class="section level2" number="11.6">
@@ -289,6 +386,26 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 앞서 생성한 그래프를 저장하려면, 먼저 적절한 변수명 예를 들어, <code>lifeExp_plot</code> 변수에 그래프를 할당하고 나서,
 <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> 함수에 <code>png</code> 형식으로 <code>results</code> 디렉토리에 저장하도록 지정한다.
 (현 작업디렉토리에 <code>results/</code> 폴더가 생성되어 있어야 한다.)</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">az_gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co">## A,Z 문자 시작 국가명 추출</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>AZ_country <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">country</span>, start <span class="op">=</span> <span class="fl">1L</span>, end <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AZ_country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"Z"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">lifeExp_plot</span> <span class="op">&lt;-</span> <span class="va">az_gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">lifeExp</span>, color<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">country</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+      x <span class="op">=</span> <span class="st">"Year"</span>,              <span class="co"># x 축 제목</span>
+      y <span class="op">=</span> <span class="st">"Life expectancy"</span>,   <span class="co"># y 축 제목</span>
+      title <span class="op">=</span> <span class="st">"국가명 A, Z 시작국가 연도별 기대수명 비교"</span>,   <span class="co"># 그래프 제목</span>
+      color <span class="op">=</span> <span class="st">"대륙"</span>      <span class="co"># 범례 제목</span>
+    <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, 
+          axis.ticks.x<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"results/lifeExp.png"</span>, plot <span class="op">=</span> <span class="va">lifeExp_plot</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">10</span>, dpi <span class="op">=</span> <span class="fl">300</span>, units <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span></code></pre></div>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> 함수에 두가지 멋진 점이 있다.
 첫째는 기본설정값으로 가장 마지막 그래프가 지정되어 있어서,
 <code>plot =</code> 인자를 생략하게 되면, 자동으로 <code>ggplot</code>으로 생성한 마지막 그래프가 저장된다.
@@ -307,6 +424,18 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 1인단 국민소득 숫자도 과학표기법이 아닌 일반 숫자 표기법을 반영하여 가독성을 높였다.
 이외 독자가 더 쉽게 정보를 파악할 수 있도록 필요한 경우 전문분야 지식을 반영하여
 미려한 그래프 제작도 가능하다.</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co">## 호주/뉴질랜드 제외</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, fill<span class="op">=</span><span class="va">continent</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha<span class="op">=</span><span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">year</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span> labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span> x <span class="op">=</span> <span class="st">"1인당 국민소득"</span>,
+          y <span class="op">=</span> <span class="st">"분포 밀도"</span>,
+          title <span class="op">=</span> <span class="st">"대륙별로 1인당 GPD 분표 비교"</span>,
+          fill  <span class="op">=</span> <span class="st">"대륙: "</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="viz-ggplot_files/figure-html/ch5-sol-1.png" width="576" style="display: block; margin: auto;"></div>
 
 </div>
@@ -340,7 +469,7 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 “Life expectancy”,
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

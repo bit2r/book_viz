@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="viz-motivations.html"><span class="header-section-number">1</span> 시각화</a></li>
 <li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
 <li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
@@ -158,11 +158,21 @@
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </style>
 <div class="blue">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dataframe</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    <span class="va">cols</span>,
+    <span class="va">...</span>
+  <span class="op">)</span></code></pre></div>
 <p><code>cols</code>: <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> 구문과 동일하게 작성함.</p>
 </div>
 <div class="row">
 <div class="col-md-6">
 <p><strong>데카르트 평면 넓은 데이터</strong></p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+
+<span class="va">relig_income</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="va">head</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   religion  `&lt;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
 ##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -177,6 +187,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-6">
 <p><strong>인덱스 긴 형식 데이터</strong></p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">relig_income</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">religion</span>, names_to<span class="op">=</span><span class="st">"소득"</span>, values_to <span class="op">=</span> <span class="st">"사람수"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 180 × 3
 ##   religion 소득    사람수
 ##   &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;
@@ -195,6 +208,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <span class="header-section-number">9.2.2</span> 접두사(prefix) 제거: <code>pivot_longer()</code><a class="anchor" aria-label="anchor" href="#pivot-longer-example-prefix"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>names_prefix</code>를 사용해서 <code>$</code>, <code>&lt;$</code>, <code>&gt;</code> 붙은 값을 제거시킬 수 있다.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">relig_income</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">religion</span>, names_to<span class="op">=</span><span class="st">"소득"</span>, 
+               values_to <span class="op">=</span> <span class="st">"명수"</span>,
+               names_prefix <span class="op">=</span> <span class="st">"\\$|&lt;\\$|&gt;"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 180 × 3
 ##   religion 소득    명수
 ##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
@@ -214,6 +232,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class="col-md-6">
 <p><strong>빌보드 원본 데이터: 자료변환 전</strong></p>
 <p>일단 주간 순위는 어찌해서 만들었지만, 주간 칼럼에 <code>wk</code>가 들어 있어 이를 <code>names_prefix</code>를 통해 날려버리고 나도 숫자로 되어 있는 문자를 다시 숫자형으로 칼럼 자료형을 바꿔야 한다.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">billboard</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"wk"</span><span class="op">)</span>, 
+    names_to <span class="op">=</span> <span class="st">"주간"</span>, 
+    values_to <span class="op">=</span> <span class="st">"순위"</span>,
+    values_drop_na <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5,307 × 5
 ##   artist track                   date.entered 주간   순위
 ##   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
@@ -227,6 +253,16 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-6">
 <p><strong>빌보드 원본 데이터: 자료변환 후</strong></p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">billboard</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"wk"</span><span class="op">)</span>, 
+    names_to <span class="op">=</span> <span class="st">"주간"</span>, 
+    values_to <span class="op">=</span> <span class="st">"순위"</span>,
+    names_prefix <span class="op">=</span> <span class="st">"wk"</span>,
+    names_ptypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>`주간` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
+    values_drop_na <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5,307 × 5
 ##   artist track                   date.entered 주간   순위
 ##   &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
@@ -257,6 +293,21 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </ul>
 <p>먼저, <code>country</code>, <code>iso2</code>, <code>iso3</code>, <code>year</code> 4개 변수는 정리되어 있어 그대로 두고, 나머지 변수를 <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select</a></code> 문법에 맞춰 선택하고 이를 변경시킨다.
 <code>names_to</code>로 변수명 3개를 지정하고, <code>new_</code>/<code>new</code> 접두어는 고정되어 <code>names_pattern</code>에서 정규표현식으로 패턴을 적의한다. 이와 더불어 <code>names_ptypes</code>에서 자료형도 함께 지정한다.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">who</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+  cols <span class="op">=</span> <span class="va">new_sp_m014</span><span class="op">:</span><span class="va">newrel_f65</span>,
+  names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span>, 
+  names_pattern <span class="op">=</span> <span class="st">"new_?(.*)_(m|f)(.*)"</span>,
+  names_ptypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span>levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"f"</span>, <span class="st">"m"</span><span class="op">)</span><span class="op">)</span>,
+    age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span>
+      levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"014"</span>, <span class="st">"1524"</span>, <span class="st">"2534"</span>, <span class="st">"3544"</span>, <span class="st">"4554"</span>, <span class="st">"5564"</span>, <span class="st">"65"</span><span class="op">)</span>, 
+      ordered <span class="op">=</span> <span class="cn">TRUE</span>
+    <span class="op">)</span>
+  <span class="op">)</span>,
+  values_to <span class="op">=</span> <span class="st">"count"</span>,
+<span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 405,440 × 8
 ##   country iso2  iso3   year diagnosis gender age    count
 ##   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;fct&gt;  &lt;ord&gt;  &lt;int&gt;
@@ -274,6 +325,16 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </h3>
 <p>한행에 관측점이 다수 있는 재미있는 데이터도 있다.
 즉, 첫번째 가정에 아이가 2명 있는데 첫째 아이 생일과 성별, 둘째 아이 생일과 성별이 한 행에 놓여있는 경우가 이에 해당된다.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">family</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+  <span class="op">~</span><span class="va">family</span>,  <span class="op">~</span><span class="va">dob_child1</span>,  <span class="op">~</span><span class="va">dob_child2</span>, <span class="op">~</span><span class="va">gender_child1</span>, <span class="op">~</span><span class="va">gender_child2</span>,
+       <span class="fl">1L</span>, <span class="st">"1998-11-26"</span>, <span class="st">"2000-01-29"</span>,             <span class="fl">1L</span>,             <span class="fl">2L</span>,
+       <span class="fl">2L</span>, <span class="st">"1996-06-22"</span>,           <span class="cn">NA</span>,             <span class="fl">2L</span>,             <span class="cn">NA</span>,
+       <span class="fl">3L</span>, <span class="st">"2002-07-11"</span>, <span class="st">"2004-04-05"</span>,             <span class="fl">2L</span>,             <span class="fl">2L</span>,
+       <span class="fl">4L</span>, <span class="st">"2004-10-10"</span>, <span class="st">"2009-08-27"</span>,             <span class="fl">1L</span>,             <span class="fl">1L</span>,
+       <span class="fl">5L</span>, <span class="st">"2000-12-05"</span>, <span class="st">"2005-02-28"</span>,             <span class="fl">2L</span>,             <span class="fl">1L</span>,
+<span class="op">)</span>
+<span class="va">family</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   family dob_child1 dob_child2 gender_child1 gender_child2
 ##    &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;              &lt;int&gt;         &lt;int&gt;
@@ -283,6 +344,15 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 4      4 2004-10-10 2009-08-27             1             1
 ## 5      5 2000-12-05 2005-02-28             2             1</code></pre>
 <p>이를 원하는 이름으로 변경시키기 위해서 <code>names_to=</code>에 <code>.value</code>라는 특수명칭을 사용하여 한 관측점에 다수 관측점 정보가 포함된 문제를 해결한다.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">family</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    <span class="op">-</span><span class="va">family</span>, 
+    names_to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">".value"</span>, <span class="st">"child"</span><span class="op">)</span>, 
+    names_sep <span class="op">=</span> <span class="st">"_"</span>, 
+    values_drop_na <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dob <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_datetime.html">parse_date</a></span><span class="op">(</span><span class="va">dob</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 4
 ##   family child  dob        gender
 ##    &lt;int&gt; &lt;chr&gt;  &lt;date&gt;      &lt;int&gt;
@@ -302,6 +372,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class="row">
 <div class="col-md-6">
 <p><strong>중복칼럼 데이터셋</strong></p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, y <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, y <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">7</span>, y <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>, .name_repair <span class="op">=</span> <span class="st">"minimal"</span><span class="op">)</span>
+<span class="va">df</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##       x     y     y     y
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -311,6 +384,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-6">
 <p><strong>중복칼럼 데이터셋 작업결과</strong></p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span>, names_to <span class="op">=</span> <span class="st">"name"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 3
 ##       x name  value
 ##   &lt;int&gt; &lt;chr&gt; &lt;int&gt;
@@ -334,6 +410,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </style>
 <div class="blue">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dataframe</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>
+    <span class="va">names_from</span>,
+    <span class="va">values_from</span>,
+    <span class="va">...</span>
+  <span class="op">)</span></code></pre></div>
 <ul>
 <li>
 <code>names_from</code>은 칼럼값을 지정하는 칼럼</li>
@@ -345,6 +428,8 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class="row">
 <div class="col-md-4">
 <p><strong>깔끔한 데이터: 인덱스 긴 형식</strong></p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fish_encounters</span></code></pre></div>
 <pre><code>## # A tibble: 114 × 3
 ##   fish  station  seen
 ##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
@@ -358,6 +443,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-8">
 <p><strong>요약표 형태 데이터</strong></p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fish_encounters</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">station</span>, 
+              values_from <span class="op">=</span> <span class="va">seen</span>,
+              values_fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>seen <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 12
 ##   fish  Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE   MAW
 ##   &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
@@ -376,6 +467,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </h3>
 <p><code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>를 통해 총계(aggregate)를 내야하는 상황이 발생하곤 한다.
 <code>datasets</code> 패키지에 내장된 실험계획법이 적용된 데이터 <code>warpbreaks</code>를 보면 <code>wool</code>, <code>tension</code> 두가지 요인으로 총 9번 실험한 결과가 <code>breaks</code>에 담겨진 것을 확인할 수 있다.</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">warpbreaks</span> <span class="op">&lt;-</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/warpbreaks.html">warpbreaks</a></span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wool</span>, <span class="va">tension</span>, <span class="va">breaks</span><span class="op">)</span>
+
+<span class="va">warpbreaks</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">wool</span>, <span class="va">tension</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   wool  tension     n
 ##   &lt;fct&gt; &lt;fct&gt;   &lt;int&gt;
@@ -389,6 +487,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class="row">
 <div class="col-md-6">
 <p><strong>요인별 원데이터</strong></p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">warpbreaks</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>
+    names_from <span class="op">=</span> <span class="va">wool</span>,
+    values_from <span class="op">=</span> <span class="va">breaks</span>
+  <span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   tension A         B        
 ##   &lt;fct&gt;   &lt;list&gt;    &lt;list&gt;   
@@ -398,6 +502,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </div>
 <div class="col-md-6">
 <p><strong>요인별 총계: 최대값</strong></p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">warpbreaks</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>
+    names_from <span class="op">=</span> <span class="va">wool</span>,
+    values_from <span class="op">=</span> <span class="va">breaks</span>,
+    values_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="va">max</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   tension     A     B
 ##   &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -417,6 +528,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <span class="header-section-number">9.4.1</span> 칼럼에 변수 두개 포함<a class="anchor" aria-label="anchor" href="#separate-columns"><i class="fas fa-link"></i></a>
 </h3>
 <p>칼럼 하나에 다수 변수가 포함된 경우를 흔히 발견할 수 있다. <code>dplyr</code> 팩키지에는 <code>starwars</code> 데이터셋에 등장하는 인물에 대한 인적정보가 담겨있다. 예를 들어, <code>name</code> 칼럼은 두 변수가 숨어 있다. 하나는 성(<code>last name</code>) 다른 하나는 이름(<code>first name</code>)이다. 이를 두개로 쪼개어 두는 것이 Tidy Data를 만든다고 볼 수 있다. 꼭 그런 것은 아니고 경우에 따라 차이가 있지만, 개념적으로 그렇다는 것이다. 상황에 맞춰 유연하게 사용한다.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars_name_df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va"><a href="https://dplyr.tidyverse.org/reference/starwars.html">starwars</a></span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">species</span>, <span class="va">height</span>, <span class="va">mass</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">species</span>, <span class="st">"Human"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">starwars_name_df</span></code></pre></div>
 <pre><code>## # A tibble: 35 × 4
 ##   name               species height  mass
 ##   &lt;chr&gt;              &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
@@ -428,6 +545,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 Biggs Darklighter  Human      183    84
 ## # … with 29 more rows</code></pre>
 <p><code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> 함수를 사용해서 칼럼을 두개로 쪼갠다. 이런 경우 <code>sep=</code> 인자를 통해 구분자를 지정한다. 공백, <code>;</code>, <code>,</code> 등 문제에 따라 구분자를 달리 사용한다.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">starwars_name_df</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span><span class="op">(</span><span class="va">name</span>, into <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"first_name"</span>, <span class="st">"last_name"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">" "</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 35 × 5
 ##   first_name last_name   species height  mass
 ##   &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
@@ -444,6 +564,23 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <span class="header-section-number">9.4.2</span> 칼럼에 변수 다수 포함<a class="anchor" aria-label="anchor" href="#separate-columns-many"><i class="fas fa-link"></i></a>
 </h3>
 <p>TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일을 제작하는데 필요한 재표가 <code>ingredient</code> 칼럼 안에 콤마(<code>,</code>)로 묶여있다. 이런 데이터는 절대로 Tidy한 데이터가 아니라서 적절한 조치가 필요하다.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># cocktail_data &lt;- tidytuesdayR::tt_load('2020-05-26')</span>
+
+<span class="va">cocktails</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/cocktails.csv'</span><span class="op">)</span>
+
+<span class="va">cocktail_df</span> <span class="op">&lt;-</span> <span class="va">cocktails</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">drink</span>, <span class="va">ingredient</span><span class="op">)</span>
+
+<span class="va">cocktail_tbl</span> <span class="op">&lt;-</span> <span class="va">cocktail_df</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drink</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ingredient_tmp <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="va">df</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ingredient</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="va">pull</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ingredient <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span><span class="op">(</span><span class="va">ingredient_tmp</span>, <span class="va">paste</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">ungroup</span> 
+
+<span class="va">cocktail_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">drink</span>, <span class="va">ingredient</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 546 × 2
 ##   drink                                ingredient                               
 ##   &lt;chr&gt;                                &lt;chr&gt;                                    
@@ -455,6 +592,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 24k nightmare                        Goldschlager, Jägermeister, Rumple Minze…
 ## # … with 540 more rows</code></pre>
 <p>먼저 <code>stringr</code> 팩키지 <code><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split()</a></code> 함수로 <code>ingredient</code> 칼럼을 <code>,</code>을 구분자로 삼아 쪼갠 후에 list-column 형태 칼럼(<code>ingredient_lc</code>)으로 저장시킨다. 그리고 나서 <code><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest()</a></code> 함수로 중첩된 것을 풀게 되면 다음과 같은 티블 데이터프레임이 되어 Tidy Data로 변환된다.</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cocktails_tbl</span> <span class="op">&lt;-</span> <span class="va">cocktail_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">drink</span>, <span class="va">ingredient</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>ingredient_lc <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">ingredient</span>, <span class="st">", "</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">ingredient_lc</span><span class="op">)</span>
+
+<span class="va">cocktails_tbl</span></code></pre></div>
 <pre><code>## # A tibble: 2,104 × 3
 ##   drink                                ingredient                  ingredient_lc
 ##   &lt;chr&gt;                                &lt;chr&gt;                       &lt;chr&gt;        
@@ -466,6 +610,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 ## 6 1-900-FUK-MEUP                       Absolut Kurant, Grand Marn… Midori melon…
 ## # … with 2,098 more rows</code></pre>
 <p>자, 이제 깔끔한 데이터의 힘을 느껴보자. 칵테일 중에 가장 다양한 재료가 포함된 칵테일은 무엇인가? 라는 질문에 단순한 <code>dplyr</code> 동사로 확인이 바로 가능하다.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cocktails_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">drink</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>num_ingredients <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">num_ingredients</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 546 × 2
 ##   drink                  num_ingredients
 ##   &lt;chr&gt;                            &lt;int&gt;
@@ -482,6 +631,10 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <span class="header-section-number">9.4.3</span> <code>separate_rows()</code> 함수로 빠르게<a class="anchor" aria-label="anchor" href="#separete-rows-quickly"><i class="fas fa-link"></i></a>
 </h3>
 <p>상기 과정이 다소 많은 동사를 조합해서 결과를 도출하고 있다고 생각된다면 <code><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows()</a></code> 함수를 사용해서 깔끔한 데이터를 만든 후에 <code>count</code> 함수와 <code>sort = TRUE</code>를 활용하여 동일한 작업을 간단히 마무리 할 수 있다.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cocktail_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows</a></span><span class="op">(</span><span class="va">ingredient</span>, sep <span class="op">=</span> <span class="st">", "</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">drink</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 546 × 2
 ##   drink                      n
 ##   &lt;chr&gt;                  &lt;int&gt;
@@ -504,6 +657,21 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 확인이 안된 것 한건 빼면 7개국이 핵폭탄 실험을 한 것으로 나오는데 1945년에는 아무런 기록이 없다.
 데이터프레임에는 정상인 깔끔한 데이터지만 사실 1945년 0 건에 예를 들어 중국이나 러시아가 포함되어 있는 것이 맞다.
 이런 데이터 자체 결측값을 찾아내서 채워넣는 것이 깔끔한 데이터를 만드는 또하나 중요한 과정이다.</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
+
+<span class="va">nuclear_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/nuclear_weapon_explosions_1945-1998.csv"</span><span class="op">)</span>
+
+<span class="va">nuclear_trials_df</span> <span class="op">&lt;-</span> <span class="va">nuclear_raw</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>datetime <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time</a></span><span class="op">(</span><span class="va">datetime</span>, <span class="st">"%m/%d/%Y %H:%M:%S %p"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>연도 <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">datetime</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">연도</span>, name <span class="op">=</span> <span class="st">"핵실험횟수"</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>국가 <span class="op">=</span> <span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">연도</span><span class="op">)</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">연도</span> <span class="op">&lt;=</span> <span class="fl">1954</span><span class="op">)</span>
+
+<span class="va">nuclear_trials_df</span> </code></pre></div>
 <pre><code>## # A tibble: 13 × 3
 ##   국가    연도 핵실험횟수
 ##   &lt;chr&gt;  &lt;dbl&gt;      &lt;int&gt;
@@ -520,6 +688,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </h3>
 <p>상기와 같은 문제를 해결하기 위해 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수를 사용해서 핵실험을 수행한 모든 국가에 대해 해당 년도를 모두 생성할 필요가 있다.
 3개 국가에 대해 10년을 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수로 조합하게 되면 30개 관측점이 생기는데 미국이 핵실험을 하지 않은 1947년의 경우 <code>NA</code> 값이 생긴다. 이를 채워주어야 한다. 앞서 <code><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid()</a></code> 함수로 생성된 Tidy Data를 염두에 두고 이를 <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> 함수와 조인을 걸어 나중에 치환시킬 데이터프레임을 사전 제작한다.</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">country_year_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/expand_grid.html">expand_grid</a></span><span class="op">(</span>국가 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USA"</span>, <span class="st">"Russia"</span>, <span class="st">"England"</span><span class="op">)</span>,
+                               연도 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1945</span>, <span class="fl">1954</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">nuclear_tbl</span> <span class="op">&lt;-</span> <span class="va">country_year_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">nuclear_trials_df</span><span class="op">)</span>
+
+<span class="va">nuclear_tbl</span></code></pre></div>
 <pre><code>## # A tibble: 30 × 3
 ##   국가   연도 핵실험횟수
 ##   &lt;chr&gt; &lt;dbl&gt;      &lt;int&gt;
@@ -538,6 +714,10 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <p>결측값을 특정 값으로 채워 넣고자 하는 경우 <code><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na()</a></code> 함수를 사용한다.
 먼저 <code><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na()</a></code> 함수를 사용해서 <code>n_bombs</code> 변수에 <code>NA</code> 결측값을 0으로 채워넣는다.
 다른 국가명이나 연도에 결측값이 있는 경우 동일하게 변수명을 지정하고 결측값을 지정하여 해결한다.</p>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nuclear_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>핵실험횟수 <span class="op">=</span> <span class="fl">0</span>,
+                  연도 <span class="op">=</span> <span class="fl">1945</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 30 × 3
 ##   국가   연도 핵실험횟수
 ##   &lt;chr&gt; &lt;dbl&gt;      &lt;int&gt;
@@ -555,6 +735,9 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </h3>
 <p>다른 것 다 모르겠고 데이터프레임에 결측값이 있으면 안되기 때문에 그냥 제거한다.
 이럴 때 사용하는 함수가 <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code>다.</p>
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nuclear_tbl</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">핵실험횟수</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 3
 ##   국가   연도 핵실험횟수
 ##   &lt;chr&gt; &lt;dbl&gt;      &lt;int&gt;
@@ -620,7 +803,7 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -57,6 +57,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class = "blue">
 
 
+```r
+dataframe %>% 
+  pivot_longer(
+    cols,
+    ...
+  )
+```
 
 
 `cols`: `dplyr::select()` 구문과 동일하게 작성함.
@@ -68,6 +75,12 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-6">
 **데카르트 평면 넓은 데이터**
 
+
+```r
+library(tidyr)
+
+relig_income %>% head
+```
 
 ```
 ## # A tibble: 6 × 11
@@ -88,6 +101,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 **인덱스 긴 형식 데이터**
 
 
+```r
+relig_income %>% 
+  pivot_longer(-religion, names_to="소득", values_to = "사람수")
+```
+
 ```
 ## # A tibble: 180 × 3
 ##   religion 소득    사람수
@@ -107,6 +125,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 
 `names_prefix`를 사용해서 `$`, `<$`, `>` 붙은 값을 제거시킬 수 있다.
 
+
+```r
+relig_income %>% 
+  pivot_longer(-religion, names_to="소득", 
+               values_to = "명수",
+               names_prefix = "\\$|<\\$|>")
+```
 
 ```
 ## # A tibble: 180 × 3
@@ -130,6 +155,16 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 일단 주간 순위는 어찌해서 만들었지만, 주간 칼럼에 `wk`가 들어 있어 이를 `names_prefix`를 통해 날려버리고 나도 숫자로 되어 있는 문자를 다시 숫자형으로 칼럼 자료형을 바꿔야 한다.
 
 
+```r
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "주간", 
+    values_to = "순위",
+    values_drop_na = TRUE
+  )
+```
+
 ```
 ## # A tibble: 5,307 × 5
 ##   artist track                   date.entered 주간   순위
@@ -148,6 +183,18 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-6">
 **빌보드 원본 데이터: 자료변환 후**
 
+
+```r
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "주간", 
+    values_to = "순위",
+    names_prefix = "wk",
+    names_ptypes = list(`주간` = as.character()),
+    values_drop_na = TRUE
+  )
+```
 
 ```
 ## # A tibble: 5,307 × 5
@@ -179,6 +226,23 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 `names_to`로 변수명 3개를 지정하고, `new_`/`new` 접두어는 고정되어 `names_pattern`에서 정규표현식으로 패턴을 적의한다. 이와 더불어 `names_ptypes`에서 자료형도 함께 지정한다.
 
 
+```r
+who %>% pivot_longer(
+  cols = new_sp_m014:newrel_f65,
+  names_to = c("diagnosis", "gender", "age"), 
+  names_pattern = "new_?(.*)_(m|f)(.*)",
+  names_ptypes = list(
+    gender = factor(levels = c("f", "m")),
+    age = factor(
+      levels = c("014", "1524", "2534", "3544", "4554", "5564", "65"), 
+      ordered = TRUE
+    )
+  ),
+  values_to = "count",
+) %>% 
+  arrange(desc(count))
+```
+
 ```
 ## # A tibble: 405,440 × 8
 ##   country iso2  iso3   year diagnosis gender age    count
@@ -198,6 +262,18 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 즉, 첫번째 가정에 아이가 2명 있는데 첫째 아이 생일과 성별, 둘째 아이 생일과 성별이 한 행에 놓여있는 경우가 이에 해당된다.
 
 
+```r
+family <- tribble(
+  ~family,  ~dob_child1,  ~dob_child2, ~gender_child1, ~gender_child2,
+       1L, "1998-11-26", "2000-01-29",             1L,             2L,
+       2L, "1996-06-22",           NA,             2L,             NA,
+       3L, "2002-07-11", "2004-04-05",             2L,             2L,
+       4L, "2004-10-10", "2009-08-27",             1L,             1L,
+       5L, "2000-12-05", "2005-02-28",             2L,             1L,
+)
+family
+```
+
 ```
 ## # A tibble: 5 × 5
 ##   family dob_child1 dob_child2 gender_child1 gender_child2
@@ -212,6 +288,17 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 
 이를 원하는 이름으로 변경시키기 위해서 `names_to=`에 `.value`라는 특수명칭을 사용하여 한 관측점에 다수 관측점 정보가 포함된 문제를 해결한다.
 
+
+```r
+family %>% 
+  pivot_longer(
+    -family, 
+    names_to = c(".value", "child"), 
+    names_sep = "_", 
+    values_drop_na = TRUE
+  ) %>% 
+  dplyr::mutate(dob = parse_date(dob))
+```
 
 ```
 ## # A tibble: 9 × 4
@@ -235,6 +322,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 **중복칼럼 데이터셋**
 
 
+```r
+df <- tibble(x = 1:3, y = 4:6, y = 5:7, y = 7:9, .name_repair = "minimal")
+df
+```
+
 ```
 ## # A tibble: 3 × 4
 ##       x     y     y     y
@@ -248,6 +340,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-6">
 **중복칼럼 데이터셋 작업결과**
 
+
+```r
+df %>% 
+  pivot_longer(-x, names_to = "name", values_to = "value")
+```
 
 ```
 ## # A tibble: 9 × 3
@@ -275,6 +372,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 <div class = "blue">
 
 
+```r
+dataframe %>% 
+  pivot_wider(
+    names_from,
+    values_from,
+    ...
+  )
+```
 
 - `names_from`은 칼럼값을 지정하는 칼럼
 - `values-from`은 값(value)을 지정하는 칼럼
@@ -287,6 +392,10 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-4">
 **깔끔한 데이터: 인덱스 긴 형식**
 
+
+```r
+fish_encounters
+```
 
 ```
 ## # A tibble: 114 × 3
@@ -305,6 +414,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-8">
 **요약표 형태 데이터**
 
+
+```r
+fish_encounters %>% 
+  pivot_wider(names_from = station, 
+              values_from = seen,
+              values_fill = list(seen = 0)) %>% 
+  head(10)
+```
 
 ```
 ## # A tibble: 10 × 12
@@ -328,6 +445,15 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 `datasets` 패키지에 내장된 실험계획법이 적용된 데이터 `warpbreaks`를 보면 `wool`, `tension` 두가지 요인으로 총 9번 실험한 결과가 `breaks`에 담겨진 것을 확인할 수 있다.
 
 
+```r
+warpbreaks <- datasets::warpbreaks %>% 
+  as_tibble() %>% 
+  select(wool, tension, breaks)
+
+warpbreaks %>% 
+  count(wool, tension)
+```
+
 ```
 ## # A tibble: 6 × 3
 ##   wool  tension     n
@@ -347,6 +473,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 **요인별 원데이터**
 
 
+```r
+warpbreaks %>% 
+  pivot_wider(
+    names_from = wool,
+    values_from = breaks
+  )
+```
+
 ```
 ## # A tibble: 3 × 3
 ##   tension A         B        
@@ -361,6 +495,15 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
   <div class = "col-md-6">
 **요인별 총계: 최대값**
 
+
+```r
+warpbreaks %>% 
+  pivot_wider(
+    names_from = wool,
+    values_from = breaks,
+    values_fn = list(breaks = max)
+  )
+```
 
 ```
 ## # A tibble: 3 × 3
@@ -382,6 +525,14 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 칼럼 하나에 다수 변수가 포함된 경우를 흔히 발견할 수 있다. `dplyr` 팩키지에는 `starwars` 데이터셋에 등장하는 인물에 대한 인적정보가 담겨있다. 예를 들어, `name` 칼럼은 두 변수가 숨어 있다. 하나는 성(`last name`) 다른 하나는 이름(`first name`)이다. 이를 두개로 쪼개어 두는 것이 Tidy Data를 만든다고 볼 수 있다. 꼭 그런 것은 아니고 경우에 따라 차이가 있지만, 개념적으로 그렇다는 것이다. 상황에 맞춰 유연하게 사용한다. 
 
 
+```r
+starwars_name_df <- dplyr::starwars %>% 
+  select(name, species, height, mass) %>% 
+  filter(str_detect(species, "Human"))
+
+starwars_name_df
+```
+
 ```
 ## # A tibble: 35 × 4
 ##   name               species height  mass
@@ -397,6 +548,11 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 
 `separate()` 함수를 사용해서 칼럼을 두개로 쪼갠다. 이런 경우 `sep=` 인자를 통해 구분자를 지정한다. 공백, `;`, `,` 등 문제에 따라 구분자를 달리 사용한다.
 
+
+```r
+starwars_name_df %>% 
+  separate(name, into = c("first_name", "last_name"), sep=" ")
+```
 
 ```
 ## # A tibble: 35 × 5
@@ -416,6 +572,25 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일을 제작하는데 필요한 재표가 `ingredient` 칼럼 안에 콤마(`,`)로 묶여있다. 이런 데이터는 절대로 Tidy한 데이터가 아니라서 적절한 조치가 필요하다.
 
 
+```r
+# cocktail_data <- tidytuesdayR::tt_load('2020-05-26')
+
+cocktails <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/cocktails.csv')
+
+cocktail_df <- cocktails %>% 
+  select(drink, ingredient)
+
+cocktail_tbl <- cocktail_df %>% 
+  group_by(drink) %>% 
+  nest() %>% 
+  mutate(ingredient_tmp = map(data, function(df) df %>%  select(ingredient) %>% pull) ) %>% 
+  mutate(ingredient = map_chr(ingredient_tmp, paste, collapse = ", ")) %>% 
+  ungroup 
+
+cocktail_tbl %>% 
+  select(drink, ingredient)
+```
+
 ```
 ## # A tibble: 546 × 2
 ##   drink                                ingredient                               
@@ -432,6 +607,15 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 먼저 `stringr` 팩키지 `str_split()` 함수로 `ingredient` 칼럼을 `, `을 구분자로 삼아 쪼갠 후에 list-column 형태 칼럼(`ingredient_lc`)으로 저장시킨다. 그리고 나서 `unnest()` 함수로 중첩된 것을 풀게 되면 다음과 같은 티블 데이터프레임이 되어 Tidy Data로 변환된다.
 
 
+```r
+cocktails_tbl <- cocktail_tbl %>% 
+  select(drink, ingredient) %>% 
+  mutate(ingredient_lc = str_split(ingredient, ", ")) %>% 
+  unnest(ingredient_lc)
+
+cocktails_tbl
+```
+
 ```
 ## # A tibble: 2,104 × 3
 ##   drink                                ingredient                  ingredient_lc
@@ -447,6 +631,13 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 
 자, 이제 깔끔한 데이터의 힘을 느껴보자. 칵테일 중에 가장 다양한 재료가 포함된 칵테일은 무엇인가? 라는 질문에 단순한 `dplyr` 동사로 확인이 바로 가능하다.
 
+
+```r
+cocktails_tbl %>% 
+  group_by(drink) %>% 
+  summarise(num_ingredients = n()) %>% 
+  arrange(desc(num_ingredients))
+```
 
 ```
 ## # A tibble: 546 × 2
@@ -465,6 +656,12 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 
 상기 과정이 다소 많은 동사를 조합해서 결과를 도출하고 있다고 생각된다면 `separate_rows()` 함수를 사용해서 깔끔한 데이터를 만든 후에 `count` 함수와 `sort = TRUE`를 활용하여 동일한 작업을 간단히 마무리 할 수 있다.
 
+
+```r
+cocktail_tbl %>% 
+  separate_rows(ingredient, sep = ", ") %>% 
+  count(drink, sort = TRUE)
+```
 
 ```
 ## # A tibble: 546 × 2
@@ -489,6 +686,23 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 이런 데이터 자체 결측값을 찾아내서 채워넣는 것이 깔끔한 데이터를 만드는 또하나 중요한 과정이다.
 
 
+```r
+library(lubridate)
+
+nuclear_raw <- read_csv("data/nuclear_weapon_explosions_1945-1998.csv")
+
+nuclear_trials_df <- nuclear_raw %>% 
+  janitor::clean_names() %>% 
+  mutate(datetime = lubridate::parse_date_time(datetime, "%m/%d/%Y %H:%M:%S %p")) %>% 
+  mutate(연도 = year(datetime)) %>% 
+  count(country, 연도, name = "핵실험횟수") %>% 
+  rename(국가 = country) %>% 
+  arrange(연도) %>% 
+  filter(연도 <= 1954)
+
+nuclear_trials_df 
+```
+
 ```
 ## # A tibble: 13 × 3
 ##   국가    연도 핵실험횟수
@@ -508,6 +722,16 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 3개 국가에 대해 10년을 `expand_grid()` 함수로 조합하게 되면 30개 관측점이 생기는데 미국이 핵실험을 하지 않은 1947년의 경우 `NA` 값이 생긴다. 이를 채워주어야 한다. 앞서 `expand_grid()` 함수로 생성된 Tidy Data를 염두에 두고 이를 `left_join()` 함수와 조인을 걸어 나중에 치환시킬 데이터프레임을 사전 제작한다.
 
 
+
+```r
+country_year_tbl <- expand_grid(국가 = c("USA", "Russia", "England"),
+                               연도 = seq(1945, 1954, 1))
+
+nuclear_tbl <- country_year_tbl %>% 
+  left_join(nuclear_trials_df)
+
+nuclear_tbl
+```
 
 ```
 ## # A tibble: 30 × 3
@@ -529,6 +753,12 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 다른 국가명이나 연도에 결측값이 있는 경우 동일하게 변수명을 지정하고 결측값을 지정하여 해결한다.
 
 
+```r
+nuclear_tbl %>% 
+  replace_na(list(핵실험횟수 = 0,
+                  연도 = 1945))
+```
+
 ```
 ## # A tibble: 30 × 3
 ##   국가   연도 핵실험횟수
@@ -548,6 +778,11 @@ TidyTuesday에서 나왔던 칵테일 데이터를 보게 되면 각 칵테일�
 다른 것 다 모르겠고 데이터프레임에 결측값이 있으면 안되기 때문에 그냥 제거한다.
 이럴 때 사용하는 함수가 `drop_na()`다.
 
+
+```r
+nuclear_tbl %>% 
+  drop_na(핵실험횟수)
+```
 
 ```
 ## # A tibble: 13 × 3

@@ -41,6 +41,43 @@ editor_options:
 위키페이지에서 러시아 월드컵에 출전한 선수 주요선수를 득점 기준으로 10명 추려보자.
 
 
+```r
+# 0. 환경설정 ------
+library(tidyverse)
+library(rvest)
+library(extrafont)
+loadfonts()
+# devtools::install_github("torvaney/ggsoccer")
+library(ggsoccer)  
+library(tweenr)    
+library(gganimate) 
+library(ggimage)   
+
+
+# 1. 데이터 ------
+## 1.1. 월드컵 출전 선수 데이터 -----
+Sys.setlocale("LC_ALL", "C")
+
+world_url <- "https://ko.wikipedia.org/wiki/2018년_FIFA_월드컵_선수_명단"
+
+player_dat <- world_url %>% 
+    read_html() %>%
+    html_nodes(xpath='//*[@id="mw-content-text"]/div/table[24]/tbody/tr/td/table') %>% 
+    html_table(fill=TRUE) %>% 
+    .[[1]]
+ 
+Sys.setlocale("LC_ALL", "Korean")
+
+player_df <- player_dat %>% 
+    janitor::clean_names(ascii = FALSE) %>% 
+    mutate(주장여부 = ifelse(str_detect(`선수`, "\\("), "주장", "선수")) %>% 
+    mutate(`선수` = str_sub(`선수`, 1, 3))
+
+
+player_df %>% 
+  arrange(desc(득점)) %>% 
+  slice_head(n=10)
+```
 
 ### 출전선수 명단
 
@@ -56,6 +93,34 @@ editor_options:
 
 [Soccer event logger](https://torvaney.github.io/projects/tracker#)를 활용하여 각 선수별 위치를 축구경기장에 클릭하여 좌표를 얻은 후에 선수명을 수작업을 붙여 놓고 이를 `ggsoccer` 팩키지 `annotate_pitch()`, `theme_pitch()` 함수를 사용해서 시각화한다.
 
+
+```r
+# 2. 선발 라인업 ------
+
+lineup_df <- tribble(
+    ~x, ~y, ~name,
+9.035, 50.00, "조현우",
+24.46, 90.78, "이용",
+19.10, 66.05, "운영선",
+19.10, 30.52, "김영권",
+25.17,  5.52, "홍철",
+46.60, 91.57, "이재성",
+45.89, 66.05, "정우영",
+45.53, 30.42, "장현수",
+43.39,  5.52, "문선민",
+71.60, 30.26, "구자철",
+72.67, 64.73, "손흥민")
+
+lineup_df %>% 
+  ggplot( aes(x = x, y = y) ) +
+    annotate_pitch() +
+    theme_pitch(aspect_ratio = NULL) +
+    coord_flip() +
+    geom_point( size = 1.5 ) +
+    geom_text( aes(label = name), family="NanumGothic",
+               vjust = 1.5, color = "blue")
+```
+
 <img src="case-study-worldcup_files/figure-html/worldcup-germany-lineup-1.png" width="576" style="display: block; margin: auto;" />
 
 ### 독일전 골모음 {#russia-2018-worldcup-germany-goal}
@@ -64,9 +129,79 @@ editor_options:
 선수의 위치는 `geom_point()`, 공의 움직임은 `geom_segment()`로 나타내고 첫번째 골의 이동에 집중할 수 있도록 관련된 부분을 정리하고 점위에 텍스트를 추가하여 선수명을 명확히 한다.
 
 
+
+```r
+# 1. 첫번째 골 데이터 ------
+
+ball_df <- tribble(~from_x, ~from_y, ~to_x, ~to_y, 
+                      0,    100,   6.78, 63.94,
+                      6.78, 63.94, 7.5,  56.84,
+                      7.5,  56.84, 4.64, 38.94,
+                      4.64, 38.94, -0.53,47.36)
+
+first_player_df <- tribble(~x, ~y, ~name, 
+                   0,    100,   "손흥민",
+                   6.78, 63.94, "이승우",
+                   7.5,  56.84, "윤영선",
+                   4.64, 38.94, "김영권")
+
+ball_df %>% 
+  ggplot() +
+    annotate_pitch() +
+    geom_point(aes(x=from_x, y=from_y, size=1.5, color="red")) +  
+    geom_point(aes(x=to_x, y=to_y, size=1.5, color="red")) +
+    geom_segment(aes(x = from_x, y = from_y, xend = to_x, yend = to_y),
+                 arrow = arrow(length = unit(0.25, "cm"),
+                               type = "closed")) +
+    theme_pitch() +
+    coord_flip() +
+    xlim(-10, 51) +
+    ylim(-15, 101) +
+    labs(title="한국과 독일 월드컵 예선", 
+         subtitle="김영권 첫골(90+2)") +
+    theme(legend.position = "none") +
+    geom_text(data=first_player_df, 
+        aes(x = x, y = y, label = name, family=c("NanumGothic")),
+        vjust = -1.5, color = "blue")
+```
+
 <img src="case-study-worldcup_files/figure-html/germany-first-goal-1.png" width="576" style="display: block; margin: auto;" />
 
 독일전 두번째 골은 연장 추가시간 막판 골키퍼까지 나와 만회골을 위해 혼신을 다하던 순간, 주세종이 골을 뽑아내고 이를 손흥민에 연결하여 여유있게 골을 골망에 넣어 두번째골이 완성되었다. 앞선방법과 동일하게 두번째 골도 공의 위치와 선수를 데이터프레임에 담아내고 `ggplot`으로 시각화한다.
+
+
+```r
+# 2. 두번째 골 데이터 ------
+
+second_ball_df <- tribble(~from_x, ~from_y, ~to_x, ~to_y, 
+                   69.28, 15.52, 75.89, 22.89,
+                   75.89, 22.89, 24.28, 62.89,
+                   24.28, 62.89, 2.85, 60.52,
+                   2.85, 60.52, -1.07, 46.31)
+
+second_player_df <- tribble(~x, ~y, ~name, 
+                           69.28, 15.52, "주세종",
+                           24.28, 62.89, "손흥민")
+
+second_ball_df %>% 
+  ggplot() +
+    annotate_pitch() +
+    geom_point(aes(x=from_x, y=from_y, size=1.5, color="red")) +
+    geom_point(aes(x=to_x, y=to_y, size=1.5, color="red")) +
+    geom_segment(aes(x = from_x, y = from_y, xend = to_x, yend = to_y),
+                 arrow = arrow(length = unit(0.25, "cm"),
+                               type = "closed")) +
+    theme_pitch() +
+    coord_flip() +
+    xlim(-10, 101) +
+    ylim(-15, 101) +
+    labs(title="한국과 독일 월드컵 예선", 
+         subtitle="손흥민 두번째골(90+6)") +
+    theme(legend.position = "none") +
+    geom_text(data=second_player_df, 
+              aes(x = x, y = y, label = name, family=c("NanumGothic")),
+              vjust = -1.5, color = "blue")
+```
 
 <img src="case-study-worldcup_files/figure-html/germany-second-goal-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -82,6 +217,47 @@ editor_options:
 독일전 첫번째 골의 경우 손흥민 코너킥으로 선수의 움직임이 크지 않은 상태에서 공이 손흥민 &rarr; 이승우 &rarr; 윤영선 &rarr; 김영권으로 연결되며 골로 연결된 경우다. 따라서 골의 움직임만 `time`을 주어 이동시키면 애니메이션을 간단히 제작할 수 있다.
 
 
+```r
+# 1. 첫번째 골 데이터 ------
+
+first_ball_df <- tribble(~x,      ~y,  ~time,
+                         0,      100,   1,
+                         6.78, 67.94,   2,
+                         7.5,  56.84,   3,
+                         4.64, 38.94,   4,
+                         -0.8,	47,   5)
+
+first_player_df <- tribble(~x, ~y, ~name, 
+                           0,    100,   "손흥민",
+                           9.78, 67.94, "이승우",
+                           9.5,  56.84, "윤영선",
+                           7.64, 38.94, "김영권")
+
+first_goal_ani <- first_ball_df %>% 
+  ggplot() +
+    annotate_pitch() +
+    theme_pitch() +
+    coord_flip() +
+    xlim(-10, 51) +
+    ylim(-15, 101) +
+    labs(title="한국과 독일 월드컵 예선", 
+         subtitle="김영권 첫번째골(90+2)") +
+    geom_label(data = first_player_df, aes(x = x, y = y, label = name), family = "NanumGothic") +
+    theme(legend.position = "none",
+          text = element_text(family = "NanumGothic")) +
+    ggimage::geom_emoji(
+        aes(x = x, 
+            y = y),
+        image = "26bd", size = 0.035) +
+    transition_states(
+        time,
+        transition_length = 0.5,
+        state_length = 0.0001,
+        wrap = FALSE) +
+    ease_aes("linear")
+
+animate(first_goal_ani, nframes = 24, renderer = gifski_renderer("assets/images/first_goal.gif"))
+```
 
 ![러시아 월드컵 독일전 첫번째 골](assets/images/first_goal.gif)
 
@@ -90,6 +266,60 @@ editor_options:
 두번째 손흥민의 골은 주세종이 독일 골키퍼로부터 공을 가로채서 이를 손흥민에 연결하고 손흥민이 빠른 주력을 이용하여 골대까지 전력질주하여 골을 넣은 경우라, 공뿐만 아니라 선수의 움직임도 함께 애니메이션화하여 시각화한다.
 
 
+```r
+# 2. 두번째 골 데이터 ------
+
+second_ball_df <- tribble(~x, ~y, ~time,
+                          69.28, 15.52, 1,
+                          75.89, 22.89, 2,
+                          24.28, 62.89, 3,
+                          24.28, 62.89, 4,
+                          2.85, 60.52,  5,
+                          -1.07, 46.31, 6)
+
+sohn_movement_df <- tribble(~x, ~y, ~time, ~name,
+                            35.28, 62.89, 1, "손흥민",
+                            35.28, 62.89, 2, "손흥민",
+                            35.28, 62.89, 3, "손흥민",
+                            24.28, 62.89, 4, "손흥민",
+                             2.85, 60.52, 5, "손흥민",
+                             2.85, 60.52, 6, "손흥민")
+
+joo_movement_df <- tribble(~x, ~y, ~time, ~name,
+                           69.28, 15.52, 1, "주세종",
+                           75.89, 22.89, 2, "주세종",
+                           75.89, 22.89, 3, "주세종",
+                           75.89, 22.89, 4, "주세종",
+                           75.89, 22.89, 5, "주세종",
+                           75.89, 22.89, 6, "주세종")
+
+second_goal_ani <- second_ball_df %>% 
+  ggplot() +
+    annotate_pitch() +
+    theme_pitch() +
+    coord_flip() +
+    xlim(-10, 101) +
+    ylim(-15, 101) +
+    labs(title="한국과 독일 월드컵 예선", 
+         subtitle="손흥민 두번째골(90+6)") +
+    theme(legend.position = "none") +
+    geom_label(data = joo_movement_df, aes(x = x, y = y, label = name)) +
+    geom_label(data = sohn_movement_df, aes(x = x, y = y, label = name)) +
+    theme(text = element_text(family = "NanumGothic")) +
+    ggimage::geom_emoji(
+        aes(x = x, 
+            y = y),
+        image = "26bd", size = 0.035) +
+    transition_states(
+        time,
+        transition_length = 0.5,
+        state_length = 0.0001,
+        wrap = FALSE) +
+    # transition_manual(frames = time)
+    ease_aes("quadratic-out")
+
+animate(second_goal_ani, nframes = 24, renderer = gifski_renderer("assets/images/second_goal.gif"))
+```
 
 ![러시아 월드컵 독일전 두번째 골](assets/images/second_goal.gif)
 

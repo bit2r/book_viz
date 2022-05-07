@@ -9,6 +9,9 @@ source("_common.R")
 library(tidyverse)
 library(patchwork)
 library(lubridate)
+
+knitr::opts_chunk$set(
+  echo = TRUE)
 ```
 
 # `ggplot` 시각화  {#ggplot-visualization}

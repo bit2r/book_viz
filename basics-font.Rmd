@@ -4,6 +4,9 @@ source("_common.R")
 library(tidyverse)
 library(patchwork)
 library(lubridate)
+
+knitr::opts_chunk$set(
+  echo = TRUE)
 ```
 
 # 글꼴 {#viz-font}

@@ -45,6 +45,16 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 
 예제를 가지고 앞서 잡은 개념을 적용해보자.
 
+
+```r
+library(tidyverse)
+library(gapminder)
+
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) ) +
+    geom_point()
+```
+
 <img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter-1.png" width="576" style="display: block; margin: auto;" />
 
 데이터를 시각화하는 것이 목표이기 때문에 입력은 무조건 데이터가 되고 
@@ -72,6 +82,12 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 데이터프레임을 입력 데이터로 `ggplot`함수로 보내고 데이터프레임 변수와 시각적 매핑(aes)을 한다고 
 도식화가 바로 되는 것은 아니다:
 
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) )
+```
+
 <img src="viz-ggplot_files/figure-html/ggplot-visualization-step-1.png" width="576" style="display: block; margin: auto;" />
 
 `ggplot` 함수에 데이터를 시각적으로 표현하는 방법도 전달할 필요가 있다. 
@@ -80,6 +96,13 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 **x**와 **y** 사이 관계를 시각적으로 산점도 형태로 표현하도록 `ggplot`에게 전달한다.
 즉, 1인당 국민소득(`gdpPercap`)과 기대수명(`lifeExp`) 사이 관계를 파악하고자 산점도를 
 그리는 것이다.
+
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) ) +
+    geom_point()
+```
 
 <img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter2-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -92,6 +115,13 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 `year` 변수에 주목하고 **x**-축에 반영하면 해당 문제를 풀 수 있다.
 
 
+
+```r
+gapminder %>% 
+  ggplot( aes(x = year, y = lifeExp) ) + 
+    geom_point()
+```
+
 <img src="viz-ggplot_files/figure-html/ggplot-year-lifexp-1.png" width="576" style="display: block; margin: auto;" />
 
 
@@ -103,6 +133,13 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 즉, 기대수명은 모든 대륙에서 국가별로 높아지고 있으나 아프리카 국가와 유럽국가들 사이
 간극은 좁혀지고 있지 않다.
 
+
+```r
+gapminder %>% 
+  ggplot( aes(x = year, y = lifeExp, color=continent) ) + 
+    geom_point()
+```
+
 <img src="viz-ggplot_files/figure-html/ggplot-year-lifexp-point-1.png" width="576" style="display: block; margin: auto;" />
 
 ## 계층(Layers)
@@ -112,6 +149,13 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 `ggplot`에 점그래프 대신 선그래프(line plot)로 데이터를 시각화한다.
 
 
+
+```r
+gapminder %>% 
+  ggplot(aes(x=year, y=lifeExp, by=country, color=continent)) +
+    geom_line()
+```
+
 <img src="viz-ggplot_files/figure-html/lifeExp-line-1.png" width="576" style="display: block; margin: auto;" />
 
 `geom_point` 계층을 추가하는 대신에, `geom_line` 계층을 추가했다.
@@ -120,11 +164,27 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 하지만, 직선과 점을 함께 시각화하려고 하면 어떨까?
 단순히, 또다른 계층을 그림에 추가하면 된다:
 
+
+```r
+gapminder %>% 
+  ggplot( aes(x=year, y=lifeExp, group=country, color=continent) ) +
+    geom_line() + 
+    geom_point()
+```
+
 <img src="viz-ggplot_files/figure-html/lifeExp-line-point-1.png" width="576" style="display: block; margin: auto;" />
 
 각 계층은 이전 계층 위에 도식화됨에 주목한다.
 이번 예제에서, 점이 직선 *위에* 도식화되었다.
 다음에 도식화한 산출물에서 결과를 확인할 수 있다.
+
+
+```r
+gapminder %>% 
+  ggplot( aes(x=year, y=lifeExp, by=country) ) +
+    geom_line(aes(color=continent)) + 
+    geom_point()
+```
 
 <img src="viz-ggplot_files/figure-html/lifeExp-layer-example-1-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -144,6 +204,14 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 선이 점 위에 올라온다! 이런 특성을 인지하고 염두에 두면 추후 좀더 미련한 
 시각화 결과물을 제작할 수 있게 된다.
  
+
+```r
+gapminder %>% 
+  ggplot( aes(x=year, y=lifeExp, by=country)) +
+    geom_point() + 
+    geom_line(aes(color=continent))
+```
+
 <img src="viz-ggplot_files/figure-html/ch3-sol-1.png" width="576" style="display: block; margin: auto;" />
 
 
@@ -153,6 +221,13 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 `ggplot`으로 데이터 위에 통계적 모형을 쉽게 겹치게도 할 수 있다.
 믿을 수 없다면 앞서 제작한 시각화 예제로 예제로 되돌아간다:
 
+
+```r
+gapminder %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, color=continent)) +
+    geom_point()
+```
+
 <img src="viz-ggplot_files/figure-html/lifeExp-vs-gdpPercap-scatter3-1.png" width="576" style="display: block; margin: auto;" />
 
 현재, 일인당 GDP에 일부 심각한 이상점이 있어 점(국가) 사이 내재된 관계를 보기 힘들다.
@@ -160,6 +235,14 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 이것을 통해 데이터 값과 *aesthetic* 시각값 사이 매핑을 제어한다.
 *alpha* 함수를 통해 투명도도 조정할 수 있다.
 군집으로 많은 데이터가 모아진 경우 특히 투명도 조절을 유용하다.
+
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) ) +
+    geom_point(alpha = 0.5) + 
+    scale_x_log10()
+```
 
 <img src="viz-ggplot_files/figure-html/axis-scale-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -180,9 +263,24 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 
 또다른 계층(`geom_smooth`)을 추가해서 관계를 단순히 적합시킬 수 있다:
 
+
+```r
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm")
+```
+
 <img src="viz-ggplot_files/figure-html/lm-fit-1.png" width="576" style="display: block; margin: auto;" />
 
 굵은 선은 `geom_smooth` 계층에 *aesthetic* **크기**를 설정해서 조정할 수 있다:
+
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) ) +
+    geom_point() + 
+    scale_x_log10() + 
+    geom_smooth(method="lm", size=1.5)
+```
 
 <img src="viz-ggplot_files/figure-html/lm-fit2-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -194,6 +292,15 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 `aes()` 함수를 사용하지 않고 특정 색상 예를 들어 오렌지(orange) 색상으로 
 변경시키고 함께 크기도 달리한다.
 
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp) ) +
+    geom_point(size=3, color="orange") + 
+    scale_x_log10() + 
+    geom_smooth(method="lm", size=1.5)
+```
+
 <img src="viz-ggplot_files/figure-html/ch4a-sol-1.png" width="576" style="display: block; margin: auto;" />
 
 한걸음 더 나아가 점(국가)들이 다른 형태(shape)를 갖고 
@@ -201,6 +308,15 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 이 경우는 색상 인자를 시각적 매핑 함수 `aes()` 내부로 위치를 조정하여 
 인자로 넘긴다.
 
+
+
+```r
+gapminder %>% 
+  ggplot( aes(x = gdpPercap, y = lifeExp, color = continent) ) +
+    geom_point(size=3, shape=17) + 
+    scale_x_log10() + 
+    geom_smooth(method="lm", size=1.5)
+```
 
 <img src="viz-ggplot_files/figure-html/ch4b-sol-1.png" width="576" style="display: block; margin: auto;" />
 
@@ -222,6 +338,18 @@ R에는 세가지 주류 도식화 시스템이 존재한다: [기본 도식화 
 풀수도 있다. 주어진 문제를 풀 수 있는 가장 직관적이고 간결한 코드 작성을 추천한다.
 
 
+
+```r
+gapminder %>% 
+  ## A,Z 문자 시작 국가명 추출
+  mutate(AZ_country = str_sub(country, start = 1L, end = 1L)) %>% 
+  filter(AZ_country %in% c("A", "Z")) %>% 
+  ## A,Z 문자 시작국가 작은 창 시각화
+  ggplot( aes(x = year, y = lifeExp, color=continent) ) +
+    geom_line() + 
+    facet_wrap( ~ country)
+```
+
 <img src="viz-ggplot_files/figure-html/ggplot-facet-1.png" width="576" style="display: block; margin: auto;" />
 
 `facet_wrap` 계층은 "공식(formula)"을 인자로 받는데, (`~`) 틸드로 표기한다.
@@ -241,6 +369,26 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 "Life expectancy", 혹
 따라서, 색상 범례 제목은 `color = "대륙"`이 되는 반면에,
 채우기(`fill`) 범례는 `fill = "대륙"`으로 설정하게 된다.
 
+
+```r
+gapminder %>% 
+  ## A,Z 문자 시작 국가명 추출
+  mutate(AZ_country = str_sub(country, start = 1L, end = 1L)) %>% 
+  filter(AZ_country %in% c("A", "Z")) %>% 
+  ## A,Z 문자 시작국가 작은 창 시각화
+  ggplot( aes(x = year, y = lifeExp, color=continent) ) +
+    geom_line() + 
+    facet_wrap( ~ country) +
+    labs(
+      x = "Year",              # x 축 제목
+      y = "Life expectancy",   # y 축 제목
+      title = "국가명 A, Z 시작국가 연도별 기대수명 비교",   # 그래프 제목
+      color = "대륙"      # 범례 제목
+    ) +
+    theme(axis.text.x=element_blank(), 
+          axis.ticks.x=element_blank())
+```
+
 <img src="viz-ggplot_files/figure-html/ggplot-theme-1.png" width="576" style="display: block; margin: auto;" />
 
 
@@ -254,6 +402,27 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 "Life expectancy", 혹
 (현 작업디렉토리에 `results/` 폴더가 생성되어 있어야 한다.)
 
 
+```r
+az_gapminder <- gapminder %>% 
+  ## A,Z 문자 시작 국가명 추출
+  mutate(AZ_country = str_sub(country, start = 1L, end = 1L)) %>% 
+  filter(AZ_country %in% c("A", "Z"))
+
+lifeExp_plot <- az_gapminder %>% 
+  ggplot( aes(x = year, y = lifeExp, color=continent) ) +
+    geom_line() + 
+    facet_wrap( ~ country) +
+    labs(
+      x = "Year",              # x 축 제목
+      y = "Life expectancy",   # y 축 제목
+      title = "국가명 A, Z 시작국가 연도별 기대수명 비교",   # 그래프 제목
+      color = "대륙"      # 범례 제목
+    ) +
+    theme(axis.text.x=element_blank(), 
+          axis.ticks.x=element_blank())
+
+ggsave(filename = "results/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")
+```
 
 `ggsave()` 함수에 두가지 멋진 점이 있다.
 첫째는 기본설정값으로 가장 마지막 그래프가 지정되어 있어서,
@@ -280,6 +449,21 @@ y-축은 데이터프레임 칼럼명이 아닌 영어로 "Life expectancy", 혹
 1인단 국민소득 숫자도 과학표기법이 아닌 일반 숫자 표기법을 반영하여 가독성을 높였다.
 이외 독자가 더 쉽게 정보를 파악할 수 있도록 필요한 경우 전문분야 지식을 반영하여 
 미려한 그래프 제작도 가능하다.
+
+
+```r
+gapminder %>% 
+  filter(continent != "Oceania") %>% ## 호주/뉴질랜드 제외
+  ggplot( aes(x = gdpPercap, fill=continent) ) +
+    geom_density(alpha=0.6) + 
+    facet_wrap( ~ year, scales = "free") + 
+    scale_x_log10( labels = scales::comma ) +
+    labs( x = "1인당 국민소득",
+          y = "분포 밀도",
+          title = "대륙별로 1인당 GPD 분표 비교",
+          fill  = "대륙: ") +
+    theme(legend.position = "top")
+```
 
 <img src="viz-ggplot_files/figure-html/ch5-sol-1.png" width="576" style="display: block; margin: auto;" />
 

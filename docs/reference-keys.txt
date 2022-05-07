@@ -4,7 +4,7 @@ fig:ggplot-coordinate
 fig:linear-log-scales
 tab:penguins-EDA-data-structure
 tab:gapminder-EDA-data-structure
-viz-motivation
+viz-motivations
 viz-tamara-why
 viz-anscombe
 viz-anscombe-descriptive

@@ -66,7 +66,7 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">데이터 시각화</a></li>
-<li><a class="" href="viz-motivation.html"><span class="header-section-number">1</span> 시각화</a></li>
+<li><a class="" href="viz-motivations.html"><span class="header-section-number">1</span> 시각화</a></li>
 <li><a class="" href="hello-world.html"><span class="header-section-number">2</span> 헬로우 월드</a></li>
 <li><a class="" href="happy-viz.html"><span class="header-section-number">3</span> 행복한 시각화</a></li>
 <li><a class="" href="%EC%8B%9C%EA%B0%81%ED%99%94-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.html">시각화 구성요소</a></li>
@@ -133,6 +133,42 @@
 <p>최종 시각화에 필요한 패키지를 설치한다. <a href="https://torvaney.github.io/ggsoccer/"><code>ggsoccer</code></a>는 CRAN에도 등록되어 있어 <code>install.packages("ggsoccer")</code> 명령어나 <code>devtools::install_github("torvaney/ggsoccer")</code> 명령어로 설치한다.
 2년전 초창기에는 GitHub 저장소에 공개되었고 이후 안정화를 거쳐 CRAN에 정식 등록되었다. 그밖에도 웹크롤링에 필요한 <code>rvest</code> 패키지와 애니메이션 제작에 필요한 <code>gganimate</code>, <code>tweenr</code> 패키지를 설치한다. <code>ggimage</code> 패키지는 명칭에도 나오지만 <code>ggplot</code>에 이모티콘, 아이콘, 그림 등을 넣을 수 있게 해주는 패키지다.</p>
 <p>위키페이지에서 러시아 월드컵에 출전한 선수 주요선수를 득점 기준으로 10명 추려보자.</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 0. 환경설정 ------</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># devtools::install_github("torvaney/ggsoccer")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://torvaney.github.io/ggsoccer/">ggsoccer</a></span><span class="op">)</span>  
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/thomasp85/tweenr">tweenr</a></span><span class="op">)</span>    
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gganimate.com">gganimate</a></span><span class="op">)</span> 
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/GuangchuangYu/ggimage">ggimage</a></span><span class="op">)</span>   
+
+
+<span class="co"># 1. 데이터 ------</span>
+<span class="co">## 1.1. 월드컵 출전 선수 데이터 -----</span>
+<span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"C"</span><span class="op">)</span>
+
+<span class="va">world_url</span> <span class="op">&lt;-</span> <span class="st">"https://ko.wikipedia.org/wiki/2018년_FIFA_월드컵_선수_명단"</span>
+
+<span class="va">player_dat</span> <span class="op">&lt;-</span> <span class="va">world_url</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/rename.html">html_nodes</a></span><span class="op">(</span>xpath<span class="op">=</span><span class="st">'//*[@id="mw-content-text"]/div/table[24]/tbody/tr/td/table'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>fill<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+ 
+<span class="fu"><a href="https://rdrr.io/r/base/locales.html">Sys.setlocale</a></span><span class="op">(</span><span class="st">"LC_ALL"</span>, <span class="st">"Korean"</span><span class="op">)</span>
+
+<span class="va">player_df</span> <span class="op">&lt;-</span> <span class="va">player_dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span>ascii <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>주장여부 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">`선수`</span>, <span class="st">"\\("</span><span class="op">)</span>, <span class="st">"주장"</span>, <span class="st">"선수"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>`선수` <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">`선수`</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+
+
+<span class="va">player_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">득점</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="출전선수-명단" class="section level3" number="14.2.2">
 <h3>
@@ -148,7 +184,32 @@
 <li>미드필드: 이재성 정우영 장현수 문선민</li>
 <li>공격: 구자철 손흥민</li>
 </ul>
-<p><a href="https://torvaney.github.io/projects/tracker#">Soccer event logger</a>를 활용하여 각 선수별 위치를 축구경기장에 클릭하여 좌표를 얻은 후에 선수명을 수작업을 붙여 놓고 이를 <code>ggsoccer</code> 팩키지 <code>annotate_pitch()</code>, <code>theme_pitch()</code> 함수를 사용해서 시각화한다.</p>
+<p><a href="https://torvaney.github.io/projects/tracker#">Soccer event logger</a>를 활용하여 각 선수별 위치를 축구경기장에 클릭하여 좌표를 얻은 후에 선수명을 수작업을 붙여 놓고 이를 <code>ggsoccer</code> 팩키지 <code><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch()</a></code>, <code><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch()</a></code> 함수를 사용해서 시각화한다.</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 2. 선발 라인업 ------</span>
+
+<span class="va">lineup_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+    <span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">name</span>,
+<span class="fl">9.035</span>, <span class="fl">50.00</span>, <span class="st">"조현우"</span>,
+<span class="fl">24.46</span>, <span class="fl">90.78</span>, <span class="st">"이용"</span>,
+<span class="fl">19.10</span>, <span class="fl">66.05</span>, <span class="st">"운영선"</span>,
+<span class="fl">19.10</span>, <span class="fl">30.52</span>, <span class="st">"김영권"</span>,
+<span class="fl">25.17</span>,  <span class="fl">5.52</span>, <span class="st">"홍철"</span>,
+<span class="fl">46.60</span>, <span class="fl">91.57</span>, <span class="st">"이재성"</span>,
+<span class="fl">45.89</span>, <span class="fl">66.05</span>, <span class="st">"정우영"</span>,
+<span class="fl">45.53</span>, <span class="fl">30.42</span>, <span class="st">"장현수"</span>,
+<span class="fl">43.39</span>,  <span class="fl">5.52</span>, <span class="st">"문선민"</span>,
+<span class="fl">71.60</span>, <span class="fl">30.26</span>, <span class="st">"구자철"</span>,
+<span class="fl">72.67</span>, <span class="fl">64.73</span>, <span class="st">"손흥민"</span><span class="op">)</span>
+
+<span class="va">lineup_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span>aspect_ratio <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span> size <span class="op">=</span> <span class="fl">1.5</span> <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, family<span class="op">=</span><span class="st">"NanumGothic"</span>,
+               vjust <span class="op">=</span> <span class="fl">1.5</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="case-study-worldcup_files/figure-html/worldcup-germany-lineup-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 <div id="russia-2018-worldcup-germany-goal" class="section level3" number="14.2.3">
@@ -157,8 +218,72 @@
 </h3>
 <p>정규 경기시간이 모두 소진된 후에 추가시간이 6분 주워졌고, 추가시간 2분 손흥민의 코너킥이 김영권에 이어지면서 독일전 첫골이 완성되었다. 축구장 골의 움직임은 <code>ball_df</code> 데이터프레임에 2차원 평면이라 <code>from</code>, <code>to</code>로 <code>x</code>, <code>y</code> 각각 데이터화시킨다. 축구선수의 위치는 <code>first_player_df</code> 데이터프레임의 첫번째 골에 관여한 선수 위치를 담아낸다.
 선수의 위치는 <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>, 공의 움직임은 <code><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment()</a></code>로 나타내고 첫번째 골의 이동에 집중할 수 있도록 관련된 부분을 정리하고 점위에 텍스트를 추가하여 선수명을 명확히 한다.</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 1. 첫번째 골 데이터 ------</span>
+
+<span class="va">ball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">from_x</span>, <span class="op">~</span><span class="va">from_y</span>, <span class="op">~</span><span class="va">to_x</span>, <span class="op">~</span><span class="va">to_y</span>, 
+                      <span class="fl">0</span>,    <span class="fl">100</span>,   <span class="fl">6.78</span>, <span class="fl">63.94</span>,
+                      <span class="fl">6.78</span>, <span class="fl">63.94</span>, <span class="fl">7.5</span>,  <span class="fl">56.84</span>,
+                      <span class="fl">7.5</span>,  <span class="fl">56.84</span>, <span class="fl">4.64</span>, <span class="fl">38.94</span>,
+                      <span class="fl">4.64</span>, <span class="fl">38.94</span>, <span class="op">-</span><span class="fl">0.53</span>,<span class="fl">47.36</span><span class="op">)</span>
+
+<span class="va">first_player_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">name</span>, 
+                   <span class="fl">0</span>,    <span class="fl">100</span>,   <span class="st">"손흥민"</span>,
+                   <span class="fl">6.78</span>, <span class="fl">63.94</span>, <span class="st">"이승우"</span>,
+                   <span class="fl">7.5</span>,  <span class="fl">56.84</span>, <span class="st">"윤영선"</span>,
+                   <span class="fl">4.64</span>, <span class="fl">38.94</span>, <span class="st">"김영권"</span><span class="op">)</span>
+
+<span class="va">ball_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">from_x</span>, y<span class="op">=</span><span class="va">from_y</span>, size<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">to_x</span>, y<span class="op">=</span><span class="va">to_y</span>, size<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">from_x</span>, y <span class="op">=</span> <span class="va">from_y</span>, xend <span class="op">=</span> <span class="va">to_x</span>, yend <span class="op">=</span> <span class="va">to_y</span><span class="op">)</span>,
+                 arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,
+                               type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">51</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"한국과 독일 월드컵 예선"</span>, 
+         subtitle<span class="op">=</span><span class="st">"김영권 첫골(90+2)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">first_player_df</span>, 
+        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">name</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NanumGothic"</span><span class="op">)</span><span class="op">)</span>,
+        vjust <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="case-study-worldcup_files/figure-html/germany-first-goal-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>독일전 두번째 골은 연장 추가시간 막판 골키퍼까지 나와 만회골을 위해 혼신을 다하던 순간, 주세종이 골을 뽑아내고 이를 손흥민에 연결하여 여유있게 골을 골망에 넣어 두번째골이 완성되었다. 앞선방법과 동일하게 두번째 골도 공의 위치와 선수를 데이터프레임에 담아내고 <code>ggplot</code>으로 시각화한다.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 2. 두번째 골 데이터 ------</span>
+
+<span class="va">second_ball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">from_x</span>, <span class="op">~</span><span class="va">from_y</span>, <span class="op">~</span><span class="va">to_x</span>, <span class="op">~</span><span class="va">to_y</span>, 
+                   <span class="fl">69.28</span>, <span class="fl">15.52</span>, <span class="fl">75.89</span>, <span class="fl">22.89</span>,
+                   <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">24.28</span>, <span class="fl">62.89</span>,
+                   <span class="fl">24.28</span>, <span class="fl">62.89</span>, <span class="fl">2.85</span>, <span class="fl">60.52</span>,
+                   <span class="fl">2.85</span>, <span class="fl">60.52</span>, <span class="op">-</span><span class="fl">1.07</span>, <span class="fl">46.31</span><span class="op">)</span>
+
+<span class="va">second_player_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">name</span>, 
+                           <span class="fl">69.28</span>, <span class="fl">15.52</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">24.28</span>, <span class="fl">62.89</span>, <span class="st">"손흥민"</span><span class="op">)</span>
+
+<span class="va">second_ball_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">from_x</span>, y<span class="op">=</span><span class="va">from_y</span>, size<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">to_x</span>, y<span class="op">=</span><span class="va">to_y</span>, size<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">from_x</span>, y <span class="op">=</span> <span class="va">from_y</span>, xend <span class="op">=</span> <span class="va">to_x</span>, yend <span class="op">=</span> <span class="va">to_y</span><span class="op">)</span>,
+                 arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,
+                               type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"한국과 독일 월드컵 예선"</span>, 
+         subtitle<span class="op">=</span><span class="st">"손흥민 두번째골(90+6)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">second_player_df</span>, 
+              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">name</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NanumGothic"</span><span class="op">)</span><span class="op">)</span>,
+              vjust <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="case-study-worldcup_files/figure-html/germany-second-goal-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 </div>
@@ -168,12 +293,52 @@
 </h2>
 <p><code>ggplot</code>을 활용한 동적 시각화는 기본적으로 정적 시각화 <code>ggplot</code> 그래프를 생성하고 나서 이를
 애니메이션을 원하면 <code>gganimate</code>, 인터랙티브 그래프를 원하면 <code>plotly</code> 패키지에 연결시키는 것이 일반적이다.</p>
-<p>선수의 위치와 골의 이동경로를 설정하고 <code>time</code> 순서를 지정한다. 그리고 나서, <code>gganimate</code> 팩키지 <code>transition_states()</code> 함수를 사용해서 득점장면 애니메이션을 생성시킨다.</p>
+<p>선수의 위치와 골의 이동경로를 설정하고 <code>time</code> 순서를 지정한다. 그리고 나서, <code>gganimate</code> 팩키지 <code><a href="https://gganimate.com/reference/transition_states.html">transition_states()</a></code> 함수를 사용해서 득점장면 애니메이션을 생성시킨다.</p>
 <div id="russia-2018-worldcup-germany-player-first" class="section level3" number="14.3.1">
 <h3>
 <span class="header-section-number">14.3.1</span> 김영권 첫번째 골<a class="anchor" aria-label="anchor" href="#russia-2018-worldcup-germany-player-first"><i class="fas fa-link"></i></a>
 </h3>
 <p>독일전 첫번째 골의 경우 손흥민 코너킥으로 선수의 움직임이 크지 않은 상태에서 공이 손흥민 → 이승우 → 윤영선 → 김영권으로 연결되며 골로 연결된 경우다. 따라서 골의 움직임만 <code>time</code>을 주어 이동시키면 애니메이션을 간단히 제작할 수 있다.</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 1. 첫번째 골 데이터 ------</span>
+
+<span class="va">first_ball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>,      <span class="op">~</span><span class="va">y</span>,  <span class="op">~</span><span class="va">time</span>,
+                         <span class="fl">0</span>,      <span class="fl">100</span>,   <span class="fl">1</span>,
+                         <span class="fl">6.78</span>, <span class="fl">67.94</span>,   <span class="fl">2</span>,
+                         <span class="fl">7.5</span>,  <span class="fl">56.84</span>,   <span class="fl">3</span>,
+                         <span class="fl">4.64</span>, <span class="fl">38.94</span>,   <span class="fl">4</span>,
+                         <span class="op">-</span><span class="fl">0.8</span>,  <span class="fl">47</span>,   <span class="fl">5</span><span class="op">)</span>
+
+<span class="va">first_player_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">name</span>, 
+                           <span class="fl">0</span>,    <span class="fl">100</span>,   <span class="st">"손흥민"</span>,
+                           <span class="fl">9.78</span>, <span class="fl">67.94</span>, <span class="st">"이승우"</span>,
+                           <span class="fl">9.5</span>,  <span class="fl">56.84</span>, <span class="st">"윤영선"</span>,
+                           <span class="fl">7.64</span>, <span class="fl">38.94</span>, <span class="st">"김영권"</span><span class="op">)</span>
+
+<span class="va">first_goal_ani</span> <span class="op">&lt;-</span> <span class="va">first_ball_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">51</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"한국과 독일 월드컵 예선"</span>, 
+         subtitle<span class="op">=</span><span class="st">"김영권 첫번째골(90+2)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">first_player_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, family <span class="op">=</span> <span class="st">"NanumGothic"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>,
+          text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"NanumGothic"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">ggimage</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_emoji.html">geom_emoji</a></span><span class="op">(</span>
+        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, 
+            y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,
+        image <span class="op">=</span> <span class="st">"26bd"</span>, size <span class="op">=</span> <span class="fl">0.035</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://gganimate.com/reference/transition_states.html">transition_states</a></span><span class="op">(</span>
+        <span class="va">time</span>,
+        transition_length <span class="op">=</span> <span class="fl">0.5</span>,
+        state_length <span class="op">=</span> <span class="fl">0.0001</span>,
+        wrap <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://gganimate.com/reference/ease_aes.html">ease_aes</a></span><span class="op">(</span><span class="st">"linear"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://gganimate.com/reference/animate.html">animate</a></span><span class="op">(</span><span class="va">first_goal_ani</span>, nframes <span class="op">=</span> <span class="fl">24</span>, renderer <span class="op">=</span> <span class="fu"><a href="https://gganimate.com/reference/renderers.html">gifski_renderer</a></span><span class="op">(</span><span class="st">"assets/images/first_goal.gif"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="assets/images/first_goal.gif" alt=""><p class="caption">러시아 월드컵 독일전 첫번째 골</p>
 </div>
@@ -183,6 +348,59 @@
 <span class="header-section-number">14.3.2</span> 손흥민 두번째 골<a class="anchor" aria-label="anchor" href="#russia-2018-worldcup-germany-player-second"><i class="fas fa-link"></i></a>
 </h3>
 <p>두번째 손흥민의 골은 주세종이 독일 골키퍼로부터 공을 가로채서 이를 손흥민에 연결하고 손흥민이 빠른 주력을 이용하여 골대까지 전력질주하여 골을 넣은 경우라, 공뿐만 아니라 선수의 움직임도 함께 애니메이션화하여 시각화한다.</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 2. 두번째 골 데이터 ------</span>
+
+<span class="va">second_ball_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">time</span>,
+                          <span class="fl">69.28</span>, <span class="fl">15.52</span>, <span class="fl">1</span>,
+                          <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">2</span>,
+                          <span class="fl">24.28</span>, <span class="fl">62.89</span>, <span class="fl">3</span>,
+                          <span class="fl">24.28</span>, <span class="fl">62.89</span>, <span class="fl">4</span>,
+                          <span class="fl">2.85</span>, <span class="fl">60.52</span>,  <span class="fl">5</span>,
+                          <span class="op">-</span><span class="fl">1.07</span>, <span class="fl">46.31</span>, <span class="fl">6</span><span class="op">)</span>
+
+<span class="va">sohn_movement_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">time</span>, <span class="op">~</span><span class="va">name</span>,
+                            <span class="fl">35.28</span>, <span class="fl">62.89</span>, <span class="fl">1</span>, <span class="st">"손흥민"</span>,
+                            <span class="fl">35.28</span>, <span class="fl">62.89</span>, <span class="fl">2</span>, <span class="st">"손흥민"</span>,
+                            <span class="fl">35.28</span>, <span class="fl">62.89</span>, <span class="fl">3</span>, <span class="st">"손흥민"</span>,
+                            <span class="fl">24.28</span>, <span class="fl">62.89</span>, <span class="fl">4</span>, <span class="st">"손흥민"</span>,
+                             <span class="fl">2.85</span>, <span class="fl">60.52</span>, <span class="fl">5</span>, <span class="st">"손흥민"</span>,
+                             <span class="fl">2.85</span>, <span class="fl">60.52</span>, <span class="fl">6</span>, <span class="st">"손흥민"</span><span class="op">)</span>
+
+<span class="va">joo_movement_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">time</span>, <span class="op">~</span><span class="va">name</span>,
+                           <span class="fl">69.28</span>, <span class="fl">15.52</span>, <span class="fl">1</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">2</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">3</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">4</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">5</span>, <span class="st">"주세종"</span>,
+                           <span class="fl">75.89</span>, <span class="fl">22.89</span>, <span class="fl">6</span>, <span class="st">"주세종"</span><span class="op">)</span>
+
+<span class="va">second_goal_ani</span> <span class="op">&lt;-</span> <span class="va">second_ball_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://torvaney.github.io/ggsoccer/reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">101</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"한국과 독일 월드컵 예선"</span>, 
+         subtitle<span class="op">=</span><span class="st">"손흥민 두번째골(90+6)"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">joo_movement_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sohn_movement_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"NanumGothic"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu">ggimage</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggimage/man/geom_emoji.html">geom_emoji</a></span><span class="op">(</span>
+        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, 
+            y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,
+        image <span class="op">=</span> <span class="st">"26bd"</span>, size <span class="op">=</span> <span class="fl">0.035</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://gganimate.com/reference/transition_states.html">transition_states</a></span><span class="op">(</span>
+        <span class="va">time</span>,
+        transition_length <span class="op">=</span> <span class="fl">0.5</span>,
+        state_length <span class="op">=</span> <span class="fl">0.0001</span>,
+        wrap <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+    <span class="co"># transition_manual(frames = time)</span>
+    <span class="fu"><a href="https://gganimate.com/reference/ease_aes.html">ease_aes</a></span><span class="op">(</span><span class="st">"quadratic-out"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://gganimate.com/reference/animate.html">animate</a></span><span class="op">(</span><span class="va">second_goal_ani</span>, nframes <span class="op">=</span> <span class="fl">24</span>, renderer <span class="op">=</span> <span class="fu"><a href="https://gganimate.com/reference/renderers.html">gifski_renderer</a></span><span class="op">(</span><span class="st">"assets/images/second_goal.gif"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="assets/images/second_goal.gif" alt=""><p class="caption">러시아 월드컵 독일전 두번째 골</p>
 </div>
@@ -228,7 +446,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-06.</p>
+    <p>"<strong>데이터 시각화</strong>" was written by 한국 R 사용자회. It was last built on 2022-05-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

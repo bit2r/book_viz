@@ -13,7 +13,6 @@ library(patchwork)
 library(lubridate)
 
 # 0. 환경설정 ------
-library(tidyverse)
 library(rvest)
 library(extrafont)
 loadfonts()
@@ -36,6 +35,9 @@ clean_varnames <- function(raw_data) {
 
   unicode_data
 }
+
+knitr::opts_chunk$set(
+  echo = TRUE)
 ```
 
 # 러시아 월드컵 {#case-worldcup}
